@@ -1,19 +1,34 @@
-import unifei from '../../assets/unifei.jpg'
-import { Container, Content } from './styles'
+import unifei from "../../assets/unifei.jpg";
+import { Button } from "../Button";
+import { Container, Content } from "./styles";
 
-export function Header () {
-    return (
-        <Container>
-            <Content>
-            <img src={unifei} alt="logounifei" width="380" height="150" />
-                <div>
-                    <p>Bem vindo(a)</p>
-                    <nav>
-                        <button type="button">LOGIN</button>
-                        <button type="button">REGISTRAR</button>
-                    </nav>  
-                </div>
-            </Content>
-        </Container>
-    )
+interface HeaderPorps {
+  typeScreen: "login" | "client" | "analyst";
+}
+
+export function Header({ typeScreen }: HeaderPorps) {
+  const handleLogin = () => console.log("Login");
+
+  const handleRegistrar = () => console.log("Registrar");
+
+  return (
+    <Container>
+      <Content>
+        <img src={unifei} alt="logounifei" width="315" height="110" />
+        {typeScreen === "login" ? (
+          <div>
+            <p>Bem vindo(a)</p>
+            <nav>
+              <Button onClick={handleLogin}>LOGIN</Button>
+              <Button onClick={handleRegistrar}>REGISTRAR</Button>
+            </nav>
+          </div>
+        ) : typeScreen === "client" ? (
+          <span>Client</span>
+        ) : (
+          <span>Analyst</span>
+        )}
+      </Content>
+    </Container>
+  );
 }

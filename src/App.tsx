@@ -4,10 +4,8 @@ import { GlobalStyle } from "./styles/global";
 export function App() {
   return (
     <>
-      <Header />
+      <Header typeScreen="login" />
       <GlobalStyle />
     </>
   );
 }
-
-
