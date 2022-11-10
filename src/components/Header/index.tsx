@@ -2,11 +2,11 @@ import unifei from "../../assets/unifei.jpg";
 import { Button } from "../Button";
 import { Container, Content } from "./styles";
 
-interface HeaderPorps {
+interface HeaderProps {
   typeScreen: "login" | "client" | "analyst";
 }
 
-export function Header({ typeScreen }: HeaderPorps) {
+export function Header({ typeScreen }: HeaderProps) {
   const handleLogin = () => console.log("Login");
 
   const handleRegistrar = () => console.log("Registrar");
