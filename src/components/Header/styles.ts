@@ -12,7 +12,7 @@ export const Container = styled.header`
 
 export const Image = styled.img`
   width: 320px;
-  height: 130px;
+  height: 120px;
 `;
 
 export const Content = styled.div`
