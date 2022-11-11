@@ -1,6 +1,6 @@
-import unifei from "../../assets/unifei.jpg";
+import unifei from "../../assets/img-logounifei.jpg";
 import { Button } from "../Button";
-import { Container, Content } from "./styles";
+import { Container, Content, Image, Nav, Text } from "./styles";
 
 interface HeaderProps {
   typeScreen: "login" | "client" | "analyst";
@@ -13,15 +13,15 @@ export function Header({ typeScreen }: HeaderProps) {
 
   return (
     <Container>
+      <Image src={unifei} alt="logounifei" />
       <Content>
-        <img src={unifei} alt="logounifei" width="315" height="110" />
         {typeScreen === "login" ? (
           <div>
-            <p>Bem vindo(a)</p>
-            <nav>
+            <Text>Bem vindo(a)</Text>
+            <Nav>
               <Button onClick={handleLogin}>LOGIN</Button>
               <Button onClick={handleRegistrar}>REGISTRAR</Button>
-            </nav>
+            </Nav>
           </div>
         ) : typeScreen === "client" ? (
           <span>Client</span>

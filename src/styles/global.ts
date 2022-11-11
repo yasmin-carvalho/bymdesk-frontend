@@ -1,5 +1,17 @@
 import { createGlobalStyle } from "styled-components";
 
+export const Colors = {
+  blue: "#073763ff",
+  blueButton: "#3D4FBE",
+  blueBorder: "#242f71",
+  textTitle: "#434343",
+  textBody: "#969cb3",
+  textLabel: "#303238",
+  background: "#f0f2f5",
+  white: "#FFFFFF",
+  linkFooter: "#00a000",
+};
+
 export const GlobalStyle = createGlobalStyle`
     :root {
         --blue: #073763ff;
@@ -37,6 +49,11 @@ export const GlobalStyle = createGlobalStyle`
         font-weight: 400;
     }
 
+    a {
+        text-decoration: none;
+        color: ${Colors.blue}
+    }
+
     h1, h2, h3, h4, h5, h6, strong {
         font-weight: 600;
     }
@@ -49,4 +66,4 @@ export const GlobalStyle = createGlobalStyle`
         opacity: 0.6;
         cursor: not-allowed;
     }
-`
+`;

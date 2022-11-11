@@ -6,7 +6,6 @@ interface IStyledButton {
 
 export const StyledButton = styled.button<IStyledButton>`
   list-style: none;
-  margin-left: 15px;
   color: #fff;
   background: ${(props) => props.bgColor ?? "#3D4FBE"};
   border: solid 1px var(--blue-border);

@@ -1,15 +1,26 @@
-import {Asterisco, Container, ContainerLabel, StyledInput, Label} from "./style"
+import {
+  Asterisco,
+  Container,
+  ContainerLabel,
+  StyledInput,
+  Label,
+} from "./styles";
 
-export function Input () {
-    return (
-        <Container>
-            <ContainerLabel>
-                <Label>
-                    Nome 
-                </Label>
-                <Asterisco>*</Asterisco>
-            </ContainerLabel>
-            <StyledInput/>
-        </Container>
-    )
+interface InputProps {
+  label?: string;
+  required?: boolean;
+  placeholder?: string;
+}
+export function Input({ label, required, placeholder }: InputProps) {
+  return (
+    <Container>
+      {label && (
+        <ContainerLabel>
+          <Label>{label}</Label>
+          {required && <Asterisco>*</Asterisco>}
+        </ContainerLabel>
+      )}
+      <StyledInput placeholder={placeholder} />
+    </Container>
+  );
 }

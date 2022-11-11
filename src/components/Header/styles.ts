@@ -1,26 +1,35 @@
+import { Colors } from "./../../styles/global";
 import styled from "styled-components";
 
 export const Container = styled.header`
-  background: var(--blue);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  background: ${Colors.blue};
+  padding: 12px 12px 12px 20px;
+`;
+
+export const Image = styled.img`
+  width: 320px;
+  height: 130px;
 `;
 
 export const Content = styled.div`
-  max-width: 1300px;
-  margin: 0 auto;
-
-  padding: 1rem 1rem 1rem;
+  background: ${Colors.white};
+  padding: 15px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+`;
 
-  div {
-    width: 20%;
-    background-color: #fff;
-    padding: 1rem 1rem 1rem;
-  }
+export const Nav = styled.nav`
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+`;
 
-  p {
-    text-align: right;
-    width: 94%;
-  }
+export const Text = styled.span`
+  text-align: right;
+  display: block;
+  margin-bottom: 3px;
 `;
