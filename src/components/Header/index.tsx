@@ -3,7 +3,7 @@ import { Button } from "../Button";
 import { Container, Content, Image, Nav, Text } from "./styles";
 
 interface HeaderProps {
-  typeScreen: "login" | "client" | "analyst";
+  typeScreen: "login" | "loginAnalyst" | "PageClient" | "PageAnalyst";
 }
 
 export function Header({ typeScreen }: HeaderProps) {
@@ -11,11 +11,10 @@ export function Header({ typeScreen }: HeaderProps) {
 
   const handleRegistrar = () => console.log("Registrar");
 
-  return (
-    <Container>
-      <Image src={unifei} alt="logounifei" />
-      <Content>
-        {typeScreen === "login" ? (
+  const renderRightContainer = () => {
+    if (typeScreen === "login") {
+      return (
+        <Content>
           <div>
             <Text>Bem vindo(a)</Text>
             <Nav>
@@ -23,12 +22,21 @@ export function Header({ typeScreen }: HeaderProps) {
               <Button onClick={handleRegistrar}>REGISTRAR</Button>
             </Nav>
           </div>
-        ) : typeScreen === "client" ? (
-          <span>Client</span>
-        ) : (
-          <span>Analyst</span>
-        )}
-      </Content>
+        </Content>
+      );
+    } else if (typeScreen === "loginAnalyst") {
+      return null;
+    } else if (typeScreen === "PageClient") {
+      return <></>;
+    } else if (typeScreen === "PageAnalyst") {
+      return <></>;
+    }
+  };
+
+  return (
+    <Container>
+      <Image src={unifei} alt="logounifei" />
+      {renderRightContainer()}
     </Container>
   );
 }

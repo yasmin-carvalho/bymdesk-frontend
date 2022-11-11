@@ -1,9 +1,13 @@
 import styled from "styled-components";
 import { Colors } from "../../styles/global";
 
-export const Container = styled.div`
+interface IContainer {
+  isRow: boolean;
+}
+
+export const Container = styled.div<IContainer>`
   display: flex;
-  flex-direction: row;
+  flex-direction: ${(props) => (props.isRow ? "row" : "column")};
   gap: 20px;
 `;
 
