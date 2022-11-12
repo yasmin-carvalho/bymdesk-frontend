@@ -3,12 +3,13 @@ import { Colors } from "../../styles/global";
 
 interface IContainer {
   isRow: boolean;
+  gapColumn?: string;
 }
 
 export const Container = styled.div<IContainer>`
   display: flex;
   flex-direction: ${(props) => (props.isRow ? "row" : "column")};
-  gap: 20px;
+  gap: ${(props) => props.gapColumn ?? "20px"};
 `;
 
 export const ContainerLabel = styled.div`

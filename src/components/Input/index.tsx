@@ -11,6 +11,7 @@ interface InputProps {
   required?: boolean;
   placeholder?: string;
   labelColum?: string;
+  gapColumn?: string;
 }
 
 export function Input({
@@ -18,9 +19,10 @@ export function Input({
   required,
   placeholder,
   labelColum,
+  gapColumn,
 }: InputProps) {
   return (
-    <Container isRow={!!label}>
+    <Container isRow={!!label} gapColumn={gapColumn}>
       {label && (
         <ContainerLabel>
           <Label>{label}</Label>
