@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { Container } from "../../components/Input/styles";
+
 export const Main = styled.main`
   display: flex;
   flex-direction: row;
@@ -15,6 +17,10 @@ export const ContainerLeft = styled.div`
   width: 400px;
   gap: 20px;
   align-items: center;
+
+  ${Container} {
+    gap: 5px;
+  }
 `;
 export const ContainerRight = styled.div`
   display: flex;

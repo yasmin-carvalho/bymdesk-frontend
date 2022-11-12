@@ -9,8 +9,8 @@ export function CreateLoginAnalystc() {
       <Header typeScreen="loginAnalyst" />
       <Main>
         <ContainerLeft>
-          <Input labelColum="Email" required gapColumn="5px" />
-          <Input labelColum="Senha" required gapColumn="5px" />
+          <Input labelColum="Email" required />
+          <Input labelColum="Senha" required />
           <Button>Entrar</Button>
         </ContainerLeft>
         <ContainerRight></ContainerRight>
