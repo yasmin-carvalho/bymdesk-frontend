@@ -12,7 +12,12 @@ export function CreateLoginAnalystc() {
       <Header typeScreen="loginAnalyst" />
       <Main>
         <ContainerLeft>
-          <Input labelColum="Email" required placeholder="Digite seu email" />
+          <Input
+            labelColum="Email"
+            type="email"
+            required
+            placeholder="Digite seu email"
+          />
           <Input
             labelColum="Senha"
             type="password"
@@ -29,7 +34,7 @@ export function CreateLoginAnalystc() {
           />
           <Input label="Matrícula" required />
           <Input label="Nome completo" required />
-          <Input label="Email" required />
+          <Input label="Email" type="email" required />
           <Input label="Senha" type="password" required />
           <Input label="Confirmar senha" type="password" required />
           <Buttons>

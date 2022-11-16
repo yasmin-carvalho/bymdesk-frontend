@@ -18,21 +18,24 @@ export function TextArea({
   required,
   placeholder,
   labelColum,
+  ...rest
 }: TextAreaProps) {
   return (
-    <Container isRow={!!label}>
+    <Container isRow={!!label} {...rest}>
       {label && (
         <ContainerLabel>
           <Label>{label}</Label>
           {required && <Asterisco>*</Asterisco>}
         </ContainerLabel>
       )}
+
       {labelColum && (
         <ContainerLabel>
           <Label>{labelColum}</Label>
           {required && <Asterisco>*</Asterisco>}
         </ContainerLabel>
       )}
+
       <StyledTextArea placeholder={placeholder} />
     </Container>
   );

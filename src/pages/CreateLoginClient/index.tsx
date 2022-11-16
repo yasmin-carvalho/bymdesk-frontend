@@ -10,11 +10,11 @@ export function CreateLoginClient() {
       <Main>
         <Container>
           <Input label="Nome" required />
-          <Input label="Email" required />
-          <Input label="Email opcional" />
-          <Input label="Telefone" />
-          <Input label="Senha" required />
-          <Input label="Confirmar Senha" required />
+          <Input type="email" label="Email" required />
+          <Input type="email" label="Email opcional" />
+          <Input type="tel" label="Telefone" />
+          <Input type="password" label="Senha" required />
+          <Input type="password" label="Confirmar Senha" required />
         </Container>
       </Main>
       <Footer>

@@ -4,6 +4,7 @@ import {
   ContainerLabel,
   StyledInput,
   Label,
+  ContentInputFile,
 } from "./styles";
 
 interface InputProps {
@@ -20,22 +21,32 @@ export function Input({
   placeholder,
   labelColum,
   type,
+  ...rest
 }: InputProps) {
   return (
-    <Container isRow={!!label}>
+    <Container isRow={!!label} {...rest}>
       {label && (
         <ContainerLabel>
-          <Label>{label}</Label>
+          <Label>{type !== "file" ? label : ""}</Label>
           {required && <Asterisco>*</Asterisco>}
         </ContainerLabel>
       )}
+
       {labelColum && (
         <ContainerLabel>
-          <Label>{labelColum}</Label>
+          <Label>{type !== "file" ? labelColum : ""}</Label>
           {required && <Asterisco>*</Asterisco>}
         </ContainerLabel>
       )}
-      <StyledInput placeholder={placeholder} type={type} />
+
+      {type === "file" ? (
+        <ContentInputFile>
+          <label htmlFor="arquivo">{label}</label>
+          <input type="file" name="arquivo" id="arquivo" />
+        </ContentInputFile>
+      ) : (
+        <StyledInput placeholder={placeholder} type={type} />
+      )}
     </Container>
   );
 }

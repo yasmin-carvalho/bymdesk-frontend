@@ -1,4 +1,3 @@
-import { Button } from "../../components/Button";
 import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
 import { Select } from "../../components/Select";
@@ -6,11 +5,10 @@ import { TextArea } from "../../components/TextArea";
 import {
   BlockTicket,
   ButtonBlock,
-  DivLinkBlock,
   LinkBar,
-  LinkBlock,
   Main,
   PageBar,
+  StyledButton,
   Text,
 } from "./styles";
 
@@ -38,11 +36,10 @@ export function ClientTicket() {
             required
             placeholder="Digite a descrição do incidente"
           />
-          <DivLinkBlock>
-            <LinkBlock href="https://unifei.edu.br/">+ Anexar Imagem</LinkBlock>
-          </DivLinkBlock>
+          <Input type="file" label="+ Anexar arquivo" />
+
           <ButtonBlock>
-            <Button>Enviar</Button>
+            <StyledButton onClick={() => {}}>Enviar</StyledButton>
           </ButtonBlock>
         </BlockTicket>
       </Main>

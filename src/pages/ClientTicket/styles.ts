@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Button } from "../../components/Button";
 import { Colors } from "../../styles/global";
 
 export const Main = styled.main`
@@ -42,18 +43,11 @@ export const Text = styled.span`
   font-weight: bold;
 `;
 
-export const DivLinkBlock = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-export const LinkBlock = styled.a`
-  color: ${Colors.blueButton};
-  font-weight: bold;
-  font-size: 12px;
-`;
-
 export const ButtonBlock = styled.div`
   display: flex;
-  justify-content: left;
+  justify-content: right;
+`;
+
+export const StyledButton = styled(Button)`
+  width: 200px;
 `;

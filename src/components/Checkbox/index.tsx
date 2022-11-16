@@ -4,9 +4,9 @@ interface CheckboxProps {
   label?: string;
 }
 
-export function Checkbox({ label }: CheckboxProps) {
+export function Checkbox({ label, ...rest }: CheckboxProps) {
   return (
-    <Container>
+    <Container {...rest}>
       <Check type="checkbox" />
       {label && <Label>{label}</Label>}
     </Container>

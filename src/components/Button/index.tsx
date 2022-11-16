@@ -5,9 +5,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   bgColor?: string;
 }
 
-export function Button({ onClick, children, bgColor }: ButtonProps) {
+export function Button({ children, bgColor, ...rest }: ButtonProps) {
   return (
-    <StyledButton type="button" onClick={onClick} bgColor={bgColor}>
+    <StyledButton bgColor={bgColor} {...rest}>
       {children}
     </StyledButton>
   );

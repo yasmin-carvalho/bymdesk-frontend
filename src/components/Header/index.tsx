@@ -6,7 +6,7 @@ interface HeaderProps {
   typeScreen: "login" | "loginAnalyst" | "PageClient" | "PageAnalyst";
 }
 
-export function Header({ typeScreen }: HeaderProps) {
+export function Header({ typeScreen, ...rest }: HeaderProps) {
   const handleLogin = () => console.log("Login");
 
   const handleRegistrar = () => console.log("Registrar");
@@ -45,7 +45,7 @@ export function Header({ typeScreen }: HeaderProps) {
   };
 
   return (
-    <Container>
+    <Container {...rest}>
       <Image src={unifei} alt="logounifei" />
       {renderRightContainer()}
     </Container>

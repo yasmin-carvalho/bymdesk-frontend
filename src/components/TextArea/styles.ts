@@ -8,13 +8,13 @@ interface IContainer {
 export const Container = styled.div<IContainer>`
   display: flex;
   flex-direction: ${(props) => (props.isRow ? "row" : "column")};
-  gap: 20px;
+  gap: 5px;
 `;
 
 export const ContainerLabel = styled.div`
   display: flex;
   flex-direction: row;
-  width: 100px;
+  width: 220px;
   gap: 5px;
 `;
 
@@ -31,7 +31,13 @@ export const Asterisco = styled.span`
 export const StyledTextArea = styled.textarea`
   width: 100%;
   height: 150px;
+  text-indent: 5px;
+
   ::placeholder {
     padding-left: 5px;
+  }
+
+  :focus {
+    outline: solid 0.1px ${Colors.blueButton};
   }
 `;

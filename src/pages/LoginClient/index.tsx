@@ -31,8 +31,8 @@ export function LoginClient() {
         </ContainerLeft>
         <ContainerRight>
           <Text>Insira os detalhes abaixo</Text>
-          <Input placeholder="Seu endereço de email" />
-          <Input placeholder="Senha" />
+          <Input type="email" placeholder="Seu endereço de email" />
+          <Input type="password" placeholder="Senha" />
           <Checkbox label="lembrar de mim neste computador" />
           <Button>Entrar</Button>
         </ContainerRight>

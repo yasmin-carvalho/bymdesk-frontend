@@ -7,10 +7,14 @@ export const Container = styled.div`
   gap: 5px;
   align-items: center;
 `;
-export const Check = styled.input``;
+export const Check = styled.input`
+  height: 15px;
+  width: 15px;
+  border-radius: 4px;
+`;
 
 export const Label = styled.span`
-  font-weight: 10px;
-  font-size: 10px;
+  font-weight: 12px;
+  font-size: 12px;
   color: ${Colors.textLabel};
 `;
