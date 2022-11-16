@@ -33,3 +33,10 @@ export const Text = styled.span`
   display: block;
   margin-bottom: 3px;
 `;
+
+export const DivSair = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  gap: 5px;
+`;

@@ -2,25 +2,23 @@ import {
   Asterisco,
   Container,
   ContainerLabel,
-  StyledInput,
   Label,
+  StyledTextArea,
 } from "./styles";
 
-interface InputProps {
+interface TextAreaProps {
   label?: string;
   required?: boolean;
   placeholder?: string;
   labelColum?: string;
-  type?: React.HTMLInputTypeAttribute;
 }
 
-export function Input({
+export function TextArea({
   label,
   required,
   placeholder,
   labelColum,
-  type,
-}: InputProps) {
+}: TextAreaProps) {
   return (
     <Container isRow={!!label}>
       {label && (
@@ -35,7 +33,7 @@ export function Input({
           {required && <Asterisco>*</Asterisco>}
         </ContainerLabel>
       )}
-      <StyledInput placeholder={placeholder} type={type} />
+      <StyledTextArea placeholder={placeholder} />
     </Container>
   );
 }

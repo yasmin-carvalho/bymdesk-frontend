@@ -7,7 +7,7 @@ export const Main = styled.main`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  padding: 20px;
+  padding: 60px;
 `;
 
 export const ContainerLeft = styled.div`
@@ -16,7 +16,7 @@ export const ContainerLeft = styled.div`
   justify-content: center;
   width: 400px;
   gap: 20px;
-  align-items: center;
+  align-items: left;
 
   ${Container} {
     gap: 5px;
@@ -26,5 +26,23 @@ export const ContainerRight = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: right;
+  width: 600px;
+  gap: 10px;
+`;
+
+export const Buttons = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 700px;
+  gap: 8px;
+`;
+
+export const Footer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: initial;
+  width: 100%;
+  padding: 20px 20px 25px 70px;
 `;

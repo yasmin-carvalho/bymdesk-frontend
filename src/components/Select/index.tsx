@@ -2,25 +2,19 @@ import {
   Asterisco,
   Container,
   ContainerLabel,
-  StyledInput,
   Label,
+  StyledSelect,
+  Optin,
 } from "./styles";
 
-interface InputProps {
+interface SelectProps {
   label?: string;
   required?: boolean;
-  placeholder?: string;
   labelColum?: string;
-  type?: React.HTMLInputTypeAttribute;
+  array: string[];
 }
 
-export function Input({
-  label,
-  required,
-  placeholder,
-  labelColum,
-  type,
-}: InputProps) {
+export function Select({ label, required, labelColum, array }: SelectProps) {
   return (
     <Container isRow={!!label}>
       {label && (
@@ -35,7 +29,12 @@ export function Input({
           {required && <Asterisco>*</Asterisco>}
         </ContainerLabel>
       )}
-      <StyledInput placeholder={placeholder} type={type} />
+      <StyledSelect>
+        <Optin value=""></Optin>
+        {array.map((item) => (
+          <Optin>{item}</Optin>
+        ))}
+      </StyledSelect>
     </Container>
   );
 }
