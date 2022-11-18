@@ -1,47 +1,38 @@
+import { useState } from "react";
 import { Header } from "../../components/Header";
-import { Input } from "../../components/Input";
-import { Select } from "../../components/Select";
-import { TextArea } from "../../components/TextArea";
-import {
-  BlockTicket,
-  ButtonBlock,
-  LinkBar,
-  Main,
-  PageBar,
-  StyledButton,
-  Text,
-} from "./styles";
+import { Tabs } from "../../components/Tabs";
+import { CampusMapTab } from "./components/CampusMapTab";
+import { InitTab } from "./components/InitTab";
+import { MyTicketsTab } from "./components/MyTicketsTab";
+import { Main } from "./styles";
 
 export function ClientTicket() {
+  const [indexTab, setIndexTab] = useState(0);
+
+  const _renderTab = () => {
+    switch (indexTab) {
+      case 0:
+        return <InitTab />;
+      case 1:
+        return <MyTicketsTab />;
+      case 2:
+        return <CampusMapTab />;
+      default:
+        return <></>;
+    }
+  };
+
   return (
     <>
       <Header typeScreen="PageClient" />
       <Main>
-        <PageBar>
-          <LinkBar href="https://unifei.edu.br/">Início</LinkBar>
-          <LinkBar href="https://unifei.edu.br/">Meus Tickets</LinkBar>
-          <LinkBar href="https://unifei.edu.br/">Mapa do Campus</LinkBar>
-        </PageBar>
-        <BlockTicket>
-          <Text>Enviar um Ticket</Text>
-          <Select label="Bloco" required array={["IMC", "IEST"]} />
-          <Select label="Local" required array={["LDC2", "Sala 2"]} />
-          <Select
-            label="Tipo de Manutenção"
-            required
-            array={["Manutenção TI", "Manutenção Elétrica"]}
-          />
-          <TextArea
-            label="Descrição"
-            required
-            placeholder="Digite a descrição do incidente"
-          />
-          <Input type="file" label="+ Anexar arquivo" />
-
-          <ButtonBlock>
-            <StyledButton onClick={() => {}}>Enviar</StyledButton>
-          </ButtonBlock>
-        </BlockTicket>
+        <Tabs
+          arrayTabs={["Início", "Meus tickets", "Mapa do Campus"]}
+          setIndexTab={setIndexTab}
+          indexTab={indexTab}
+        >
+          {_renderTab()}
+        </Tabs>
       </Main>
     </>
   );
