@@ -11,10 +11,10 @@ interface ITableCell {
 export const StyledTableCell = styled(TableCell).withConfig({
   shouldForwardProp: (prop) => !["width", "align", "borderNone"].includes(prop),
 })<ITableCell>`
-  border: ${(props) => props.borderNone && "none"};
-  text-align: ${(props) => props.align && props.align};
-  width: ${(props) => props.width && props.width};
-  padding: 16px 16px 0 16px !important;
+  border: ${(props) => props.borderNone && "none"} !important;
+  text-align: ${(props) => props.align && props.align} !important;
+  width: ${(props) => props.width && props.width} !important;
+  padding: 16px !important;
 `;
 
 export const StyledTableRow = styled(TableRow)`
@@ -24,9 +24,9 @@ export const StyledTableRow = styled(TableRow)`
 `;
 
 export const TableCellCollapse = styled(TableCell)`
-  padding-bottom: 10px;
-  padding-top: 0;
-  border-top: none;
+  padding-bottom: 10px !important;
+  padding-top: 0 !important;
+  border-top: none !important;
 `;
 
 export const Container = styled.div`
