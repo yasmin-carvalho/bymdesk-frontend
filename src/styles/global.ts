@@ -15,16 +15,6 @@ export const Colors = {
 };
 
 export const GlobalStyle = createGlobalStyle`
-    :root {
-        --blue: #073763ff;
-        --blue-button: #3D4FBE;
-        --blue-border: #242f71;
-        --text-title: #434343;
-        --text-body: #969cb3;
-        --background: #f0f2f5;
-        --shape: #FFFFFF; 
-    }
-
     * {
         margin: 0;
         padding: 0;
@@ -41,7 +31,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        background: var(--background);
+        background: ${Colors.background};
         -webit-font-smoothing: antialiased;
 
     }

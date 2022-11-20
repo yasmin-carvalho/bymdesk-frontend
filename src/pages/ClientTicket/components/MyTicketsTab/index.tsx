@@ -1,6 +1,7 @@
 import { _renderBasicTextCell } from "../../../../components/RendersCellTable";
 import TableApp from "../../../../components/Table/TableApp";
 import { ITypeComponents } from "../../../../components/Table/types";
+import { TabContainer } from "../../../../components/Tabs/styles";
 import { columnConfig, columnLabel, columnType, data } from "./constants";
 
 export function MyTicketsTab() {
@@ -12,13 +13,15 @@ export function MyTicketsTab() {
   };
 
   return (
-    <TableApp
-      tableName="table-my-tickets"
-      columnConfig={columnConfig}
-      components={components}
-      data={data}
-      renderCellHeader={(key) => columnLabel[key]}
-      renderCollapse={() => <span>Olá</span>}
-    />
+    <TabContainer>
+      <TableApp
+        tableName="table-my-tickets"
+        columnConfig={columnConfig}
+        components={components}
+        data={data}
+        renderCellHeader={(key) => columnLabel[key]}
+        renderCollapse={() => <span>Olá</span>}
+      />
+    </TabContainer>
   );
 }

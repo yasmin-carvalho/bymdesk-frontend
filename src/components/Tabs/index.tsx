@@ -1,4 +1,4 @@
-import { LinkBar, PageBar } from "./styles";
+import { LinkBar, PageBar, Divider, ContentLinkBar } from "./styles";
 
 interface TabsProps {
   arrayTabs: string[];
@@ -18,13 +18,16 @@ export function Tabs({
     <>
       <PageBar>
         {arrayTabs.map((item, index) => (
-          <LinkBar
-            key={item}
-            onClick={() => setIndexTab(index)}
-            isActive={index === indexTab}
-          >
-            {item}
-          </LinkBar>
+          <ContentLinkBar>
+            <LinkBar
+              key={item}
+              onClick={() => setIndexTab(index)}
+              isActive={index === indexTab}
+            >
+              {item}
+            </LinkBar>
+            {index === indexTab && <Divider />}
+          </ContentLinkBar>
         ))}
       </PageBar>
       {children}

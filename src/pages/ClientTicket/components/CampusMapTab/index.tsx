@@ -1,3 +1,9 @@
+import { TabContainer } from "../../../../components/Tabs/styles";
+
 export function CampusMapTab() {
-  return <span>Mapa do campus</span>;
+  return (
+    <TabContainer>
+      <span>Mapa do campus</span>
+    </TabContainer>
+  );
 }

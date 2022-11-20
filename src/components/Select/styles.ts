@@ -30,7 +30,6 @@ export const Asterisco = styled.span`
 export const StyledSelect = styled.select`
   height: 30px;
   width: 100%;
-  background: ${Colors.lightGray};
 
   ::placeholder {
     padding-left: 5px;
