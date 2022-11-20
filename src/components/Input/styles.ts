@@ -1,14 +1,20 @@
 import styled from "styled-components";
 import { Colors } from "../../styles/global";
+import SearchIcon from "@mui/icons-material/Search";
 
 interface IContainer {
   isRow: boolean;
+}
+
+interface IStyledInput {
+  isSearch: boolean;
 }
 
 export const Container = styled.div<IContainer>`
   display: flex;
   flex-direction: ${(props) => (props.isRow ? "row" : "column")};
   gap: 5px;
+  align-items: center;
 
   input[type="file"] {
     display: none;
@@ -36,17 +42,17 @@ export const Asterisco = styled.span`
   color: red;
 `;
 
-export const StyledInput = styled.input`
+export const StyledInput = styled.input<IStyledInput>`
+  border-radius: ${(props) => props.isSearch && "6px"};
+  border: ${(props) => props.isSearch && "none"};
+  border: solid 0.2px ${Colors.textBody};
   height: 30px;
   width: 100%;
-  text-indent: 5px;
-
-  ::placeholder {
-    padding-left: 5px;
-  }
+  text-indent: ${(props) => (props.isSearch ? "30px" : "6px")};
+  position: ${(props) => props.isSearch && "relative"};
 
   :focus {
-    outline: solid 0.1px ${Colors.blueButton};
+    outline: solid 0.1px ${Colors.textBody};
   }
 `;
 
@@ -55,4 +61,14 @@ export const ContentInputFile = styled.div`
   label {
     cursor: pointer;
   }
+`;
+
+export const StyledSearchIcon = styled(SearchIcon)`
+  width: 10px;
+  height: 10px;
+  float: left;
+  z-index: 1;
+  position: absolute;
+  margin-left: 3px;
+  color: ${Colors.textTitle};
 `;

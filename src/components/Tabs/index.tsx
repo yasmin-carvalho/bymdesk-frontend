@@ -18,9 +18,8 @@ export function Tabs({
     <>
       <PageBar>
         {arrayTabs.map((item, index) => (
-          <ContentLinkBar>
+          <ContentLinkBar key={item}>
             <LinkBar
-              key={item}
               onClick={() => setIndexTab(index)}
               isActive={index === indexTab}
             >

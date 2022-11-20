@@ -47,3 +47,10 @@ export const Th = styled.div`
   padding-bottom: 10px;
   color: ${Colors.blueButton};
 `;
+
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+`;
