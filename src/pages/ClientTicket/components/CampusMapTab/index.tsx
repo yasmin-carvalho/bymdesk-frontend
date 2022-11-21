@@ -1,9 +1,14 @@
 import { TabContainer } from "../../../../components/Tabs/styles";
+import imgMapCampus from "../../../../assets/img-mapaunifei.jpg";
+import { Container, Text } from "./styles";
 
 export function CampusMapTab() {
   return (
     <TabContainer>
-      <span>Mapa do campus</span>
+      <Container>
+        <Text>Mapa do Campus de Itajubá</Text>
+        <img src={imgMapCampus} alt="incidentes"></img>
+      </Container>
     </TabContainer>
   );
 }
