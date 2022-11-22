@@ -10,6 +10,10 @@ interface IStyledInput {
   isSearch: boolean;
 }
 
+interface IContainerLabel {
+  isRow: boolean;
+}
+
 export const Container = styled.div<IContainer>`
   display: flex;
   flex-direction: ${(props) => (props.isRow ? "row" : "column")};
@@ -27,12 +31,13 @@ export const Container = styled.div<IContainer>`
   }
 `;
 
-export const ContainerLabel = styled.div`
+export const ContainerLabel = styled.div<IContainerLabel>`
   display: flex;
   flex-direction: row;
-  width: 220px;
+  width: ${(props) => (props.isRow ? "220px" : "100%")};
   gap: 5px;
 `;
+
 export const Label = styled.span`
   font-weight: 16px;
   font-size: 14px;

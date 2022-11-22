@@ -31,14 +31,14 @@ export function Input({
   return (
     <Container isRow={!!label || !!isRow} {...rest}>
       {label && (
-        <ContainerLabel>
+        <ContainerLabel isRow={!!label || !!isRow}>
           <Label>{type !== "file" ? label : ""}</Label>
           {required && <Asterisco>*</Asterisco>}
         </ContainerLabel>
       )}
 
       {labelColum && (
-        <ContainerLabel>
+        <ContainerLabel isRow={!!label || !!isRow}>
           <Label>{type !== "file" ? labelColum : ""}</Label>
           {required && <Asterisco>*</Asterisco>}
         </ContainerLabel>
