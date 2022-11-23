@@ -14,17 +14,18 @@ const animeBottomToTop = keyframes`
 
 export const PageBar = styled.div`
   display: flex;
-  background: ${Colors.lightBlue};
+  background: ${Colors.lightBlueUnifei};
   flex-direction: row;
   width: 100%;
-  padding: 25px;
+  padding: 15px;
   gap: 60px;
   border: solid 1px ${Colors.blueBorder};
+  border-radius: 4px;
 `;
 
 export const LinkBar = styled.span<ILinkBar>`
   font-weight: bold;
-  color: ${(props) => (props.isActive ? Colors.blueButton : Colors.textTitle)};
+  color: ${(props) => (props.isActive ? Colors.blueBar : Colors.black)};
   cursor: pointer;
 `;
 

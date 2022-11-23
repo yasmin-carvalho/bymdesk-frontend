@@ -7,25 +7,24 @@ export const Container = styled.header`
   align-items: center;
   flex-direction: row;
   background: ${Colors.blue};
-  padding: 12px 12px 12px 20px;
+  padding: 16px;
 `;
 
 export const Image = styled.img`
-  width: 320px;
-  height: 120px;
+  height: 100px;
 `;
 
 export const Content = styled.div`
-  background: ${Colors.white};
   padding: 15px;
   display: flex;
   align-items: center;
+  color: ${Colors.white};
 `;
 
 export const Nav = styled.nav`
   display: flex;
   flex-direction: row;
-  gap: 5px;
+  gap: 10px;
 `;
 
 export const Text = styled.span`
@@ -34,9 +33,49 @@ export const Text = styled.span`
   margin-bottom: 3px;
 `;
 
-export const DivSair = styled.div`
+export const ContentLogo = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  background: ${Colors.blue};
+  gap: 10px;
+`;
+
+export const ContentTextLogo = styled.div`
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+`;
+export const TextLogo = styled.span`
+  font-weight: 700;
+  font-size: 40px;
+  color: ${Colors.white};
+  font-family: "Exo 2", Helvetica, Arial, Impact, sans-serif;
+`;
+export const TextLogoTwo = styled.span`
+  font-weight: 700;
+  font-size: 15px;
+  color: ${Colors.white};
+  font-family: "Exo 2", Helvetica, Arial, Impact, sans-serif;
+`;
+
+export const ContainerPageAnalyst = styled.div`
+  display: flex;
+  align-items: Right;
+  flex-direction: column;
+  gap: 5px;
+  color: ${Colors.white};
+  margin-top: 8px;
+`;
+export const ContentPageAnalyst = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: right;
-  gap: 5px;
+  justify-content: space-around;
+`;
+
+export const TextDecoration = styled.span`
+  text-align: right;
+  display: block;
+  margin-bottom: 3px;
+  text-decoration: underline overline;
 `;

@@ -1,6 +1,19 @@
-import unifei from "../../assets/img-logounifei.jpg";
+import unifei from "../../assets/img-logoUnifei.png";
 import { Button } from "../Button";
-import { Container, Content, Image, Nav, Text, DivSair } from "./styles";
+import {
+  Container,
+  Content,
+  Image,
+  Nav,
+  Text,
+  ContentLogo,
+  TextLogo,
+  ContentTextLogo,
+  TextLogoTwo,
+  ContainerPageAnalyst,
+  ContentPageAnalyst,
+  TextDecoration,
+} from "./styles";
 
 interface HeaderProps {
   typeScreen: "login" | "loginAnalyst" | "PageClient" | "PageAnalyst";
@@ -27,26 +40,40 @@ export function Header({ typeScreen, ...rest }: HeaderProps) {
         </Content>
       );
     } else if (typeScreen === "loginAnalyst") {
-      return null;
+      <></>;
     } else if (typeScreen === "PageClient") {
       return (
-        <Content>
-          <div>
-            <Text>Bem vindo(a) Yasmin Karolyne Aniceto Carvalho</Text>
-            <DivSair>
-              <Button onClick={handleSair}>SAIR</Button>
-            </DivSair>
-          </div>
-        </Content>
+        <ContainerPageAnalyst>
+          <Text>Bem vindo(a) Nome do Cliente</Text>
+          <ContentPageAnalyst>
+            <TextDecoration>Portal do Cliente</TextDecoration>
+            <Button onClick={handleSair}>SAIR</Button>
+          </ContentPageAnalyst>
+        </ContainerPageAnalyst>
       );
     } else if (typeScreen === "PageAnalyst") {
-      return <></>;
+      return (
+        <ContainerPageAnalyst>
+          <Text>Bem vindo(a) Nome do analista</Text>
+          <ContentPageAnalyst>
+            <TextDecoration>Portal do Analista</TextDecoration>
+            <Button>Sair</Button>
+          </ContentPageAnalyst>
+        </ContainerPageAnalyst>
+      );
     }
   };
 
   return (
     <Container {...rest}>
-      <Image src={unifei} alt="logounifei" />
+      <ContentLogo>
+        <Image src={unifei} alt="img-logoUnifei" />
+        <ContentTextLogo>
+          <TextLogo>U N I F E I</TextLogo>
+          <TextLogoTwo>Universidade Federal de Itajubá</TextLogoTwo>
+        </ContentTextLogo>
+      </ContentLogo>
+
       {renderRightContainer()}
     </Container>
   );

@@ -23,14 +23,15 @@ export const ContainerRight = styled.div`
   align-items: right;
   width: 600px;
   gap: 10px;
+  margin-top: 20px;
 `;
 
 export const Buttons = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 700px;
-  gap: 8px;
+  width: 1000px;
+  gap: 10px;
 `;
 
 export const Footer = styled.div`

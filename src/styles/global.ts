@@ -5,6 +5,7 @@ export const Colors = {
   blueButton: "#3D4FBE",
   blueBorder: "#242f71",
   lightBlue: "#cbdbe5ff",
+  lightBlueUnifei: "#C4D2EB",
   textTitle: "#434343",
   lightGray: "#eeeeeeff",
   textBody: "#969cb3",
@@ -12,6 +13,9 @@ export const Colors = {
   background: "#f0f2f5",
   white: "#FFFFFF",
   linkFooter: "#00a000",
+  cyan: "cyan",
+  black: "black",
+  blueBar: "#0000ff",
 };
 
 export const GlobalStyle = createGlobalStyle`
