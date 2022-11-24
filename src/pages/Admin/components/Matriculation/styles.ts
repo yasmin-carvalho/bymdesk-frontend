@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { Input } from "../../../../components/Input";
+import { ContainerLabel } from "../../../../components/Input/styles";
 import { Colors } from "../../../../styles/global";
 
 export const Main = styled.main`
@@ -28,5 +30,10 @@ export const Text = styled.span`
   font-size: 20px;
   color: ${Colors.blue};
   margin-bottom: 35px;
-  margin-top: 30px;
+`;
+
+export const StyledInput = styled(Input)`
+  ${ContainerLabel} {
+    width: 400px;
+  }
 `;

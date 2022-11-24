@@ -6,7 +6,7 @@ import {
   Text,
   Title,
   Image,
-  Footer,
+  ChildrenFooter,
   ContainerFooterTwo,
   ImageFooter,
   TextFooter,
@@ -18,6 +18,7 @@ import { Checkbox } from "../../components/Checkbox";
 import { Button } from "../../components/Button";
 import imgIncidentes from "../../assets/img-incidentes.png";
 import imgFone from "../../assets/img-fone-de-ouvido.png";
+import { Footer } from "../../components/Footer";
 
 export function LoginClient() {
   return (
@@ -38,14 +39,16 @@ export function LoginClient() {
         </ContainerRight>
       </Main>
       <Footer>
-        <TextFooter>Portal do Analista</TextFooter>
-        <ContainerFooterTwo>
-          <ImageFooter src={imgFone} alt="fone" />
-          <Text>Você é um analista?</Text>
-          <LinkFooter href="https://unifei.edu.br/">
-            Fazer login aqui
-          </LinkFooter>
-        </ContainerFooterTwo>
+        <ChildrenFooter>
+          <TextFooter>Portal do Analista</TextFooter>
+          <ContainerFooterTwo>
+            <ImageFooter src={imgFone} alt="fone" />
+            <Text>Você é um analista?</Text>
+            <LinkFooter href="https://unifei.edu.br/">
+              Fazer login aqui
+            </LinkFooter>
+          </ContainerFooterTwo>
+        </ChildrenFooter>
       </Footer>
     </>
   );

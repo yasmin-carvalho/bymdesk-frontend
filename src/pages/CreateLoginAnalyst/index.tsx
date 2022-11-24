@@ -1,10 +1,11 @@
 import { Button } from "../../components/Button";
 import { Header } from "../../components/Header";
+import { Footer } from "../../components/Footer";
 import { Input } from "../../components/Input";
 import { Select } from "../../components/Select";
 import Tooltip from "@mui/material/Tooltip";
 import ContactSupportIcon from "@mui/icons-material/ContactSupport";
-import { Buttons, ContainerLeft, ContainerRight, Footer, Main } from "./styles";
+import { Buttons, ContainerLeft, ContainerRight, Main } from "./styles";
 
 export function CreateLoginAnalystc() {
   return (

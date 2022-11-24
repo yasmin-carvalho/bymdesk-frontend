@@ -14,15 +14,10 @@ export const Container = styled.div`
   gap: 10px;
 `;
 
-export const Footer = styled.footer`
-  display: flex;
-  justify-content: center;
-  margin-top: 35px;
-  align-items: center;
-`;
-
-export const FooterButton = styled.div`
+export const ContentButton = styled.div`
   display: flex;
   flex-direction: row;
   gap: 8px;
+  justify-content: end;
+  margin-top: 20px;
 `;

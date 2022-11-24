@@ -27,7 +27,7 @@ export function ClientTicket() {
       <Header typeScreen="PageClient" />
       <Main>
         <Tabs
-          arrayTabs={["Início", "Meus tickets", "Mapa do Campus"]}
+          arrayTabs={["Início", "Meus Tickets", "Mapa do Campus"]}
           setIndexTab={setIndexTab}
           indexTab={indexTab}
         >

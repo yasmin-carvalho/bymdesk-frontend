@@ -6,7 +6,7 @@ export const Main = styled.main`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  padding: 20px;
+  padding-top: 10px;
 `;
 
 export const ContainerLeft = styled.div`
@@ -37,22 +37,20 @@ export const ContainerRight = styled.div`
 `;
 
 export const Text = styled.span`
-  font-weight: 700;
-  font-size: 16px;
+  font-weight: 500;
+  font-size: 14px;
   color: ${Colors.textLabel};
 `;
 
 export const Image = styled.img`
-  width: 430px;
-  height: 360px;
+  width: 400px;
+  height: 340px;
 `;
 
-export const Footer = styled.footer`
+export const ChildrenFooter = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: initial;
-  width: 100%;
-  padding: 20px 20px 25px 70px;
 `;
 
 export const ContainerFooterTwo = styled.div`
@@ -63,17 +61,18 @@ export const ContainerFooterTwo = styled.div`
 `;
 
 export const ImageFooter = styled.img`
-  width: 35px;
-  height: 35px;
+  width: 22px;
+  height: 22px;
 `;
 
 export const TextFooter = styled.span`
-  font-weight: 700;
-  font-size: 16px;
+  font-weight: 500;
+  font-size: 14px;
   color: ${Colors.textTitle};
 `;
 
 export const LinkFooter = styled.a`
   color: ${Colors.linkFooter};
   font-weight: bold;
+  font-size: 14px;
 `;

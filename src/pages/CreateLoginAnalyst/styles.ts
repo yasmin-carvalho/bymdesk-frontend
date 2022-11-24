@@ -29,15 +29,6 @@ export const ContainerRight = styled.div`
 export const Buttons = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  width: 1000px;
+  justify-content: end;
   gap: 10px;
-`;
-
-export const Footer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: initial;
-  width: 100%;
-  padding: 20px 20px 25px 70px;
 `;

@@ -4,6 +4,7 @@ import { ResolvedTicketsTab } from "./components/ResolvedTicketsTab";
 import { Header } from "../../components/Header";
 import { Main } from "./styles";
 import { Tabs } from "../../components/Tabs";
+import { CampusMapTab } from "./components/CampusMapTab";
 
 export function AnalystPortal() {
   const [indexTab, setIndexTab] = useState(0);
@@ -14,6 +15,8 @@ export function AnalystPortal() {
         return <UnsolvedTicketsTab />;
       case 1:
         return <ResolvedTicketsTab />;
+      case 2:
+        return <CampusMapTab />;
       default:
         return <></>;
     }
@@ -24,7 +27,11 @@ export function AnalystPortal() {
       <Header typeScreen="PageAnalyst" />
       <Main>
         <Tabs
-          arrayTabs={["Tickets não resolvidos ❌", "Tickets resolvidos ✅"]}
+          arrayTabs={[
+            "Tickets Não Resolvidos ❌",
+            "Tickets Resolvidos ✅",
+            "Mapa do Campus",
+          ]}
           setIndexTab={setIndexTab}
           indexTab={indexTab}
         >

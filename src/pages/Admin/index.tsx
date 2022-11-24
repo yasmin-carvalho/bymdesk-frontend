@@ -28,8 +28,8 @@ export function Admin() {
       <Main>
         <Tabs
           arrayTabs={[
-            "Tickets não resolvidos ❌",
-            "Tickets resolvidos ✅",
+            "Tickets Não Resolvidos ❌",
+            "Tickets Resolvidos ✅",
             "Inscrever Matrícula",
             "Inscrever Bloco",
             "Inscrever Local",
