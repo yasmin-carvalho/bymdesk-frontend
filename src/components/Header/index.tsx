@@ -16,7 +16,12 @@ import {
 } from "./styles";
 
 interface HeaderProps {
-  typeScreen: "login" | "loginAnalyst" | "PageClient" | "PageAnalyst";
+  typeScreen:
+    | "login"
+    | "loginAnalyst"
+    | "PageClient"
+    | "PageAnalyst"
+    | "PageAdmin";
 }
 
 export function Header({ typeScreen, ...rest }: HeaderProps) {
@@ -57,6 +62,16 @@ export function Header({ typeScreen, ...rest }: HeaderProps) {
           <Text>Bem vindo(a) Nome do analista</Text>
           <ContentPageAnalyst>
             <TextDecoration>Portal do Analista</TextDecoration>
+            <Button>Sair</Button>
+          </ContentPageAnalyst>
+        </ContainerPageAnalyst>
+      );
+    } else if (typeScreen === "PageAdmin") {
+      return (
+        <ContainerPageAnalyst>
+          <Text>Bem vindo(a) Nome do Admin</Text>
+          <ContentPageAnalyst>
+            <TextDecoration>Portal do Admin</TextDecoration>
             <Button>Sair</Button>
           </ContentPageAnalyst>
         </ContainerPageAnalyst>

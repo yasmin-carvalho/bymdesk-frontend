@@ -1,3 +1,4 @@
+import { Admin } from "./pages/Admin";
 import { AnalystPortal } from "./pages/AnalystPortal";
 import { ClientTicket } from "./pages/ClientTicket";
 import { CreateLoginAnalystc } from "./pages/CreateLoginAnalyst";
@@ -8,7 +9,7 @@ import { GlobalStyle } from "./styles/global";
 export function App() {
   return (
     <>
-      <CreateLoginAnalystc />
+      <LoginClient />
       <GlobalStyle />
     </>
   );
