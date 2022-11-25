@@ -10,12 +10,16 @@ import {
   TableRow,
 } from "@mui/material";
 import React, { useState } from "react";
-import { Input } from "../Input";
 
 import { TablePaginationActions } from "../total-pagination-actions/TotalPaginationActions";
+import { HeaderTable } from "./HeaderTable";
 import Row from "./Row";
 import { StyledTableCell, Th, Wrapper } from "./styles";
-import { ITypeColumnConfig, ITypeComponents } from "./types";
+import {
+  IRenderInputSearch,
+  ITypeColumnConfig,
+  ITypeComponents,
+} from "./types";
 
 interface TableAppProps {
   tableName: string;
@@ -26,6 +30,9 @@ interface TableAppProps {
   renderCellHeader: (key: string) => {};
   // eslint-disable-next-line @typescript-eslint/ban-types
   renderCollapse?: () => {};
+  renderInputSearch?: IRenderInputSearch;
+  renderInputSearchAndSelect?: IRenderInputSearch[];
+  arrayRenderInputSearch?: IRenderInputSearch[];
 }
 
 const TableApp: React.FC<TableAppProps> = ({
@@ -35,7 +42,13 @@ const TableApp: React.FC<TableAppProps> = ({
   components,
   renderCellHeader,
   renderCollapse,
+  renderInputSearch,
+  renderInputSearchAndSelect,
+  arrayRenderInputSearch,
+  ...rest
 }) => {
+  const [dataState, setDataState] = useState(data);
+
   const columnConfigKeys = [
     ...Object.entries(columnConfig).map(([key, value]) => key),
   ];
@@ -44,7 +57,7 @@ const TableApp: React.FC<TableAppProps> = ({
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const emptyAllData =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - dataState.length) : 0;
 
   const handleChangePage = (
     event: React.MouseEvent<HTMLButtonElement> | null,
@@ -60,81 +73,101 @@ const TableApp: React.FC<TableAppProps> = ({
     setPage(0);
   };
 
-  return (
-    <>
-      <Wrapper>
-        <Input isSearch isRow placeholder="Pesquisar Ticket" />
-        <TableContainer component={Paper}>
-          <Table aria-label={tableName}>
-            <TableHead>
-              <TableRow>
-                {React.Children.toArray(
-                  columnConfigKeys.map((key) => (
-                    <StyledTableCell
-                      align={columnConfig[key]?.align}
-                      width={columnConfig[key]?.width}
-                    >
-                      <Th>
-                        <>{renderCellHeader(key)}</>
-                      </Th>
-                    </StyledTableCell>
-                  ))
-                )}
-              </TableRow>
-            </TableHead>
+  const handleSearch = (value: string, searchPropertName: string) => {
+    const newUpdateInstance: any[] = [];
+    const textTyped = new RegExp(value.toUpperCase(), "i");
 
-            <TableBody>
-              {Object.values(
-                (rowsPerPage > 0
-                  ? data.slice(
-                      page * rowsPerPage,
-                      page * rowsPerPage + rowsPerPage
-                    )
-                  : data
-                ).map((rowData, rowIndex) => (
-                  <Row
-                    columnConfig={columnConfig}
-                    columnConfigKeys={columnConfigKeys}
-                    components={components}
-                    renderCollapse={renderCollapse}
-                    rowData={rowData}
-                    rowIndex={rowIndex}
-                    key={rowData.id ?? `${tableName}-${rowIndex}`}
-                  />
+    for (const instance of data) {
+      if (instance[searchPropertName].match(textTyped)) {
+        newUpdateInstance.push(instance);
+      } else {
+        setDataState(data);
+      }
+
+      setPage(0);
+      setDataState(newUpdateInstance);
+    }
+  };
+
+  return (
+    <Wrapper {...rest}>
+      <HeaderTable
+        handleSearch={handleSearch}
+        arrayRenderInputSearch={arrayRenderInputSearch}
+        renderInputSearch={renderInputSearch}
+        renderInputSearchAndSelect={renderInputSearchAndSelect}
+      />
+
+      <TableContainer component={Paper}>
+        <Table aria-label={tableName}>
+          <TableHead>
+            <TableRow>
+              {React.Children.toArray(
+                columnConfigKeys.map((key) => (
+                  <StyledTableCell
+                    align={columnConfig[key]?.align}
+                    width={columnConfig[key]?.width}
+                  >
+                    <Th>
+                      <>{renderCellHeader(key)}</>
+                    </Th>
+                  </StyledTableCell>
                 ))
               )}
-              {emptyAllData > 0 && (
-                <TableRow style={{ height: 53 * emptyAllData }}>
-                  <TableCell colSpan={columnConfigKeys.length} />
-                </TableRow>
-              )}
-            </TableBody>
+            </TableRow>
+          </TableHead>
 
-            <TableFooter>
-              <TableRow>
-                <TablePagination
-                  labelRowsPerPage=""
-                  rowsPerPageOptions={[5, 10, 15]}
-                  colSpan={columnConfigKeys.length}
-                  count={data.length}
-                  rowsPerPage={rowsPerPage}
-                  page={page}
-                  SelectProps={{
-                    inputProps: {
-                      "aria-label": "Pag.",
-                    },
-                    native: true,
-                  }}
-                  onPageChange={handleChangePage}
-                  onRowsPerPageChange={handleChangeRowsPerPage}
-                  ActionsComponent={TablePaginationActions}
+          <TableBody>
+            {Object.values(
+              (rowsPerPage > 0
+                ? dataState.slice(
+                    page * rowsPerPage,
+                    page * rowsPerPage + rowsPerPage
+                  )
+                : dataState
+              ).map((rowData, rowIndex) => (
+                <Row
+                  columnConfig={columnConfig}
+                  columnConfigKeys={columnConfigKeys}
+                  components={components}
+                  renderCollapse={renderCollapse}
+                  rowData={rowData}
+                  rowIndex={rowIndex}
+                  key={rowData.id ?? `${tableName}-${rowIndex}`}
                 />
+              ))
+            )}
+            {emptyAllData > 0 && (
+              <TableRow style={{ height: 53 * emptyAllData }}>
+                <TableCell colSpan={columnConfigKeys.length} />
               </TableRow>
-            </TableFooter>
-          </Table>
-        </TableContainer>
-      </Wrapper>
-    </>
+            )}
+          </TableBody>
+
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                labelRowsPerPage=""
+                rowsPerPageOptions={[5, 10, 15]}
+                colSpan={columnConfigKeys.length}
+                count={dataState.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                SelectProps={{
+                  inputProps: {
+                    "aria-label": "Pag.",
+                  },
+                  native: true,
+                }}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                ActionsComponent={TablePaginationActions}
+              />
+            </TableRow>
+          </TableFooter>
+        </Table>
+      </TableContainer>
+    </Wrapper>
   );
 };
 
