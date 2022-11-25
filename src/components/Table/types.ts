@@ -1,7 +1,7 @@
 interface IColumnConfig {
   order: number;
   width?: number;
-  align?: 'inherit' | 'left' | 'center' | 'right' | 'justify';
+  align?: "inherit" | "left" | "center" | "right" | "justify";
   isControlledComponent?: boolean;
 }
 
@@ -18,5 +18,15 @@ export interface ITypeColumnLabel {
 }
 
 export interface ITypeComponents {
-  [x: string]: (value?: any, data?: object, rowIndex?: number, isChecked?: boolean) => JSX.Element;
+  [x: string]: (
+    value?: any,
+    data?: object,
+    rowIndex?: number,
+    isChecked?: boolean
+  ) => JSX.Element;
+}
+
+export interface IRenderInputSearch {
+  searchPropertName: string;
+  placeholder: string;
 }

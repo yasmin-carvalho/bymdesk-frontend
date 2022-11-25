@@ -1,6 +1,7 @@
 import { TableCell, TableRow } from "@mui/material";
 import styled from "styled-components";
 import { Colors } from "../../styles/global";
+import { Input } from "../Input";
 
 interface ITableCell {
   width?: number;
@@ -53,4 +54,15 @@ export const Wrapper = styled.div`
   flex-direction: column;
   width: 100%;
   gap: 10px;
+`;
+
+export const ContainerInput = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+`;
+
+export const StyledInput = styled(Input)`
+  width: 100%;
 `;

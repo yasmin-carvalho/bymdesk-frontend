@@ -10,12 +10,16 @@ import {
   TableRow,
 } from "@mui/material";
 import React, { useState } from "react";
-import { Input } from "../Input";
 
 import { TablePaginationActions } from "../total-pagination-actions/TotalPaginationActions";
+import { HeaderTable } from "./HeaderTable";
 import Row from "./Row";
 import { StyledTableCell, Th, Wrapper } from "./styles";
-import { ITypeColumnConfig, ITypeComponents } from "./types";
+import {
+  IRenderInputSearch,
+  ITypeColumnConfig,
+  ITypeComponents,
+} from "./types";
 
 interface TableAppProps {
   tableName: string;
@@ -26,7 +30,9 @@ interface TableAppProps {
   renderCellHeader: (key: string) => {};
   // eslint-disable-next-line @typescript-eslint/ban-types
   renderCollapse?: () => {};
-  searchPropertName?: string;
+  renderInputSearch?: IRenderInputSearch;
+  renderInputSearchAndSelect?: IRenderInputSearch[];
+  arrayRenderInputSearch?: IRenderInputSearch[];
 }
 
 const TableApp: React.FC<TableAppProps> = ({
@@ -36,7 +42,9 @@ const TableApp: React.FC<TableAppProps> = ({
   components,
   renderCellHeader,
   renderCollapse,
-  searchPropertName,
+  renderInputSearch,
+  renderInputSearchAndSelect,
+  arrayRenderInputSearch,
   ...rest
 }) => {
   const [dataState, setDataState] = useState(data);
@@ -65,28 +73,31 @@ const TableApp: React.FC<TableAppProps> = ({
     setPage(0);
   };
 
-  const handleSearch = (value: string) => {
+  const handleSearch = (value: string, searchPropertName: string) => {
     const newUpdateInstance: any[] = [];
+    const textTyped = new RegExp(value.toUpperCase(), "i");
 
     for (const instance of data) {
-      if (instance[searchPropertName].match(value)) {
+      if (instance[searchPropertName].match(textTyped)) {
         newUpdateInstance.push(instance);
       } else {
         setDataState(data);
       }
 
+      setPage(0);
       setDataState(newUpdateInstance);
     }
   };
 
   return (
     <Wrapper {...rest}>
-      <Input
-        isSearch
-        isRow
-        placeholder="Pesquisar Ticket"
+      <HeaderTable
         handleSearch={handleSearch}
+        arrayRenderInputSearch={arrayRenderInputSearch}
+        renderInputSearch={renderInputSearch}
+        renderInputSearchAndSelect={renderInputSearchAndSelect}
       />
+
       <TableContainer component={Paper}>
         <Table aria-label={tableName}>
           <TableHead>

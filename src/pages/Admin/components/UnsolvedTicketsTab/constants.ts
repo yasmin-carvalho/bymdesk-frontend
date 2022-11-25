@@ -1,4 +1,5 @@
 import {
+  IRenderInputSearch,
   ITypeColumnConfig,
   ITypeColumnLabel,
   ITypeColumnType,
@@ -16,7 +17,7 @@ export const columnConfig: ITypeColumnConfig = {
   [columnType.NAME]: { order: 1 },
   [columnType.BLOCK]: { order: 2, align: "center" },
   [columnType.LOCALE]: { order: 3, align: "center" },
-  [columnType.TYPE]: { order: 4 },
+  [columnType.TYPE]: { order: 4, align: "center" },
 };
 
 export const columnLabel: ITypeColumnLabel = {
@@ -26,11 +27,18 @@ export const columnLabel: ITypeColumnLabel = {
   [columnType.TYPE]: "Tipo",
 };
 
+export const arrayRenderInputSearch: IRenderInputSearch[] = [
+  { searchPropertName: columnType.NAME, placeholder: "ticket" },
+  { searchPropertName: columnType.BLOCK, placeholder: "bloco" },
+  { searchPropertName: columnType.LOCALE, placeholder: "local" },
+  { searchPropertName: columnType.TYPE, placeholder: "tipo" },
+];
+
 export const data = [
   {
     id: 1,
     name: "#Ticket - 030",
-    block: "#Bloco:C1 - IMC",
+    block: "#Bloco:C0 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
   },
@@ -44,28 +52,28 @@ export const data = [
   {
     id: 3,
     name: "#Ticket - 032",
-    block: "#Bloco:C1 - IMC",
+    block: "#Bloco:C2 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
   },
   {
     id: 4,
     name: "#Ticket - 033",
-    block: "#Bloco:C1 - IMC",
+    block: "#Bloco:C3 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em Elétrica",
   },
   {
     id: 5,
     name: "#Ticket - 034",
-    block: "#Bloco:C1 - IMC",
+    block: "#Bloco:C4 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
   },
   {
     id: 6,
     name: "#Ticket - 035",
-    block: "#Bloco:C1 - IMC",
+    block: "#Bloco:C5 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em Mecânica",
   },
