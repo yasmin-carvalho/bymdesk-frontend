@@ -6,6 +6,7 @@ import {
   Label,
   ContentInputFile,
   StyledSearchIcon,
+  StyledInputMask,
 } from "./styles";
 
 interface InputProps {
@@ -16,6 +17,7 @@ interface InputProps {
   type?: React.HTMLInputTypeAttribute;
   isSearch?: boolean;
   isRow?: boolean;
+  mask?: string;
 }
 
 export function Input({
@@ -26,8 +28,25 @@ export function Input({
   type,
   isSearch,
   isRow,
+  mask,
   ...rest
 }: InputProps) {
+  const _renderInput = () => {
+    if (mask) {
+      return (
+        <StyledInputMask mask={mask} maskChar="_" placeholder={placeholder} />
+      );
+    } else {
+      return (
+        <StyledInput
+          placeholder={placeholder}
+          isSearch={isSearch}
+          type={type}
+        />
+      );
+    }
+  };
+
   return (
     <Container isRow={!!label || !!isRow} {...rest}>
       {label && (
@@ -52,11 +71,7 @@ export function Input({
           <input type="file" name="arquivo" id="arquivo" />
         </ContentInputFile>
       ) : (
-        <StyledInput
-          placeholder={placeholder}
-          isSearch={isSearch}
-          type={type}
-        />
+        <>{_renderInput()}</>
       )}
     </Container>
   );
