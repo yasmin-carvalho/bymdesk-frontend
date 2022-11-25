@@ -8,7 +8,7 @@ export function Location() {
     <TabContainer>
       <Main>
         <Container>
-          <Text>Inscrição de Matrícula para Analistas</Text>
+          <Text>Inscrição de Local</Text>
           <StyledInput label="Digite um novo Local" required />
           <StyledInput label="Confirme o Local" required />
         </Container>

@@ -9,8 +9,8 @@ export function Block() {
       <Main>
         <Container>
           <Text>Inscrição de Bloco</Text>
-          <StyledInput label="Digite uma novo Bloco" required />
-          <StyledInput label="Confirme a Matrícula" required />
+          <StyledInput label="Digite um novo Bloco" required />
+          <StyledInput label="Confirme o Bloco" required />
         </Container>
         <Content>
           <Button>REGISTRAR</Button>
