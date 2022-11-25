@@ -16,6 +16,7 @@ interface InputProps {
   type?: React.HTMLInputTypeAttribute;
   isSearch?: boolean;
   isRow?: boolean;
+  handleSearch?: (value: string) => void;
 }
 
 export function Input({
@@ -26,6 +27,7 @@ export function Input({
   type,
   isSearch,
   isRow,
+  handleSearch,
   ...rest
 }: InputProps) {
   return (
@@ -56,6 +58,7 @@ export function Input({
           placeholder={placeholder}
           isSearch={isSearch}
           type={type}
+          onKeyUp={(e: any) => handleSearch(e.target.value)}
         />
       )}
     </Container>

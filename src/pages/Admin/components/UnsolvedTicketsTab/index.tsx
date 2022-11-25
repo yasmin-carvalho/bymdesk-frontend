@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { _renderBasicTextCell } from "../../../../components/RendersCellTable";
 import TableApp from "../../../../components/Table/TableApp";
 import { ITypeComponents } from "../../../../components/Table/types";
@@ -21,6 +22,7 @@ export function UnsolvedTicketsTab() {
         data={data}
         renderCellHeader={(key) => columnLabel[key]}
         renderCollapse={() => <span>Olá</span>}
+        searchPropertName={columnType.NAME}
       />
     </TabContainer>
   );
