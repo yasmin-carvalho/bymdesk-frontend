@@ -12,6 +12,9 @@ interface SelectProps {
   required?: boolean;
   labelColum?: string;
   array: string[];
+  isStateControlled?: boolean;
+  onChange?: React.ChangeEventHandler<HTMLSelectElement>;
+  placeholder?: string;
 }
 
 export function Select({
@@ -19,6 +22,9 @@ export function Select({
   required,
   labelColum,
   array,
+  isStateControlled,
+  onChange,
+  placeholder,
   ...rest
 }: SelectProps) {
   return (
@@ -37,8 +43,8 @@ export function Select({
         </ContainerLabel>
       )}
 
-      <StyledSelect>
-        <Optin value=""></Optin>
+      <StyledSelect onChange={onChange}>
+        <Optin value="">{placeholder ?? ""}</Optin>
         {array.map((item) => (
           <Optin key={item}>{item}</Optin>
         ))}
