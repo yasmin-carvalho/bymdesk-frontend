@@ -2,11 +2,20 @@ import { TableCell, TableRow } from "@mui/material";
 import styled from "styled-components";
 import { Colors } from "../../styles/global";
 import { Input } from "../Input";
+import { Select } from "../Select";
 
 interface ITableCell {
   width?: number;
   align?: string;
   borderNone?: boolean;
+}
+
+interface IStyledInput {
+  width?: string;
+}
+
+interface IContainerInput {
+  alignEnd?: boolean;
 }
 
 export const StyledTableCell = styled(TableCell).withConfig({
@@ -56,13 +65,21 @@ export const Wrapper = styled.div`
   gap: 10px;
 `;
 
-export const ContainerInput = styled.div`
+export const ContainerInput = styled.div<IContainerInput>`
   display: flex;
   flex-direction: row;
   gap: 10px;
-  align-items: center;
+  align-items: ${(props) => (props.alignEnd ? "end" : "center")};
 `;
 
-export const StyledInput = styled(Input)`
-  width: 100%;
+export const StyledInput = styled(Input)<IStyledInput>`
+  width: ${(props) => props.width ?? "100%"};
+`;
+
+export const StyledSelect = styled(Select)`
+  width: 50%;
+
+  select {
+    border-radius: 6px;
+  }
 `;

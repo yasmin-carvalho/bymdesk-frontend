@@ -5,6 +5,8 @@ import { Header } from "../../components/Header";
 import { Main } from "./styles";
 import { Tabs } from "../../components/Tabs";
 import { Matriculation } from "./components/Matriculation";
+import { Block } from "./components/Block";
+import { Location } from "./components/Location";
 
 export function Admin() {
   const [indexTab, setIndexTab] = useState(0);
@@ -17,6 +19,10 @@ export function Admin() {
         return <ResolvedTicketsTab />;
       case 2:
         return <Matriculation />;
+      case 3:
+        return <Block />;
+      case 4:
+        return <Location />;
       default:
         return <></>;
     }

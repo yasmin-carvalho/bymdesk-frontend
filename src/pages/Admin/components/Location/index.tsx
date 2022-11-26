@@ -3,22 +3,14 @@ import { TabContainer } from "../../../../components/Tabs/styles";
 import { Main } from "../../styles";
 import { Container, Content, StyledInput, Text } from "./styles";
 
-export function Matriculation() {
+export function Location() {
   return (
     <TabContainer>
       <Main>
         <Container>
-          <Text>Inscrição de Matrícula para Analistas</Text>
-          <StyledInput
-            label="Digite uma nova Matrícula"
-            required
-            mask="9999999999"
-          />
-          <StyledInput
-            label="Confirme a Matrícula"
-            required
-            mask="9999999999"
-          />
+          <Text>Inscrição de Local</Text>
+          <StyledInput label="Digite um novo Local" required />
+          <StyledInput label="Confirme o Local" required />
         </Container>
         <Content>
           <Button>REGISTRAR</Button>

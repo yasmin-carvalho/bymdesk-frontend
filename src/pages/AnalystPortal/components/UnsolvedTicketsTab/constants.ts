@@ -1,4 +1,5 @@
 import {
+  IRenderInputSearch,
   ITypeColumnConfig,
   ITypeColumnLabel,
   ITypeColumnType,
@@ -26,6 +27,13 @@ export const columnLabel: ITypeColumnLabel = {
   [columnType.TYPE]: "Tipo",
 };
 
+export const arrayRenderInputSearch: IRenderInputSearch[] = [
+  { searchPropertName: columnType.NAME, placeholder: "ticket" },
+  { searchPropertName: columnType.BLOCK, placeholder: "bloco" },
+  { searchPropertName: columnType.LOCALE, placeholder: "local" },
+  { searchPropertName: columnType.TYPE, placeholder: "tipo" },
+];
+
 export const data = [
   {
     id: 1,
@@ -36,7 +44,7 @@ export const data = [
   },
   {
     id: 2,
-    name: "#Ticket - 032",
+    name: "#Ticket - 033",
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",

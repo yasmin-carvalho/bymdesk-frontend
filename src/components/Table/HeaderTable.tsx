@@ -1,6 +1,5 @@
-import { Input } from "../Input";
-import { Select } from "../Select";
-import { ContainerInput, StyledInput } from "./styles";
+import { useState } from "react";
+import { ContainerInput, StyledInput, StyledSelect } from "./styles";
 import { IRenderInputSearch } from "./types";
 
 interface HeaderTableProps {
@@ -16,6 +15,8 @@ export function HeaderTable({
   renderInputSearchAndSelect,
   handleSearch,
 }: HeaderTableProps) {
+  const [searchSelectState, setSearchSelectState] = useState("");
+
   return (
     <>
       {renderInputSearch && (
@@ -29,22 +30,34 @@ export function HeaderTable({
         />
       )}
 
-      {/* {renderInputSearchAndSelect && (
-        <ContainerInput>
-          <Select
+      {renderInputSearchAndSelect && (
+        <ContainerInput alignEnd>
+          <StyledSelect
             array={renderInputSearchAndSelect.map((item) => item.placeholder)}
-            label="Selecione coluna de busca"
+            labelColum="Selecione coluna de busca"
+            required
+            isStateControlled
+            onChange={(e) => {
+              setSearchSelectState(e.target.value);
+            }}
+            placeholder="Selecione coluna"
           />
-          <Input
+          <StyledInput
             isSearch
             isRow
-            placeholder={`Pesquisar ${item.placeholder}`}
-            handleSearch={(value) =>
-              handleSearch(value, item.searchPropertName)
-            }
+            width="50%"
+            placeholder={`Pesquisar ${searchSelectState}`}
+            handleSearch={(value) => {
+              const objInputSearch = renderInputSearchAndSelect.filter(
+                (item) => item.placeholder === searchSelectState
+              );
+
+              handleSearch(value, objInputSearch[0].searchPropertName);
+            }}
+            disabled={!searchSelectState.length}
           />
         </ContainerInput>
-      )} */}
+      )}
 
       {arrayRenderInputSearch && (
         <ContainerInput>

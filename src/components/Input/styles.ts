@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Colors } from "../../styles/global";
 import SearchIcon from "@mui/icons-material/Search";
+import InputMask from "react-input-mask";
 
 interface IContainer {
   isRow: boolean;
@@ -76,4 +77,15 @@ export const StyledSearchIcon = styled(SearchIcon)`
   position: absolute;
   margin-left: 3px;
   color: ${Colors.textTitle};
+`;
+
+export const StyledInputMask = styled(InputMask)`
+  border: solid 0.2px ${Colors.textBody};
+  height: 30px;
+  width: 100%;
+  text-indent: 6px;
+
+  :focus {
+    outline: solid 0.1px ${Colors.textBody};
+  }
 `;

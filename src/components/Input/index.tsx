@@ -6,6 +6,7 @@ import {
   Label,
   ContentInputFile,
   StyledSearchIcon,
+  StyledInputMask,
 } from "./styles";
 
 interface InputProps {
@@ -17,6 +18,8 @@ interface InputProps {
   isSearch?: boolean;
   isRow?: boolean;
   handleSearch?: (value: string) => void;
+  disabled?: boolean;
+  mask?: string;
 }
 
 export function Input({
@@ -28,8 +31,30 @@ export function Input({
   isSearch,
   isRow,
   handleSearch,
+  disabled,
+  mask,
   ...rest
 }: InputProps) {
+  const _renderInput = () => {
+    if (mask) {
+      return (
+        <StyledInputMask mask={mask} maskChar="_" placeholder={placeholder} />
+      );
+    } else {
+      return (
+        <StyledInput
+          placeholder={placeholder}
+          isSearch={isSearch}
+          type={type}
+          onKeyUp={
+            handleSearch ? (e: any) => handleSearch(e.target.value) : undefined
+          }
+          disabled={disabled}
+        />
+      );
+    }
+  };
+
   return (
     <Container isRow={!!label || !!isRow} {...rest}>
       {label && (
@@ -54,12 +79,7 @@ export function Input({
           <input type="file" name="arquivo" id="arquivo" />
         </ContentInputFile>
       ) : (
-        <StyledInput
-          placeholder={placeholder}
-          isSearch={isSearch}
-          type={type}
-          onKeyUp={(e: any) => handleSearch(e.target.value)}
-        />
+        <>{_renderInput()}</>
       )}
     </Container>
   );

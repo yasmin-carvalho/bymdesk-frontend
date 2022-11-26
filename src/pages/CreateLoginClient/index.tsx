@@ -12,7 +12,7 @@ export function CreateLoginClient() {
           <Input label="Nome" required />
           <Input type="email" label="Email" required />
           <Input type="email" label="Email opcional" />
-          <Input type="tel" label="Telefone" />
+          <Input type="tel" label="Telefone" mask="(99) 99999-9999" />
           <Input type="password" label="Senha" required />
           <Input type="password" label="Confirmar Senha" required />
           <ContentButton>
