@@ -38,7 +38,6 @@ export function HeaderTable({
             required
             isStateControlled
             onChange={(e) => {
-              console.log(e.target.value);
               setSearchSelectState(e.target.value);
             }}
             placeholder="Selecione coluna"

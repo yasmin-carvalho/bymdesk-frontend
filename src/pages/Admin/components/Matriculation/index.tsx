@@ -9,8 +9,16 @@ export function Matriculation() {
       <Main>
         <Container>
           <Text>Inscrição de Matrícula para Analistas</Text>
-          <StyledInput label="Digite uma nova Matrícula" required />
-          <StyledInput label="Confirme a Matrícula" required />
+          <StyledInput
+            label="Digite uma nova Matrícula"
+            required
+            mask="9999999999"
+          />
+          <StyledInput
+            label="Confirme a Matrícula"
+            required
+            mask="9999999999"
+          />
         </Container>
         <Content>
           <Button>REGISTRAR</Button>

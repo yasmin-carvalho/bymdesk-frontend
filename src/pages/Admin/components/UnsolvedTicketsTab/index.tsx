@@ -27,11 +27,6 @@ export function UnsolvedTicketsTab() {
         data={data}
         renderCellHeader={(key) => columnLabel[key]}
         renderCollapse={() => <span>Olá</span>}
-        // arrayRenderInputSearch={arrayRenderInputSearch}
-        // renderInputSearch={{
-        //   placeholder: "ticket",
-        //   searchPropertName: columnType.NAME,
-        // }}
         renderInputSearchAndSelect={arrayRenderInputSearch}
       />
     </TabContainer>

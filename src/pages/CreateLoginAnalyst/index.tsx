@@ -33,7 +33,7 @@ export function CreateLoginAnalystc() {
             required
             array={["Manutenção TI", "Manutenção Elétrica"]}
           />
-          <Input label="Matrícula" required />
+          <Input label="Matrícula" required mask="9999999999" />
           <Input label="Nome completo" required />
           <Input label="Email" type="email" required />
           <Input label="Senha" type="password" required />
