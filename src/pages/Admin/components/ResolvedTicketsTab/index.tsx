@@ -2,7 +2,13 @@ import { _renderBasicTextCell } from "../../../../components/RendersCellTable";
 import TableApp from "../../../../components/Table/TableApp";
 import { ITypeComponents } from "../../../../components/Table/types";
 import { TabContainer } from "../../../../components/Tabs/styles";
-import { columnConfig, columnLabel, columnType, data } from "./constants";
+import {
+  arrayRenderInputSearch,
+  columnConfig,
+  columnLabel,
+  columnType,
+  data,
+} from "./constants";
 
 export function ResolvedTicketsTab() {
   const components: ITypeComponents = {
@@ -10,6 +16,7 @@ export function ResolvedTicketsTab() {
     [columnType.BLOCK]: _renderBasicTextCell,
     [columnType.LOCALE]: _renderBasicTextCell,
     [columnType.TYPE]: _renderBasicTextCell,
+    [columnType.STATUS]: _renderBasicTextCell,
   };
 
   return (
@@ -21,6 +28,7 @@ export function ResolvedTicketsTab() {
         data={data}
         renderCellHeader={(key) => columnLabel[key]}
         renderCollapse={() => <span>Olá</span>}
+        renderInputSearchAndSelect={arrayRenderInputSearch}
       />
     </TabContainer>
   );

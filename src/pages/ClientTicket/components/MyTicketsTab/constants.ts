@@ -1,4 +1,5 @@
 import {
+  IRenderInputSearch,
   ITypeColumnConfig,
   ITypeColumnLabel,
   ITypeColumnType,
@@ -10,13 +11,15 @@ export const columnType: ITypeColumnType = {
   BLOCK: "block",
   LOCALE: "locale",
   TYPE: "type",
+  STATUS: "status",
 };
 
 export const columnConfig: ITypeColumnConfig = {
   [columnType.NAME]: { order: 1 },
-  [columnType.BLOCK]: { order: 2, align: "center" },
-  [columnType.LOCALE]: { order: 3, align: "center" },
+  [columnType.BLOCK]: { order: 2 },
+  [columnType.LOCALE]: { order: 3 },
   [columnType.TYPE]: { order: 4 },
+  [columnType.STATUS]: { order: 5 },
 };
 
 export const columnLabel: ITypeColumnLabel = {
@@ -24,7 +27,16 @@ export const columnLabel: ITypeColumnLabel = {
   [columnType.BLOCK]: "Bloco",
   [columnType.LOCALE]: "Local",
   [columnType.TYPE]: "Tipo",
+  [columnType.STATUS]: "Status",
 };
+
+export const arrayRenderInputSearch: IRenderInputSearch[] = [
+  { searchPropertName: columnType.NAME, placeholder: "ticket" },
+  { searchPropertName: columnType.BLOCK, placeholder: "bloco" },
+  { searchPropertName: columnType.LOCALE, placeholder: "local" },
+  { searchPropertName: columnType.TYPE, placeholder: "tipo" },
+  { searchPropertName: columnType.STATUS, placeholder: "status" },
+];
 
 export const data = [
   {
@@ -33,6 +45,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
+    status: "Inicializado",
   },
   {
     id: 2,
@@ -40,6 +53,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
+    status: "Finalizado",
   },
   {
     id: 3,
@@ -47,6 +61,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
+    status: "Andamento",
   },
   {
     id: 4,
@@ -54,6 +69,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em Elétrica",
+    status: "Cancelado",
   },
   {
     id: 5,
@@ -61,6 +77,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
+    status: "Inicializado",
   },
   {
     id: 6,
@@ -68,6 +85,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em Mecânica",
+    status: "Inicializado",
   },
   {
     id: 7,
@@ -75,6 +93,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
+    status: "Inicializado",
   },
   {
     id: 8,
@@ -82,6 +101,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
+    status: "Inicializado",
   },
   {
     id: 9,
@@ -89,6 +109,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Predial",
+    status: "Inicializado",
   },
   {
     id: 10,
@@ -96,6 +117,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
+    status: "Inicializado",
   },
   {
     id: 11,
@@ -103,6 +125,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Predial",
+    status: "Inicializado",
   },
   {
     id: 12,
@@ -110,6 +133,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
+    status: "Inicializado",
   },
   {
     id: 13,
@@ -117,6 +141,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
+    status: "Inicializado",
   },
   {
     id: 14,
@@ -124,6 +149,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
+    status: "Inicializado",
   },
   {
     id: 15,
@@ -131,6 +157,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
+    status: "Inicializado",
   },
   {
     id: 16,
@@ -138,6 +165,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
+    status: "Inicializado",
   },
   {
     id: 17,
@@ -145,5 +173,6 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
+    status: "Inicializado",
   },
 ];

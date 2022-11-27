@@ -11,13 +11,15 @@ export const columnType: ITypeColumnType = {
   BLOCK: "block",
   LOCALE: "locale",
   TYPE: "type",
+  STATUS: "status",
 };
 
 export const columnConfig: ITypeColumnConfig = {
   [columnType.NAME]: { order: 1 },
-  [columnType.BLOCK]: { order: 2, align: "center" },
-  [columnType.LOCALE]: { order: 3, align: "center" },
-  [columnType.TYPE]: { order: 4, align: "center" },
+  [columnType.BLOCK]: { order: 2 },
+  [columnType.LOCALE]: { order: 3 },
+  [columnType.TYPE]: { order: 4 },
+  [columnType.STATUS]: { order: 5 },
 };
 
 export const columnLabel: ITypeColumnLabel = {
@@ -25,6 +27,7 @@ export const columnLabel: ITypeColumnLabel = {
   [columnType.BLOCK]: "Bloco",
   [columnType.LOCALE]: "Local",
   [columnType.TYPE]: "Tipo",
+  [columnType.STATUS]: "Status",
 };
 
 export const arrayRenderInputSearch: IRenderInputSearch[] = [
@@ -32,6 +35,7 @@ export const arrayRenderInputSearch: IRenderInputSearch[] = [
   { searchPropertName: columnType.BLOCK, placeholder: "bloco" },
   { searchPropertName: columnType.LOCALE, placeholder: "local" },
   { searchPropertName: columnType.TYPE, placeholder: "tipo" },
+  { searchPropertName: columnType.STATUS, placeholder: "status" },
 ];
 
 export const data = [
@@ -41,6 +45,7 @@ export const data = [
     block: "#Bloco:C0 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
+    status: "Andamento",
   },
   {
     id: 2,
@@ -48,6 +53,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
+    status: "Cancelado",
   },
   {
     id: 3,
@@ -55,6 +61,7 @@ export const data = [
     block: "#Bloco:C2 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
+    status: "Finalizado",
   },
   {
     id: 4,
@@ -62,6 +69,7 @@ export const data = [
     block: "#Bloco:C3 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em Elétrica",
+    status: "Finalizado",
   },
   {
     id: 5,
@@ -69,6 +77,7 @@ export const data = [
     block: "#Bloco:C4 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
+    status: "Finalizado",
   },
   {
     id: 6,
@@ -76,6 +85,7 @@ export const data = [
     block: "#Bloco:C5 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em Mecânica",
+    status: "Finalizado",
   },
   {
     id: 7,
@@ -83,6 +93,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
+    status: "Finalizado",
   },
   {
     id: 8,
@@ -90,6 +101,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
+    status: "Finalizado",
   },
   {
     id: 9,
@@ -97,6 +109,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Predial",
+    status: "Finalizado",
   },
   {
     id: 10,
@@ -104,6 +117,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
+    status: "Finalizado",
   },
   {
     id: 11,
@@ -111,6 +125,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Predial",
+    status: "Finalizado",
   },
   {
     id: 12,
@@ -118,6 +133,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
+    status: "Finalizado",
   },
   {
     id: 13,
@@ -125,6 +141,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
+    status: "Finalizado",
   },
   {
     id: 14,
@@ -132,6 +149,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
+    status: "Finalizado",
   },
   {
     id: 15,
@@ -139,6 +157,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
+    status: "Finalizado",
   },
   {
     id: 16,
@@ -146,6 +165,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
+    status: "Finalizado",
   },
   {
     id: 17,
@@ -153,5 +173,6 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     type: "Manutenção em TI",
+    status: "Finalizado",
   },
 ];
