@@ -16,6 +16,7 @@ export function UnsolvedTicketsTab() {
     [columnType.BLOCK]: _renderBasicTextCell,
     [columnType.LOCALE]: _renderBasicTextCell,
     [columnType.TYPE]: _renderBasicTextCell,
+    [columnType.STATUS]: _renderBasicTextCell,
   };
 
   return (
