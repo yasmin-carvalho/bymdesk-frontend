@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { Colors } from "../../styles/global";
+import { Input } from "../Input";
 
 interface IWrapperRow {
   alignContent: "left" | "right";
@@ -34,6 +35,7 @@ export const Container = styled.div`
 export const WrapperRow = styled.div<IWrapperRow>`
   display: flex;
   flex: 1;
+  margin-top: 10px;
   justify-content: ${(props) => props.alignContent && props.alignContent};
 
   ${({ alignContent }) =>
@@ -89,6 +91,24 @@ export const WrapperMessage = styled.div<IWrapperMessage>`
   width: ${(props) => props.alignContent === "left" && "fit-content"};
 `;
 
-export const Text = styled.span`
-  background-color: #fff;
+export const ContentTextInput = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding: 8px;
+  gap: 10px;
+  background: ${Colors.textTitle};
+  width: 100%;
+`;
+
+export const Image = styled.img`
+  border-radius: 8px;
+  padding: 5px;
+  width: 200px;
+  height: 180px;
+  background: ${Colors.white};
+  border: solid 1px ${Colors.black};
+`;
+
+export const InputComponent = styled(Input)`
+  width: 100%;
 `;

@@ -1,3 +1,4 @@
+import { CollapseConversation } from "../../../../components/CollapseConversation";
 import {
   _renderBasicSelectCell,
   _renderBasicTextCell,
@@ -30,7 +31,7 @@ export function UnsolvedTicketsTab() {
         components={components}
         data={data}
         renderCellHeader={(key) => columnLabel[key]}
-        renderCollapse={() => <span>Olá</span>}
+        renderCollapse={() => <CollapseConversation />}
         renderInputSearchAndSelect={arrayRenderInputSearch}
       />
     </TabContainer>
