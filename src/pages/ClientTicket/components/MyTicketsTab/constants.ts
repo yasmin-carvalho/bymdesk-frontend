@@ -2,11 +2,10 @@ import {
   IRenderInputSearch,
   ITypeColumnConfig,
   ITypeColumnLabel,
-  ITypeColumnType,
 } from "../../../../components/Table/types";
 
 // Table Row --------------------------
-export const columnType: ITypeColumnType = {
+export const columnType = {
   NAME: "name",
   BLOCK: "block",
   LOCALE: "locale",

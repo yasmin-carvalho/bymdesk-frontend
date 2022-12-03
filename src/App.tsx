@@ -1,15 +1,13 @@
-import { Admin } from "./pages/Admin";
-import { AnalystPortal } from "./pages/AnalystPortal";
-import { ClientTicket } from "./pages/ClientTicket";
-import { CreateLoginAnalystc } from "./pages/CreateLoginAnalyst";
-import { CreateLoginClient } from "./pages/CreateLoginClient";
-import { LoginClient } from "./pages/LoginClient";
+import { ToastProvider } from "./contexts/ToastContext";
+import { Router } from "./routes";
 import { GlobalStyle } from "./styles/global";
 
 export function App() {
   return (
     <>
-      <Admin />
+      <ToastProvider>
+        <Router />
+      </ToastProvider>
       <GlobalStyle />
     </>
   );

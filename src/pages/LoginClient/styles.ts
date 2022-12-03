@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Colors } from "../../styles/global";
 
@@ -28,7 +29,7 @@ export const SubTitle = styled.span`
   color: ${Colors.textTitle};
 `;
 
-export const ContainerRight = styled.div`
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: left;
@@ -71,7 +72,7 @@ export const TextFooter = styled.span`
   color: ${Colors.textTitle};
 `;
 
-export const LinkFooter = styled.a`
+export const LinkFooter = styled(Link)`
   color: ${Colors.linkFooter};
   font-weight: bold;
   font-size: 14px;
