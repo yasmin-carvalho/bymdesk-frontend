@@ -1,4 +1,7 @@
-import { _renderBasicTextCell } from "../../../../components/RendersCellTable";
+import {
+  _renderBasicSelectCell,
+  _renderBasicTextCell,
+} from "../../../../components/RendersCellTable";
 import TableApp from "../../../../components/Table/TableApp";
 import { ITypeComponents } from "../../../../components/Table/types";
 import { TabContainer } from "../../../../components/Tabs/styles";
@@ -16,6 +19,7 @@ export function UnsolvedTicketsTab() {
     [columnType.BLOCK]: _renderBasicTextCell,
     [columnType.LOCALE]: _renderBasicTextCell,
     [columnType.REQUESTER]: _renderBasicTextCell,
+    [columnType.STATUS]: _renderBasicSelectCell,
   };
 
   return (
