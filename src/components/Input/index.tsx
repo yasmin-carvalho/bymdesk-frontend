@@ -1,3 +1,4 @@
+import { Control, Controller } from "react-hook-form";
 import {
   Asterisco,
   Container,
@@ -10,9 +11,12 @@ import {
 } from "./styles";
 
 interface InputProps {
+  control?: Control<any>;
+  name?: string;
   label?: string;
   required?: boolean;
   placeholder?: string;
+
   labelColum?: string;
   type?: React.HTMLInputTypeAttribute;
   isSearch?: boolean;
@@ -23,6 +27,8 @@ interface InputProps {
 }
 
 export function Input({
+  control,
+  name,
   label,
   required,
   placeholder,
@@ -35,6 +41,37 @@ export function Input({
   mask,
   ...rest
 }: InputProps) {
+  const _renderInputControled = (
+    value: any,
+    onChange: (...event: any[]) => void
+  ) => {
+    if (mask) {
+      return (
+        <StyledInputMask
+          mask={mask}
+          maskChar="_"
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+        />
+      );
+    } else {
+      return (
+        <StyledInput
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+          isSearch={isSearch}
+          type={type}
+          onKeyUp={
+            handleSearch ? (e: any) => handleSearch(e.target.value) : undefined
+          }
+          disabled={disabled}
+        />
+      );
+    }
+  };
+
   const _renderInput = () => {
     if (mask) {
       return (
@@ -78,6 +115,14 @@ export function Input({
           <label htmlFor="arquivo">{label}</label>
           <input type="file" name="arquivo" id="arquivo" />
         </ContentInputFile>
+      ) : control ? (
+        <Controller
+          name={name}
+          control={control}
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
+            <>{_renderInputControled(value, onChange)}</>
+          )}
+        />
       ) : (
         <>{_renderInput()}</>
       )}
