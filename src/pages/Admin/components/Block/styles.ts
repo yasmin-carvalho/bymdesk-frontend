@@ -17,14 +17,6 @@ export const Container = styled.div`
   gap: 10px;
 `;
 
-export const Content = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  margin-top: 20px;
-  gap: 10px;
-`;
-
 export const Text = styled.span`
   font-weight: bold;
   font-size: 20px;
@@ -36,4 +28,14 @@ export const StyledInput = styled(Input)`
   ${ContainerLabel} {
     width: 400px;
   }
+`;
+
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  gap: 30px;
+  overflow-x: hidden;
 `;
