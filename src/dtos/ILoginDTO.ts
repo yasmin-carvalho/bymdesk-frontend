@@ -13,7 +13,7 @@ export const fieldsLogin = {
 };
 
 export const schemaLogin = yup.object().shape({
-  [fieldsLogin.EMAIL]: yup.string().required("obrigatório"),
+  [fieldsLogin.EMAIL]: yup.string().email().required("obrigatório"),
   [fieldsLogin.PASSWORD]: yup.string().required("obrigatório"),
   // [fieldsLogin.REMEMBER_ME]: yup.boolean().default(() => false),
 });

@@ -9,12 +9,12 @@ export function InitTab() {
     <TabContainer>
       <BlockTicket>
         <Text>Enviar um Ticket</Text>
-        <Select label="Bloco" required array={["IMC", "IEST"]} />
-        <Select label="Local" required array={["LDC2", "Sala 2"]} />
+        <Select label="Bloco" required options={["IMC", "IEST"]} />
+        <Select label="Local" required options={["LDC2", "Sala 2"]} />
         <Select
           label="Tipo de Manutenção"
           required
-          array={["Manutenção TI", "Manutenção Elétrica"]}
+          options={["Manutenção TI", "Manutenção Elétrica"]}
         />
         <TextArea
           label="Descrição"

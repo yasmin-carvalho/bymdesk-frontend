@@ -33,11 +33,11 @@ export function HeaderTable({
       {renderInputSearchAndSelect && (
         <ContainerInput alignEnd>
           <StyledSelect
-            array={renderInputSearchAndSelect.map((item) => item.placeholder)}
+            options={renderInputSearchAndSelect.map((item) => item.placeholder)}
             labelColum="Selecione coluna de busca"
             required
             isStateControlled
-            onChange={(e) => {
+            onChangeStateControled={(e) => {
               setSearchSelectState(e.target.value);
             }}
             placeholder="Selecione coluna"
