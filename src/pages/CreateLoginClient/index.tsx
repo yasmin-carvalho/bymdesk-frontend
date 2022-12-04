@@ -13,7 +13,6 @@ import {
 import { Form, ContentButton, Main } from "./styles";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../../hooks/network/useLogin";
-import { Loading } from "../../components/Loading";
 
 export function CreateLoginClient() {
   const formIdRegisterClient = "form-register-analyst";
@@ -21,6 +20,7 @@ export function CreateLoginClient() {
     handleSubmit: handleSubmitRegister,
     control: controlRegister,
     formState: { isValid: isValidRegister },
+    reset,
   } = useForm<IFormRegisterClient>({
     resolver: yupResolver(schemaRegisterClient),
     defaultValues: {
@@ -34,17 +34,16 @@ export function CreateLoginClient() {
 
   const navigate = useNavigate();
 
-  const { loading, onSubmitRegisterClient, setLoading } = useLogin();
+  const { onSubmitRegisterClient } = useLogin();
 
   return (
     <>
-      <Loading open={loading} handleClose={() => setLoading(false)} />
       <Header typeScreen="login" />
       <Main>
         <Form
           id={formIdRegisterClient}
           onSubmit={handleSubmitRegister((data: IFormRegisterClient) => {
-            onSubmitRegisterClient(data);
+            onSubmitRegisterClient(data, reset);
           })}
         >
           <Input

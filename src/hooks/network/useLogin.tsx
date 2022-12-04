@@ -1,3 +1,4 @@
+import { UseFormReset } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import { ToastType } from "../../components/Snackbar/enumToast";
@@ -13,7 +14,10 @@ export function useLogin() {
 
   const navigate = useNavigate();
 
-  const onSubmitRegisterClient = (dataForm: IFormRegisterClient) => {
+  const onSubmitRegisterClient = (
+    dataForm: IFormRegisterClient,
+    reset: UseFormReset<IFormRegisterClient>
+  ) => {
     console.log(dataForm);
     setLoading(true);
 

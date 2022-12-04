@@ -29,8 +29,6 @@ interface HeaderProps {
 export function Header({ typeScreen, ...rest }: HeaderProps) {
   const navigate = useNavigate();
 
-  const handleSair = () => console.log("Sair");
-
   const renderRightContainer = () => {
     if (typeScreen === "login") {
       return (
@@ -54,7 +52,7 @@ export function Header({ typeScreen, ...rest }: HeaderProps) {
           <Text>Bem vindo(a) Nome do Cliente</Text>
           <ContentPageAnalyst>
             <TextDecoration>Portal do Cliente</TextDecoration>
-            <Button onClick={handleSair}>SAIR</Button>
+            <Button onClick={() => navigate(RoutesEnum.LOGIN)}>SAIR</Button>
           </ContentPageAnalyst>
         </ContainerPageAnalyst>
       );
@@ -64,7 +62,7 @@ export function Header({ typeScreen, ...rest }: HeaderProps) {
           <Text>Bem vindo(a) Nome do analista</Text>
           <ContentPageAnalyst>
             <TextDecoration>Portal do Analista</TextDecoration>
-            <Button>Sair</Button>
+            <Button onClick={() => navigate(RoutesEnum.LOGIN)}>Sair</Button>
           </ContentPageAnalyst>
         </ContainerPageAnalyst>
       );
@@ -74,7 +72,7 @@ export function Header({ typeScreen, ...rest }: HeaderProps) {
           <Text>Bem vindo(a) Nome do Admin</Text>
           <ContentPageAnalyst>
             <TextDecoration>Portal do Admin</TextDecoration>
-            <Button>Sair</Button>
+            <Button onClick={() => navigate(RoutesEnum.LOGIN)}>Sair</Button>
           </ContentPageAnalyst>
         </ContainerPageAnalyst>
       );
