@@ -5,12 +5,24 @@ import { ToastType } from "../../components/Snackbar/enumToast";
 import { RoutesEnum } from "../../constants/routesList";
 import { useToast } from "../../contexts/ToastContext";
 import { IFormLogin } from "../../dtos/ILoginDTO";
+import { IFormRegisterClient } from "../../dtos/IRegisterClient";
 
 export function useLogin() {
   const { addToast } = useToast();
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+
+  const onSubmitRegisterClient = (dataForm: IFormRegisterClient) => {
+    console.log(dataForm);
+    setLoading(true);
+
+    setTimeout(() => {
+      alert(JSON.stringify(dataForm));
+      addToast("Cliente cadastrado com sucesso", ToastType.success);
+      setLoading(false);
+    }, 2500);
+  };
 
   const onSubmit = (dataForm: IFormLogin) => {
     console.log(dataForm);
@@ -34,6 +46,7 @@ export function useLogin() {
   return {
     loading,
     setLoading,
+    onSubmitRegisterClient,
     onSubmit,
   };
 }

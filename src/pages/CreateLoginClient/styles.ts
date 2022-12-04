@@ -7,7 +7,7 @@ export const Main = styled.main`
   align-items: center;
 `;
 
-export const Container = styled.div`
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
   width: 600px;

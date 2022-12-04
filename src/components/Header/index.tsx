@@ -1,5 +1,6 @@
 import unifei from "../../assets/img-logoUnifei.png";
 import { Button } from "../Button";
+import { useNavigate } from "react-router-dom";
 import {
   Container,
   Content,
@@ -14,6 +15,7 @@ import {
   ContentPageAnalyst,
   TextDecoration,
 } from "./styles";
+import { RoutesEnum } from "../../constants/routesList";
 
 interface HeaderProps {
   typeScreen:
@@ -25,9 +27,7 @@ interface HeaderProps {
 }
 
 export function Header({ typeScreen, ...rest }: HeaderProps) {
-  const handleLogin = () => console.log("Login");
-
-  const handleRegistrar = () => console.log("Registrar");
+  const navigate = useNavigate();
 
   const handleSair = () => console.log("Sair");
 
@@ -38,8 +38,10 @@ export function Header({ typeScreen, ...rest }: HeaderProps) {
           <div>
             <Text>Bem vindo(a)</Text>
             <Nav>
-              <Button onClick={handleLogin}>LOGIN</Button>
-              <Button onClick={handleRegistrar}>REGISTRAR</Button>
+              <Button onClick={() => navigate(RoutesEnum.LOGIN)}>LOGIN</Button>
+              <Button onClick={() => navigate(RoutesEnum.REGISTRO_CLIENTE)}>
+                REGISTRAR
+              </Button>
             </Nav>
           </div>
         </Content>

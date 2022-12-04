@@ -142,7 +142,7 @@ export function CreateLoginAnalystc() {
             <Button
               type="submit"
               form={formIdRegisterAnalyst}
-              // disabled={!isValidRegister}
+              disabled={!isValidRegister}
             >
               Registrar
             </Button>
