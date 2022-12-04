@@ -1,12 +1,12 @@
-import { useState } from "react";
 import { UseFormReset } from "react-hook-form";
 import { ToastType } from "../../components/Snackbar/enumToast";
+import { useLoading } from "../../contexts/LoadingContext";
 import { useToast } from "../../contexts/ToastContext";
 import { IFormMatriculationDTO } from "../../dtos/IMatriculationDTO";
 
 export function useMatriculation() {
   const { addToast } = useToast();
-  const [loading, setLoading] = useState(false);
+  const { loading, setLoading } = useLoading();
 
   const onSubmit = (
     dataForm: IFormMatriculationDTO,

@@ -1,7 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { FooterForm } from "../../../../components/FooterForm";
-import { Loading } from "../../../../components/Loading";
 import { TabContainer } from "../../../../components/Tabs/styles";
 import {
   fieldsMatriculation,
@@ -25,11 +24,10 @@ export function Matriculation() {
     },
   });
 
-  const { loading, onSubmit, setLoading } = useMatriculation();
+  const { onSubmit } = useMatriculation();
 
   return (
     <TabContainer>
-      <Loading open={loading} handleClose={() => setLoading(false)} />
       <Form
         onSubmit={handleSubmit((data: IFormMatriculationDTO) =>
           onSubmit(data, reset)
