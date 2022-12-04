@@ -17,14 +17,6 @@ export const Container = styled.div`
   gap: 10px;
 `;
 
-export const Content = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  margin-top: 20px;
-  gap: 10px;
-`;
-
 export const Text = styled.span`
   font-weight: bold;
   font-size: 20px;

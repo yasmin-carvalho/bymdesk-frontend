@@ -1,6 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { Button } from "../../../../components/Button";
+import { FooterForm } from "../../../../components/FooterForm";
 import { Loading } from "../../../../components/Loading";
 import { TabContainer } from "../../../../components/Tabs/styles";
 import {
@@ -9,7 +9,7 @@ import {
   schemaMatriculation,
 } from "../../../../dtos/IMatriculationDTO";
 import { useMatriculation } from "../../../../hooks/network/useMatriculation";
-import { Container, Content, Form, StyledInput, Text } from "./styles";
+import { Container, Form, StyledInput, Text } from "./styles";
 
 export function Matriculation() {
   const {
@@ -52,12 +52,7 @@ export function Matriculation() {
             control={control}
           />
         </Container>
-        <Content>
-          <Button type="submit" disabled={!isValid}>
-            REGISTRAR
-          </Button>
-          <Button type="button">CANCELAR</Button>
-        </Content>
+        <FooterForm textButtonSubmit="REGISTRAR" disabled={!isValid} />
       </Form>
     </TabContainer>
   );
