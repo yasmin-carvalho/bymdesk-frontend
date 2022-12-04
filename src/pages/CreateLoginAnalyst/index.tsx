@@ -28,7 +28,7 @@ export function CreateLoginAnalystc() {
     control,
     formState: { isValid },
   } = useForm<IFormLogin>({
-    // resolver: yupResolver(schemaLogin),
+    resolver: yupResolver(schemaLogin),
     defaultValues: {
       [fieldsLogin.EMAIL]: "",
       [fieldsLogin.PASSWORD]: "",
@@ -41,9 +41,9 @@ export function CreateLoginAnalystc() {
     control: controlRegister,
     formState: { isValid: isValidRegister },
   } = useForm<IFormRegisterAnalyst>({
-    // resolver: yupResolver(schemaRegisterAnalyst),
+    resolver: yupResolver(schemaRegisterAnalyst),
     defaultValues: {
-      [fieldsRegisterAnalyst.SETOR]: "",
+      [fieldsRegisterAnalyst.SETOR]: "Selecione",
       [fieldsRegisterAnalyst.MATRICULA]: "",
       [fieldsRegisterAnalyst.NOME]: "",
       [fieldsRegisterAnalyst.EMAIL]: "",
@@ -63,7 +63,6 @@ export function CreateLoginAnalystc() {
       <Header typeScreen="loginAnalyst" />
       <Main>
         <Form
-          key={formIdLogin}
           id={formIdLogin}
           onSubmit={handleSubmit((data: IFormLogin) => onSubmitLogin(data))}
         >
@@ -89,7 +88,6 @@ export function CreateLoginAnalystc() {
         </Form>
 
         <FormRight
-          key={formIdRegisterAnalyst}
           id={formIdRegisterAnalyst}
           onSubmit={handleSubmitRegister((data: IFormRegisterAnalyst) => {
             console.log("eitaaaaa");
@@ -141,7 +139,7 @@ export function CreateLoginAnalystc() {
             <Button
               type="submit"
               form={formIdRegisterAnalyst}
-              // disabled={!isValidRegister}
+              disabled={!isValidRegister}
             >
               Registrar
             </Button>
