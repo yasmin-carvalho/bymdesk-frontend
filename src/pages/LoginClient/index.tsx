@@ -24,7 +24,6 @@ import imgFone from "../../assets/img-fone-de-ouvido.png";
 import { Footer } from "../../components/Footer";
 import { RoutesEnum } from "../../constants/routesList";
 import { fieldsLogin, IFormLogin, schemaLogin } from "../../dtos/ILoginDTO";
-import { Loading } from "../../components/Loading";
 import { useLogin } from "../../hooks/network/useLogin";
 
 export function LoginClient() {
@@ -41,11 +40,10 @@ export function LoginClient() {
     },
   });
 
-  const { loading, onSubmit, setLoading } = useLogin();
+  const { onSubmit } = useLogin();
 
   return (
     <>
-      <Loading open={loading} handleClose={() => setLoading(false)} />
       <Header typeScreen="login" />
 
       <Main>

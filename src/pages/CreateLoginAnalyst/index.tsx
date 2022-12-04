@@ -11,7 +11,6 @@ import Tooltip from "@mui/material/Tooltip";
 import ContactSupportIcon from "@mui/icons-material/ContactSupport";
 import { RoutesEnum } from "../../constants/routesList";
 import { fieldsLogin, IFormLogin, schemaLogin } from "../../dtos/ILoginDTO";
-import { Loading } from "../../components/Loading";
 import { useLoginAnalyst } from "../../hooks/network/useLoginAnalyst";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
@@ -54,12 +53,10 @@ export function CreateLoginAnalystc() {
 
   const navigate = useNavigate();
 
-  const { loading, onSubmitRegisterAnalyst, onSubmitLogin, setLoading } =
-    useLoginAnalyst();
+  const { onSubmitRegisterAnalyst, onSubmitLogin } = useLoginAnalyst();
 
   return (
     <>
-      <Loading open={loading} handleClose={() => setLoading(false)} />
       <Header typeScreen="loginAnalyst" />
       <Main>
         <Form
