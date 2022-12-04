@@ -37,3 +37,13 @@ export const StyledInput = styled(Input)`
     width: 400px;
   }
 `;
+
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  gap: 30px;
+  overflow-x: hidden;
+`;
