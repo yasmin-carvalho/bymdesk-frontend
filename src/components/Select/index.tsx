@@ -1,3 +1,5 @@
+import { Control, Controller } from "react-hook-form";
+
 import {
   Asterisco,
   Container,
@@ -11,20 +13,24 @@ interface SelectProps {
   label?: string;
   required?: boolean;
   labelColum?: string;
-  array: string[];
+  options: string[];
   isStateControlled?: boolean;
-  onChange?: React.ChangeEventHandler<HTMLSelectElement>;
+  onChangeStateControled?: React.ChangeEventHandler<HTMLSelectElement>;
   placeholder?: string;
+  control?: Control<any>;
+  name?: string;
 }
 
 export function Select({
   label,
   required,
   labelColum,
-  array,
+  options,
   isStateControlled,
-  onChange,
+  onChangeStateControled,
   placeholder,
+  name,
+  control,
   ...rest
 }: SelectProps) {
   return (
@@ -43,12 +49,29 @@ export function Select({
         </ContainerLabel>
       )}
 
-      <StyledSelect onChange={onChange}>
-        <Optin value="">{placeholder ?? ""}</Optin>
-        {array.map((item) => (
-          <Optin key={item}>{item}</Optin>
-        ))}
-      </StyledSelect>
+      {control ? (
+        <Controller
+          name={name}
+          control={control}
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
+            <StyledSelect onChange={onChange}>
+              <Optin value="">{placeholder ?? ""}</Optin>
+              {options.map((item) => (
+                <Optin key={item} value={value}>
+                  {item}
+                </Optin>
+              ))}
+            </StyledSelect>
+          )}
+        ></Controller>
+      ) : (
+        <StyledSelect onChange={onChangeStateControled}>
+          <Optin value="">{placeholder ?? ""}</Optin>
+          {options.map((item) => (
+            <Optin key={item}>{item}</Optin>
+          ))}
+        </StyledSelect>
+      )}
     </Container>
   );
 }

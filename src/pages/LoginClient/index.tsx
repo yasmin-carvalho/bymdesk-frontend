@@ -17,7 +17,7 @@ import {
 } from "./styles";
 import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
-import { Checkbox } from "../../components/Checkbox";
+// import { Checkbox } from "../../components/Checkbox";
 import { Button } from "../../components/Button";
 import imgIncidentes from "../../assets/img-incidentes.png";
 import imgFone from "../../assets/img-fone-de-ouvido.png";
@@ -25,10 +25,7 @@ import { Footer } from "../../components/Footer";
 import { RoutesEnum } from "../../constants/routesList";
 import { fieldsLogin, IFormLogin, schemaLogin } from "../../dtos/ILoginDTO";
 import { Loading } from "../../components/Loading";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useToast } from "../../contexts/ToastContext";
-import { ToastType } from "../../components/Snackbar/enumToast";
+import { useLogin } from "../../hooks/network/useLogin";
 
 export function LoginClient() {
   const {
@@ -44,29 +41,7 @@ export function LoginClient() {
     },
   });
 
-  const [loading, setLoading] = useState(false);
-  const { addToast } = useToast();
-
-  const navigate = useNavigate();
-
-  const onSubmit = (dataForm: IFormLogin) => {
-    console.log(dataForm);
-    setLoading(true);
-
-    setTimeout(() => {
-      if (
-        dataForm.email === "ygor@gmail.com" &&
-        dataForm.password === "123456"
-      ) {
-        navigate(RoutesEnum.TICKET_DO_CLIENTE);
-      } else {
-        console.log("caiu");
-        addToast("Falha no login. Verifique as credenciais", ToastType.error);
-      }
-
-      setLoading(false);
-    }, 2500);
-  };
+  const { loading, onSubmit, setLoading } = useLogin();
 
   return (
     <>
