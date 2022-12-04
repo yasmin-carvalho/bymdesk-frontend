@@ -1,5 +1,6 @@
 import unifei from "../../assets/img-logoUnifei.png";
 import { Button } from "../Button";
+import { useNavigate } from "react-router-dom";
 import {
   Container,
   Content,
@@ -14,6 +15,7 @@ import {
   ContentPageAnalyst,
   TextDecoration,
 } from "./styles";
+import { RoutesEnum } from "../../constants/routesList";
 
 interface HeaderProps {
   typeScreen:
@@ -25,11 +27,7 @@ interface HeaderProps {
 }
 
 export function Header({ typeScreen, ...rest }: HeaderProps) {
-  const handleLogin = () => console.log("Login");
-
-  const handleRegistrar = () => console.log("Registrar");
-
-  const handleSair = () => console.log("Sair");
+  const navigate = useNavigate();
 
   const renderRightContainer = () => {
     if (typeScreen === "login") {
@@ -38,8 +36,10 @@ export function Header({ typeScreen, ...rest }: HeaderProps) {
           <div>
             <Text>Bem vindo(a)</Text>
             <Nav>
-              <Button onClick={handleLogin}>LOGIN</Button>
-              <Button onClick={handleRegistrar}>REGISTRAR</Button>
+              <Button onClick={() => navigate(RoutesEnum.LOGIN)}>LOGIN</Button>
+              <Button onClick={() => navigate(RoutesEnum.REGISTRO_CLIENTE)}>
+                REGISTRAR
+              </Button>
             </Nav>
           </div>
         </Content>
@@ -52,7 +52,7 @@ export function Header({ typeScreen, ...rest }: HeaderProps) {
           <Text>Bem vindo(a) Nome do Cliente</Text>
           <ContentPageAnalyst>
             <TextDecoration>Portal do Cliente</TextDecoration>
-            <Button onClick={handleSair}>SAIR</Button>
+            <Button onClick={() => navigate(RoutesEnum.LOGIN)}>SAIR</Button>
           </ContentPageAnalyst>
         </ContainerPageAnalyst>
       );
@@ -62,7 +62,7 @@ export function Header({ typeScreen, ...rest }: HeaderProps) {
           <Text>Bem vindo(a) Nome do analista</Text>
           <ContentPageAnalyst>
             <TextDecoration>Portal do Analista</TextDecoration>
-            <Button>Sair</Button>
+            <Button onClick={() => navigate(RoutesEnum.LOGIN)}>Sair</Button>
           </ContentPageAnalyst>
         </ContainerPageAnalyst>
       );
@@ -72,7 +72,7 @@ export function Header({ typeScreen, ...rest }: HeaderProps) {
           <Text>Bem vindo(a) Nome do Admin</Text>
           <ContentPageAnalyst>
             <TextDecoration>Portal do Admin</TextDecoration>
-            <Button>Sair</Button>
+            <Button onClick={() => navigate(RoutesEnum.LOGIN)}>Sair</Button>
           </ContentPageAnalyst>
         </ContainerPageAnalyst>
       );
