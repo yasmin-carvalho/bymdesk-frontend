@@ -10,12 +10,12 @@ export function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Ygor */}
+        {/* ygor */}
         <Route path="/admin" element={<Admin />} />
         <Route path="/portal-do-analista" element={<AnalystPortal />} />
         <Route path="/ticket-do-cliente" element={<ClientTicket />} />
 
-        {/* Yasmin */}
+        {/* yasmin */}
         <Route path="/registro-analista" element={<CreateLoginAnalystc />} />
         <Route path="/registro-cliente" element={<CreateLoginClient />} />
         <Route path="/login" element={<LoginClient />} />

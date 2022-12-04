@@ -6,5 +6,5 @@ export const _renderBasicTextCell = (value: string) => (
 );
 
 export const _renderBasicSelectCell = (value: string) => (
-  <Select array={optionsStatus} />
+  <Select options={optionsStatus} />
 );

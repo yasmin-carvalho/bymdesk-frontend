@@ -8,7 +8,7 @@ export const Main = styled.main`
   padding: 60px;
 `;
 
-export const ContainerLeft = styled.div`
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,7 +16,7 @@ export const ContainerLeft = styled.div`
   gap: 20px;
   align-items: left;
 `;
-export const ContainerRight = styled.div`
+export const FormRight = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
