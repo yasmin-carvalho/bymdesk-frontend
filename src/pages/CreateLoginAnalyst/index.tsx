@@ -43,7 +43,7 @@ export function CreateLoginAnalystc() {
   } = useForm<IFormRegisterAnalyst>({
     resolver: yupResolver(schemaRegisterAnalyst),
     defaultValues: {
-      [fieldsRegisterAnalyst.SETOR]: "Selecione",
+      [fieldsRegisterAnalyst.SETOR]: { value: "", label: "" },
       [fieldsRegisterAnalyst.MATRICULA]: "",
       [fieldsRegisterAnalyst.NOME]: "",
       [fieldsRegisterAnalyst.EMAIL]: "",
@@ -97,7 +97,10 @@ export function CreateLoginAnalystc() {
           <Select
             label="Setor Responsável"
             required
-            options={["Manutenção TI", "Manutenção Elétrica"]}
+            options={[
+              { value: "Manutenção TI", label: "Manutenção TI" },
+              { value: "Manutenção Elétrica", label: "Manutenção Elétrica" },
+            ]}
             name={fieldsRegisterAnalyst.SETOR}
             control={controlRegister}
           />
@@ -139,7 +142,7 @@ export function CreateLoginAnalystc() {
             <Button
               type="submit"
               form={formIdRegisterAnalyst}
-              disabled={!isValidRegister}
+              // disabled={!isValidRegister}
             >
               Registrar
             </Button>

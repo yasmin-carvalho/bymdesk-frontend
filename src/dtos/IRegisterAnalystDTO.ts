@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
 export interface IFormRegisterAnalyst {
-  setor: string;
+  setor: { value: string; label: string };
   matricula: string;
   nome: string;
   email: string;
@@ -19,7 +19,7 @@ export const fieldsRegisterAnalyst = {
 };
 
 export const schemaRegisterAnalyst = yup.object().shape({
-  [fieldsRegisterAnalyst.SETOR]: yup.string().required("obrigatório"),
+  [fieldsRegisterAnalyst.SETOR]: yup.object().required("obrigatório"),
   [fieldsRegisterAnalyst.MATRICULA]: yup.string().required("obrigatório"),
   [fieldsRegisterAnalyst.EMAIL]: yup.string().email().required("obrigatório"),
   [fieldsRegisterAnalyst.SENHA]: yup.string().required("obrigatório"),

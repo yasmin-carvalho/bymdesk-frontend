@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import ReactSelect from "react-select";
+
 import { Colors } from "../../styles/global";
 
 interface IContainer {
@@ -30,6 +32,20 @@ export const Asterisco = styled.span`
 export const StyledSelect = styled.select`
   height: 30px;
   width: 100%;
+
+  ::placeholder {
+    padding-left: 5px;
+  }
+
+  :focus {
+    outline: solid 0.1px ${Colors.blueButton};
+  }
+`;
+
+export const StyledReactSelect = styled(ReactSelect)`
+  height: 30px;
+  width: 100%;
+  margin-bottom: 5px;
 
   ::placeholder {
     padding-left: 5px;

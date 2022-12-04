@@ -1,4 +1,5 @@
 import { Control, Controller } from "react-hook-form";
+import ReactSelect from "react-select";
 
 import {
   Asterisco,
@@ -7,13 +8,14 @@ import {
   Label,
   StyledSelect,
   Optin,
+  StyledReactSelect,
 } from "./styles";
 
 interface SelectProps {
   label?: string;
   required?: boolean;
   labelColum?: string;
-  options: string[];
+  options: any[];
   isStateControlled?: boolean;
   onChangeStateControled?: React.ChangeEventHandler<HTMLSelectElement>;
   placeholder?: string;
@@ -53,17 +55,10 @@ export function Select({
         <Controller
           name={name}
           control={control}
-          render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <StyledSelect onChange={onChange}>
-              <Optin value="">{placeholder ?? ""}</Optin>
-              {options.map((item) => (
-                <Optin key={item} value={value}>
-                  {item}
-                </Optin>
-              ))}
-            </StyledSelect>
+          render={({ field, fieldState: { error } }) => (
+            <StyledReactSelect {...field} options={options} />
           )}
-        ></Controller>
+        />
       ) : (
         <StyledSelect onChange={onChangeStateControled}>
           <Optin value="">{placeholder ?? ""}</Optin>
