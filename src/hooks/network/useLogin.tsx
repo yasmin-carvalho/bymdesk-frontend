@@ -1,14 +1,14 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ToastType } from "../../components/Snackbar/enumToast";
 import { RoutesEnum } from "../../constants/routesList";
+import { useLoading } from "../../contexts/LoadingContext";
 import { useToast } from "../../contexts/ToastContext";
 import { IFormLogin } from "../../dtos/ILoginDTO";
 
 export function useLogin() {
   const { addToast } = useToast();
-  const [loading, setLoading] = useState(false);
+  const { loading, setLoading } = useLoading();
 
   const navigate = useNavigate();
 
