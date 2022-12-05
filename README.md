@@ -1,46 +1,82 @@
-# Getting Started with Create React App
+<h4 align="center">
+    :computer: Bymdesk - Aplicação para gerenciamento de tickets de suporte para a UNIFEI
+</h4>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+    <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#rocket-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#user-content-clipboard-instruções">Instruções</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#-ajustes-e-melhorias">Melhorias</a>
+</p>
 
-## Available Scripts
+<img alt="Interface" src="./src/assets/deviceframes.png" width="100%" align="center">
+<br/>
 
-In the project directory, you can run:
+## 💻 Projeto
 
-### `yarn start`
+Frontend App em ReactJS. Plataforma web para gerenciamento de tickets de suporte para a UNIFEI. Com as funcionalidades de crud e relacionamentos para tickets, matricula, bloco, local e tela de login com autenticação.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Repositório Api vinculada: https://github.com/BrenoSamp/bym-desk-backend 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<br>
 
-### `yarn test`
+## :rocket: Tecnologias
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [Typescript](https://www.typescriptlang.org/)
+- [ReactJS](https://pt-br.reactjs.org/)
+- [styled-components](https://styled-components.com/)
+- [material-ui](https://mui.com/pt/)
+- [react-hook-form](https://react-hook-form.com/)
+- [yup](https://www.npmjs.com/package/yup)
+- [axios](https://axios-http.com/)
 
-### `yarn build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## :clipboard: Instruções
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### INTERFACE - FRONTEND
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Execute `$ yarn` para instalar todas as dependencias.
+- Crie um arquivo `.env` e preencha as informações de cada variável de ambiente, as variáveis para serem preenchidas se encontram no arquivo `env.example`.
+- Após todas as dependencias serem instaladas e as variáveis serem preenchidas, basta executar `yarn start` para iniciar a interface frontend.
 
-### `yarn eject`
+## Exemplo de processo para alterações no projeto
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- 1 - Estar no ambiente de dev
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+git checkout dev
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- 2 - Atualizar o ambiente de dev (git pull)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+git pull
+```
 
-## Learn More
+- 3 - Após a atualização criar uma nova branch para alteração, exemplo:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+git checkout -b feature/create-user
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- 4 - Após as alterações no código, subir as alterações na branch recém criada:
+
+```bash
+git add . && git commit -m "feat: create User" && git push origin feature/create-user
+```
+
+- 5 - Clicar no primeiro link que estiver no terminal que levará direto para o github.
+  Clicar em Create Pull Request, e em seguida se não houver nenhum conflito e após ultima validação das alterações, clicar em Merge request. Com isso a branch de DEV será atualizada com as alterações realizadas.
+  E por fim clicar em delete branch, para finalizar a branch que ocorreu a alteração caso esteja finalizado toda aquela demanda.
+
+- 6 - Logo após voltar para a branch dev no VSCode (git checkout dev) e executar o comando para atualizar a DEV
+  (git pull). Assim a branch DEV estará atualizada no seu repositório local. E para uma nova demanda, seguir novamente os mesmos passos, criar uma nova branch a partir da dev ...
+
+---
+
+## 📌 Ajustes e melhorias
+
+O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
+
+- [ ] integração de telas com backend
