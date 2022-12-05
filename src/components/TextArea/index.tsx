@@ -1,3 +1,4 @@
+import { Control, Controller } from "react-hook-form";
 import {
   Asterisco,
   Container,
@@ -11,6 +12,8 @@ interface TextAreaProps {
   required?: boolean;
   placeholder?: string;
   labelColum?: string;
+  name?: string;
+  control?: Control<any>;
 }
 
 export function TextArea({
@@ -18,6 +21,8 @@ export function TextArea({
   required,
   placeholder,
   labelColum,
+  name,
+  control,
   ...rest
 }: TextAreaProps) {
   return (
@@ -36,7 +41,21 @@ export function TextArea({
         </ContainerLabel>
       )}
 
-      <StyledTextArea placeholder={placeholder} />
+      {control ? (
+        <Controller
+          name={name}
+          control={control}
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
+            <StyledTextArea
+              onChange={onChange}
+              value={value}
+              placeholder={placeholder}
+            />
+          )}
+        />
+      ) : (
+        <StyledTextArea placeholder={placeholder} />
+      )}
     </Container>
   );
 }
