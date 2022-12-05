@@ -16,6 +16,8 @@
 
 Frontend App em ReactJS. Plataforma web para gerenciamento de tickets de suporte para a UNIFEI. Com as funcionalidades de crud e relacionamentos para tickets, matricula, bloco, local e tela de login com autenticação.
 
+Site: https://bymdesk.vercel.app/
+
 Repositório Api vinculada: https://github.com/BrenoSamp/bym-desk-backend 
 
 <br>
