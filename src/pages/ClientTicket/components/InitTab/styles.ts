@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Button } from "../../../../components/Button";
 import { Colors } from "../../../../styles/global";
 
-export const BlockTicket = styled.div`
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: left;
