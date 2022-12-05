@@ -35,7 +35,7 @@ export function LoginClient() {
     resolver: yupResolver(schemaLogin),
     defaultValues: {
       [fieldsLogin.EMAIL]: "",
-      [fieldsLogin.PASSWORD]: "",
+      [fieldsLogin.SENHA]: "",
       // [fieldsLogin.REMEMBER_ME]: false,
     },
   });
@@ -66,7 +66,7 @@ export function LoginClient() {
           <Input
             type="password"
             placeholder="Senha"
-            name={fieldsLogin.PASSWORD}
+            name={fieldsLogin.SENHA}
             control={control}
           />
           {/* <Checkbox

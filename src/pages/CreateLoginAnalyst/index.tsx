@@ -30,7 +30,7 @@ export function CreateLoginAnalystc() {
     resolver: yupResolver(schemaLogin),
     defaultValues: {
       [fieldsLogin.EMAIL]: "",
-      [fieldsLogin.PASSWORD]: "",
+      [fieldsLogin.SENHA]: "",
     },
   });
 
@@ -76,7 +76,7 @@ export function CreateLoginAnalystc() {
             type="password"
             required
             placeholder="Digite sua senha"
-            name={fieldsLogin.PASSWORD}
+            name={fieldsLogin.SENHA}
             control={control}
           />
           <Button type="submit" form={formIdLogin} disabled={!isValid}>
