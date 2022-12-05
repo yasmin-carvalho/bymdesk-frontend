@@ -44,13 +44,13 @@ Repositório Api vinculada: https://github.com/BrenoSamp/bym-desk-backend
 
 ## Exemplo de processo para alterações no projeto
 
-- 1 - Estar no ambiente de dev
+- 1 - Estar no ambiente principal
 
 ```bash
-git checkout dev
+git checkout master
 ```
 
-- 2 - Atualizar o ambiente de dev (git pull)
+- 2 - Atualizar o ambiente principal (git pull)
 
 ```bash
 git pull
@@ -69,11 +69,11 @@ git add . && git commit -m "feat: create User" && git push origin feature/create
 ```
 
 - 5 - Clicar no primeiro link que estiver no terminal que levará direto para o github.
-  Clicar em Create Pull Request, e em seguida se não houver nenhum conflito e após ultima validação das alterações, clicar em Merge request. Com isso a branch de DEV será atualizada com as alterações realizadas.
+  Clicar em Create Pull Request, e em seguida se não houver nenhum conflito e após ultima validação das alterações, clicar em Merge request. Com isso a branch de MASTER será atualizada com as alterações realizadas.
   E por fim clicar em delete branch, para finalizar a branch que ocorreu a alteração caso esteja finalizado toda aquela demanda.
 
-- 6 - Logo após voltar para a branch dev no VSCode (git checkout dev) e executar o comando para atualizar a DEV
-  (git pull). Assim a branch DEV estará atualizada no seu repositório local. E para uma nova demanda, seguir novamente os mesmos passos, criar uma nova branch a partir da dev ...
+- 6 - Logo após voltar para a branch master no VSCode (git checkout master) e executar o comando para atualizar a MASTER
+  (git pull). Assim a branch MASTER estará atualizada no seu repositório local. E para uma nova demanda, seguir novamente os mesmos passos, criar uma nova branch a partir da MASTER ...
 
 ---
 
