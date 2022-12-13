@@ -1,15 +1,17 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Input } from "../../../../components/Input";
 import { Select } from "../../../../components/Select";
 import { TabContainer } from "../../../../components/Tabs/styles";
 import { TextArea } from "../../../../components/TextArea";
+import { optionsSetor } from "../../../../constants/listSelects";
 import {
   fieldsRegisterTicket,
   IFormRegisterTicket,
   schemaRegisterTicket,
 } from "../../../../dtos/IRegisterTicketDTO";
+import { useBlock } from "../../../../hooks/network/useBlock";
 import { useTicket } from "../../../../hooks/network/useTicket";
 import { Form, ButtonBlock, StyledButton, Text } from "./styles";
 
@@ -34,6 +36,12 @@ export function InitTab() {
 
   const { onSubmitRegisterTicket } = useTicket();
 
+  const { blocksState, getBlocks } = useBlock();
+
+  useEffect(() => {
+    getBlocks();
+  }, []);
+
   return (
     <TabContainer>
       <Form
@@ -47,21 +55,21 @@ export function InitTab() {
         <Select
           label="Bloco"
           required
-          options={[{ value: "IMC", label: "IEST" }]}
+          options={blocksState.map((item) => ({ value: item, label: item }))}
           name={fieldsRegisterTicket.BLOCO}
           control={controlRegister}
         />
         <Select
           label="Local"
           required
-          options={[{ value: "LDC2", label: "Sala 2" }]}
+          options={[]}
           name={fieldsRegisterTicket.LOCAL}
           control={controlRegister}
         />
         <Select
           label="Tipo de Manutenção"
           required
-          options={[{ value: "Manutenção TI", label: "Manutenção Elétrica" }]}
+          options={optionsSetor}
           name={fieldsRegisterTicket.TIPO_DE_MANUTENCAO}
           control={controlRegister}
         />

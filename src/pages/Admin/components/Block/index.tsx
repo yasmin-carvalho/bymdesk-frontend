@@ -20,7 +20,7 @@ export function Block() {
   } = useForm<IFormBlockDTO>({
     resolver: yupResolver(schemaBlock),
     defaultValues: {
-      [fieldsBlock.BLOCO]: "",
+      [fieldsBlock.NOME]: "",
       [fieldsBlock.CONFIRME_BLOCO]: "",
     },
   });
@@ -37,7 +37,7 @@ export function Block() {
           <StyledInput
             label="Digite um novo Bloco"
             required
-            name={fieldsBlock.BLOCO}
+            name={fieldsBlock.NOME}
             control={control}
           />
           <StyledInput

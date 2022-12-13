@@ -1,16 +1,20 @@
 import * as yup from "yup";
 
-export interface IFormBlockDTO {
+export interface IBlockDTO {
   bloco: string;
+}
+
+export interface IFormBlockDTO {
+  nome: string;
   confirme_bloco: string;
 }
 
 export const fieldsBlock = {
-  BLOCO: "bloco",
+  NOME: "nome",
   CONFIRME_BLOCO: "confirme_bloco",
 };
 
 export const schemaBlock = yup.object().shape({
-  [fieldsBlock.BLOCO]: yup.string().required("obrigatório"),
+  [fieldsBlock.NOME]: yup.string().required("obrigatório"),
   [fieldsBlock.CONFIRME_BLOCO]: yup.string().required("obrigatório"),
 });

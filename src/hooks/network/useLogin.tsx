@@ -8,6 +8,7 @@ import { useToast } from "../../contexts/ToastContext";
 import { IFormLogin } from "../../dtos/ILoginDTO";
 import { IFormRegisterClient } from "../../dtos/IRegisterClient";
 import AuthService from "../../services/AuthService";
+import CreateClientService from "../../services/CreateClienteService";
 
 export function useLogin() {
   const { addToast } = useToast();
@@ -16,37 +17,33 @@ export function useLogin() {
 
   const authService = new AuthService();
 
-  const onSubmitRegisterClient = (
+  const createClient = new CreateClientService();
+
+  const onSubmitRegisterClient = async (
     dataForm: IFormRegisterClient,
     reset: UseFormReset<IFormRegisterClient>
   ) => {
-    console.log(dataForm);
-    setLoading(true);
-
-    setTimeout(() => {
-      alert(JSON.stringify(dataForm));
-      addToast("Cliente cadastrado com sucesso", ToastType.success);
+    try {
+      if (dataForm.senha === dataForm.confirmar_senha) {
+        const response = await createClient.createClient(dataForm);
+        console.log(response);
+        addToast("Usuário cadastrado com sucesso!", ToastType.success);
+        navigate(RoutesEnum.REGISTRO_CLIENTE);
+      } else {
+        throw new Error("Senhas não coincidem");
+      }
+    } catch (error) {
+      addToast(
+        "ERRO! Verifique com o administrador do Sistema",
+        ToastType.error
+      );
+    } finally {
       setLoading(false);
-    }, 2500);
+    }
   };
 
   const onSubmit = async (dataForm: IFormLogin) => {
-    console.log(dataForm);
     setLoading(true);
-
-    // setTimeout(() => {
-    //   if (
-    //     dataForm.email === "ygor@gmail.com" &&
-    //     dataForm.password === "123456"
-    //   ) {
-    //     navigate(RoutesEnum.TICKET_DO_CLIENTE);
-    //   } else {
-    //     console.log("caiu");
-    //     addToast("Falha no login. Verifique as credenciais", ToastType.error);
-    //   }
-
-    //   setLoading(false);
-    // }, 2500);
 
     try {
       const response = await authService.login(dataForm);
