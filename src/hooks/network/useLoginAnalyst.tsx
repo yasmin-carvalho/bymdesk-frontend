@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { UseFormReset } from "react-hook-form";
 
 import { ToastType } from "../../components/Snackbar/enumToast";
 import { RoutesEnum } from "../../constants/routesList";
@@ -6,15 +7,19 @@ import { useLoading } from "../../contexts/LoadingContext";
 import { useToast } from "../../contexts/ToastContext";
 import { IFormLogin } from "../../dtos/ILoginDTO";
 import { IFormRegisterAnalyst } from "../../dtos/IRegisterAnalystDTO";
+import AuthServiceAnalyst from "../../services/AuthServiceAnalyst";
 
 export function useLoginAnalyst() {
   const { addToast } = useToast();
   const { loading, setLoading } = useLoading();
-
   const navigate = useNavigate();
 
-  const onSubmitRegisterAnalyst = (dataForm: IFormRegisterAnalyst) => {
-    console.log("caiuuuu", dataForm);
+  const authServiceAnalyst = new AuthServiceAnalyst();
+
+  const onSubmitRegisterAnalyst = (
+    dataForm: IFormRegisterAnalyst,
+    reset: UseFormReset<IFormRegisterAnalyst>
+  ) => {
     setLoading(true);
 
     setTimeout(() => {
@@ -24,15 +29,21 @@ export function useLoginAnalyst() {
     }, 2500);
   };
 
-  const onSubmitLogin = (dataForm: IFormLogin) => {
+  const onSubmitLogin = async (dataForm: IFormLogin) => {
     setLoading(true);
 
-    setTimeout(() => {
-      alert(JSON.stringify(dataForm));
-      addToast("Login realizado com sucesso", ToastType.success);
+    try {
+      const response = await authServiceAnalyst.login(dataForm);
+      console.log(response);
       navigate(RoutesEnum.PORTAL_DO_ANALISTA);
+    } catch (error) {
+      addToast(
+        "Error ao realizar login, verifique suas crendencias",
+        ToastType.error
+      );
+    } finally {
       setLoading(false);
-    }, 2500);
+    }
   };
 
   return {

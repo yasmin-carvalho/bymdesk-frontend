@@ -1,33 +1,38 @@
+import { AxiosError } from "axios";
 import { UseFormReset } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { ToastType } from "../../components/Snackbar/enumToast";
+import { RoutesEnum } from "../../constants/routesList";
 import { useLoading } from "../../contexts/LoadingContext";
 import { useToast } from "../../contexts/ToastContext";
 import { IFormMatriculationDTO } from "../../dtos/IMatriculationDTO";
+import MatriculationService from "../../services/MatriculationService";
 
 export function useMatriculation() {
   const { addToast } = useToast();
   const { loading, setLoading } = useLoading();
+  const navigate = useNavigate();
 
-  const onSubmit = (
+  const matriculationService = new MatriculationService();
+
+  const onSubmit = async (
     dataForm: IFormMatriculationDTO,
     reset: UseFormReset<IFormMatriculationDTO>
   ) => {
-    console.log(dataForm);
     setLoading(true);
 
-    if (dataForm.matricula === dataForm.confirme_matricula) {
-      setTimeout(() => {
-        alert(JSON.stringify(dataForm));
-        addToast("Analista cadastrado com sucesso", ToastType.success);
-        setLoading(false);
-        reset();
-      }, 2500);
-    } else {
-      addToast(
-        "Campo Matrícula e Confirmar Matrícula não são iguais",
-        ToastType.error
-      );
-      reset();
+    try {
+      if (dataForm.matricula === dataForm.confirme_matricula) {
+        const response = await matriculationService.matriculation(dataForm);
+        console.log(response);
+        addToast("Matrícula cadastrada com sucesso!", ToastType.success);
+        navigate(RoutesEnum.ADMIN);
+      } else {
+        throw new Error("Matriculas não coincidem");
+      }
+    } catch (error) {
+      addToast("ERRO!", ToastType.error);
+    } finally {
       setLoading(false);
     }
   };

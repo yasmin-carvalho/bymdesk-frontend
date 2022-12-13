@@ -52,7 +52,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     requester: "Ana Maria",
-    status: "Inicializado",
+    status: "Finalizado",
   },
   {
     id: 3,
@@ -76,7 +76,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     requester: "Ana Maria",
-    status: "Inicializado",
+    status: "Andamento",
   },
   {
     id: 6,
@@ -92,7 +92,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     requester: "Ana Maria",
-    status: "Inicializado",
+    status: "Cancelado",
   },
   {
     id: 8,
@@ -108,7 +108,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     requester: "Ana Maria",
-    status: "Inicializado",
+    status: "Cancelado",
   },
   {
     id: 10,
@@ -132,7 +132,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     requester: "Ana Maria",
-    status: "Inicializado",
+    status: "Finalizado",
   },
   {
     id: 13,
@@ -148,7 +148,7 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     requester: "Ana Maria",
-    status: "Inicializado",
+    status: "Finalizado",
   },
   {
     id: 15,
@@ -172,6 +172,6 @@ export const data = [
     block: "#Bloco:C1 - IMC",
     locale: "#Local:LDC2",
     requester: "Ana Maria",
-    status: "Inicializado",
+    status: "Andamento",
   },
 ];

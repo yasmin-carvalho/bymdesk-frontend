@@ -19,6 +19,7 @@ import {
   IFormRegisterAnalyst,
   schemaRegisterAnalyst,
 } from "../../dtos/IRegisterAnalystDTO";
+import { optionsSetor } from "../../constants/listSelects";
 
 export function CreateLoginAnalystc() {
   const formIdLogin = "form-login";
@@ -26,6 +27,7 @@ export function CreateLoginAnalystc() {
     handleSubmit,
     control,
     formState: { isValid },
+    reset,
   } = useForm<IFormLogin>({
     resolver: yupResolver(schemaLogin),
     defaultValues: {
@@ -88,16 +90,13 @@ export function CreateLoginAnalystc() {
           id={formIdRegisterAnalyst}
           onSubmit={handleSubmitRegister((data: IFormRegisterAnalyst) => {
             console.log("eitaaaaa");
-            onSubmitRegisterAnalyst(data);
+            onSubmitRegisterAnalyst(data, reset);
           })}
         >
           <Select
             label="Setor Responsável"
             required
-            options={[
-              { value: "Manutenção TI", label: "Manutenção TI" },
-              { value: "Manutenção Elétrica", label: "Manutenção Elétrica" },
-            ]}
+            options={optionsSetor}
             name={fieldsRegisterAnalyst.SETOR}
             control={controlRegister}
           />

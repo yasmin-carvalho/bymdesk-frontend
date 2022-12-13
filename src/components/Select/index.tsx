@@ -1,5 +1,4 @@
 import { Control, Controller } from "react-hook-form";
-import ReactSelect from "react-select";
 
 import {
   Asterisco,
@@ -21,6 +20,8 @@ interface SelectProps {
   placeholder?: string;
   control?: Control<any>;
   name?: string;
+  onClick?: React.MouseEventHandler<HTMLSelectElement>;
+  value?: string | number | readonly string[];
 }
 
 export function Select({
@@ -33,6 +34,8 @@ export function Select({
   placeholder,
   name,
   control,
+  onClick,
+  value,
   ...rest
 }: SelectProps) {
   return (
@@ -60,7 +63,11 @@ export function Select({
           )}
         />
       ) : (
-        <StyledSelect onChange={onChangeStateControled}>
+        <StyledSelect
+          onChange={onChangeStateControled}
+          onClick={onClick}
+          defaultValue={value}
+        >
           <Optin value="">{placeholder ?? ""}</Optin>
           {options.map((item) => (
             <Optin key={item}>{item}</Optin>
