@@ -29,7 +29,6 @@ export function useTicket() {
     setLoading(true);
     try {
       const response = await ticketsService.getTickets();
-      console.log("hook antes do filtro", response);
       setAllTickets(
         response.filter(
           (item) =>

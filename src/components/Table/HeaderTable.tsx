@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { ContainerInput, StyledInput, StyledSelect } from "./styles";
-import { IRenderInputSearch } from "./types";
+import { IRenderInputSearch, TypeColumnTableEnum } from "./types";
 
 interface HeaderTableProps {
   renderInputSearch?: IRenderInputSearch;
   renderInputSearchAndSelect?: IRenderInputSearch[];
   arrayRenderInputSearch?: IRenderInputSearch[];
-  handleSearch: (value: string, searchPropertName: string) => void;
+  handleSearch: (
+    value: string,
+    searchPropertName: string,
+    type: keyof typeof TypeColumnTableEnum
+  ) => void;
 }
 
 export function HeaderTable({
@@ -25,7 +29,11 @@ export function HeaderTable({
           isRow
           placeholder={`Pesquisar ${renderInputSearch.placeholder}`}
           handleSearch={(value) =>
-            handleSearch(value, renderInputSearch.searchPropertName)
+            handleSearch(
+              value,
+              renderInputSearch.searchPropertName,
+              renderInputSearch.type
+            )
           }
         />
       )}
@@ -52,7 +60,11 @@ export function HeaderTable({
                 (item) => item.placeholder === searchSelectState
               );
 
-              handleSearch(value, objInputSearch[0].searchPropertName);
+              handleSearch(
+                value,
+                objInputSearch[0].searchPropertName,
+                objInputSearch[0].type
+              );
             }}
             disabled={!searchSelectState.length}
           />
@@ -67,7 +79,7 @@ export function HeaderTable({
               isRow
               placeholder={`Pesquisar ${item.placeholder}`}
               handleSearch={(value) =>
-                handleSearch(value, item.searchPropertName)
+                handleSearch(value, item.searchPropertName, item.type)
               }
               key={item.placeholder}
             />

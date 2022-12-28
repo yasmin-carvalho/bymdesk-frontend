@@ -26,7 +26,17 @@ export interface ITypeComponents {
   ) => JSX.Element;
 }
 
+export enum TypeColumnTableEnum {
+  string = "string",
+  number = "number",
+  boolean = "boolean",
+  timestamp = "timestamp",
+  yesOrNot = "yesOrNot",
+  roleUser = "roleUser",
+}
+
 export interface IRenderInputSearch {
   searchPropertName: string;
   placeholder: string;
+  type: keyof typeof TypeColumnTableEnum;
 }

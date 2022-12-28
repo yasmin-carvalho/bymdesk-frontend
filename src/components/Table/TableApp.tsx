@@ -10,6 +10,12 @@ import {
   TableRow,
 } from "@mui/material";
 import React, { useState } from "react";
+import {
+  convertNumberToString,
+  convertBooleanToString,
+  convertBooleanToStringYesOrNot,
+  convertTimestampToDateString,
+} from "../../constants/converts";
 
 import { TablePaginationActions } from "../total-pagination-actions/TotalPaginationActions";
 import { HeaderTable } from "./HeaderTable";
@@ -19,6 +25,7 @@ import {
   IRenderInputSearch,
   ITypeColumnConfig,
   ITypeComponents,
+  TypeColumnTableEnum,
 } from "./types";
 
 interface TableAppProps {
@@ -73,12 +80,34 @@ const TableApp: React.FC<TableAppProps> = ({
     setPage(0);
   };
 
-  const handleSearch = (value: string, searchPropertName: string) => {
+  const handleSearch = (
+    value: string,
+    searchPropertName: string,
+    type: keyof typeof TypeColumnTableEnum
+  ) => {
     const newUpdateInstance: any[] = [];
     const textTyped = new RegExp(value.toUpperCase(), "i");
 
     for (const instance of data) {
-      if (instance[searchPropertName].match(textTyped)) {
+      if (
+        (type === "string" && instance[searchPropertName].match(textTyped)) ||
+        (type === "number" &&
+          convertNumberToString(instance[searchPropertName]).match(
+            textTyped
+          )) ||
+        (type === "boolean" &&
+          convertBooleanToString(instance[searchPropertName]).match(
+            textTyped
+          )) ||
+        (type === "timestamp" &&
+          convertTimestampToDateString(instance[searchPropertName]).match(
+            textTyped
+          )) ||
+        (type === "yesOrNot" &&
+          convertBooleanToStringYesOrNot(instance[searchPropertName]).match(
+            textTyped
+          ))
+      ) {
         newUpdateInstance.push(instance);
       } else {
         setDataState(data);

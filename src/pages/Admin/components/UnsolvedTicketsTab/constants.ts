@@ -30,9 +30,17 @@ export const columnLabel: ITypeColumnLabel = {
 };
 
 export const arrayRenderInputSearch: IRenderInputSearch[] = [
-  { searchPropertName: columnType.NAME, placeholder: "ticket" },
-  { searchPropertName: columnType.BLOCK, placeholder: "bloco" },
-  { searchPropertName: columnType.LOCALE, placeholder: "local" },
-  { searchPropertName: columnType.TYPE, placeholder: "tipo" },
-  { searchPropertName: columnType.STATUS, placeholder: "status" },
+  { searchPropertName: columnType.NAME, placeholder: "ticket", type: "number" },
+  { searchPropertName: columnType.BLOCK, placeholder: "bloco", type: "string" },
+  {
+    searchPropertName: columnType.LOCALE,
+    placeholder: "local",
+    type: "string",
+  },
+  { searchPropertName: columnType.TYPE, placeholder: "tipo", type: "string" },
+  {
+    searchPropertName: columnType.STATUS,
+    placeholder: "status",
+    type: "string",
+  },
 ];
