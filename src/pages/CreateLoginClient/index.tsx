@@ -34,7 +34,7 @@ export function CreateLoginClient() {
 
   const navigate = useNavigate();
 
-  const { onSubmitRegisterClient } = useLogin();
+  const { onSubmitRegisterClient, loading } = useLogin();
 
   return (
     <>
@@ -51,6 +51,7 @@ export function CreateLoginClient() {
             required
             name={fieldsRegisterClient.NOME}
             control={controlRegister}
+            disabled={loading}
           />
           <Input
             type="tel"
@@ -58,6 +59,7 @@ export function CreateLoginClient() {
             mask="(99) 99999-9999"
             name={fieldsRegisterClient.TELEFONE}
             control={controlRegister}
+            disabled={loading}
           />
           <Input
             type="email"
@@ -65,6 +67,7 @@ export function CreateLoginClient() {
             required
             name={fieldsRegisterClient.EMAIL}
             control={controlRegister}
+            disabled={loading}
           />
           <Input
             type="password"
@@ -72,6 +75,7 @@ export function CreateLoginClient() {
             required
             name={fieldsRegisterClient.SENHA}
             control={controlRegister}
+            disabled={loading}
           />
           <Input
             type="password"
@@ -79,16 +83,22 @@ export function CreateLoginClient() {
             required
             name={fieldsRegisterClient.CONFIRMAR_SENHA}
             control={controlRegister}
+            disabled={loading}
           />
           <ContentButton>
             <Button
               type="submit"
               form={formIdRegisterClient}
-              disabled={!isValidRegister}
+              disabled={!isValidRegister || loading}
             >
               Registrar
             </Button>
-            <Button onClick={() => navigate(RoutesEnum.LOGIN)}>Cancelar</Button>
+            <Button
+              onClick={() => navigate(RoutesEnum.LOGIN)}
+              disabled={loading}
+            >
+              Cancelar
+            </Button>
           </ContentButton>
         </Form>
       </Main>

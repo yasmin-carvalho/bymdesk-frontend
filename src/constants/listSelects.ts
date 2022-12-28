@@ -1,13 +1,15 @@
+import { EnumStatus } from "./enums";
+
 interface OptionSelect {
   value: string;
   label: string;
 }
 
 export const optionsStatus: Array<string> = [
-  "Inicializado",
-  "Andamento",
-  "Finalizado",
-  "Cancelado",
+  EnumStatus.Inicializado,
+  EnumStatus.Andamento,
+  EnumStatus.Finalizado,
+  EnumStatus.Cancelado,
 ];
 
 export const optionsSetor: Array<OptionSelect> = [

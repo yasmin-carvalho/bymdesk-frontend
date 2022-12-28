@@ -3,4 +3,6 @@ export interface ICreateClientDTORequest {
   telefone?: string;
   email: string;
   senha: string;
+  role: "analyst" | "client" | "admin";
+  admin: boolean;
 }

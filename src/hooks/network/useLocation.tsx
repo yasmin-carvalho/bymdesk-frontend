@@ -1,33 +1,40 @@
 import { UseFormReset } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { ToastType } from "../../components/Snackbar/enumToast";
+import { RoutesEnum } from "../../constants/routesList";
 import { useLoading } from "../../contexts/LoadingContext";
 import { useToast } from "../../contexts/ToastContext";
 import { IFormLocationDTO } from "../../dtos/ILocationDTO";
+import LocalService from "../../services/LocalService";
 
 export function useLocation() {
   const { addToast } = useToast();
   const { loading, setLoading } = useLoading();
+  const navigate = useNavigate();
 
-  const onSubmit = (
+  const localtionService = new LocalService();
+
+  const onSubmit = async (
     dataForm: IFormLocationDTO,
     reset: UseFormReset<IFormLocationDTO>
   ) => {
-    console.log(dataForm);
     setLoading(true);
 
-    if (dataForm.localizacao === dataForm.confirme_localizacao) {
-      setTimeout(() => {
-        alert(JSON.stringify(dataForm));
-        addToast("Localização cadastrada com sucesso", ToastType.success);
-        setLoading(false);
-        reset();
-      }, 2500);
-    } else {
+    try {
+      if (dataForm.nome === dataForm.confirme_localizacao) {
+        const response = await localtionService.local(dataForm);
+        console.log(response);
+        addToast("Local cadastrado com sucesso!", ToastType.success);
+        navigate(RoutesEnum.ADMIN);
+      } else {
+        throw new Error("Locais não coincidem");
+      }
+    } catch (error) {
       addToast(
-        "Campo Localização e Confirmar Localização não são iguais",
+        error?.response ? "Erro interno no servidor!" : error.message,
         ToastType.error
       );
-      reset();
+    } finally {
       setLoading(false);
     }
   };

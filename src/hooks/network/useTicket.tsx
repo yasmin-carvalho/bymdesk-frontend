@@ -1,11 +1,18 @@
+import { useState } from "react";
 import { ToastType } from "../../components/Snackbar/enumToast";
+import { EnumStatus } from "../../constants/enums";
 import { useLoading } from "../../contexts/LoadingContext";
 import { useToast } from "../../contexts/ToastContext";
 import { IFormRegisterTicket } from "../../dtos/IRegisterTicketDTO";
+import { ITicketsDTO } from "../../dtos/ITicketsDTO";
+import TicketsService from "../../services/TicketsService";
 
 export function useTicket() {
   const { addToast } = useToast();
   const { loading, setLoading } = useLoading();
+  const ticketsService = new TicketsService();
+
+  const [allTickets, setAllTickets] = useState<ITicketsDTO[]>([]);
 
   const onSubmitRegisterTicket = (dataForm: IFormRegisterTicket) => {
     console.log("caiuuuu", dataForm);
@@ -18,9 +25,30 @@ export function useTicket() {
     }, 2500);
   };
 
+  const getUnsolvedTickets = async () => {
+    setLoading(true);
+    try {
+      const response = await ticketsService.getTickets();
+      console.log("hook antes do filtro", response);
+      setAllTickets(
+        response.filter(
+          (item) =>
+            item.status === EnumStatus.Inicializado ||
+            item.status === EnumStatus.Andamento
+        )
+      );
+    } catch (error) {
+      addToast("Falha ao buscar dados de tickets", ToastType.error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return {
     loading,
     setLoading,
     onSubmitRegisterTicket,
+    getUnsolvedTickets,
+    allTickets,
   };
 }

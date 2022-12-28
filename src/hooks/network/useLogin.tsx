@@ -25,7 +25,11 @@ export function useLogin() {
   ) => {
     try {
       if (dataForm.senha === dataForm.confirmar_senha) {
-        const response = await createClient.createClient(dataForm);
+        const response = await createClient.createClient({
+          ...dataForm,
+          role: "client",
+          admin: false,
+        });
         console.log(response);
         addToast("Usuário cadastrado com sucesso!", ToastType.success);
         navigate(RoutesEnum.REGISTRO_CLIENTE);
@@ -34,11 +38,14 @@ export function useLogin() {
       }
     } catch (error) {
       addToast(
-        "ERRO! Verifique com o administrador do Sistema",
+        error?.message
+          ? error?.message
+          : "ERRO! Verifique com o administrador do Sistema",
         ToastType.error
       );
     } finally {
       setLoading(false);
+      reset();
     }
   };
 

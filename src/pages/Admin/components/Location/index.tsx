@@ -19,7 +19,7 @@ export function Location() {
   } = useForm<IFormLocationDTO>({
     resolver: yupResolver(schemaLocation),
     defaultValues: {
-      [fieldsLocation.LOCALIZACAO]: "",
+      [fieldsLocation.NOME]: "",
       [fieldsLocation.CONFIRME_LOCALIZACAO]: "",
     },
   });
@@ -38,7 +38,7 @@ export function Location() {
           <StyledInput
             label="Digite um novo Local"
             required
-            name={fieldsLocation.LOCALIZACAO}
+            name={fieldsLocation.NOME}
             control={control}
           />
           <StyledInput
