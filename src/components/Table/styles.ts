@@ -83,3 +83,11 @@ export const StyledSelect = styled(Select)`
     border-radius: 6px;
   }
 `;
+
+export const LoadingWrapper = styled(TableCell)`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+`;

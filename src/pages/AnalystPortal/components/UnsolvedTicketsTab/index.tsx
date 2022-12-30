@@ -30,6 +30,7 @@ export function UnsolvedTicketsTab() {
         columnConfig={columnConfig}
         components={components}
         data={data}
+        isLoading={false}
         renderCellHeader={(key) => columnLabel[key]}
         renderCollapse={() => <CollapseConversation />}
         renderInputSearchAndSelect={arrayRenderInputSearch}
