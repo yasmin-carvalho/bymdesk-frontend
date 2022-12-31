@@ -21,6 +21,7 @@ export function InitTab() {
   const {
     handleSubmit: handleSubmitRegister,
     control: controlRegister,
+    setValue,
     formState: { isValid: isValidRegister },
   } = useForm<IFormRegisterTicket>({
     resolver: yupResolver(schemaRegisterTicket),
@@ -29,11 +30,9 @@ export function InitTab() {
       [fieldsRegisterTicket.LOCAL]: { value: "", label: "" },
       [fieldsRegisterTicket.TIPO_DE_MANUTENCAO]: { value: "", label: "" },
       [fieldsRegisterTicket.DESCRICAO]: "",
-      [fieldsRegisterTicket.ANEXAR_ARQUIVO]: "",
+      [fieldsRegisterTicket.ANEXAR_ARQUIVO]: null,
     },
   });
-
-  const [file, setFile] = useState(null);
 
   const { onSubmitRegisterTicket } = useTicket();
 
@@ -94,6 +93,7 @@ export function InitTab() {
           type="file"
           label="+ Anexar arquivo"
           name={fieldsRegisterTicket.ANEXAR_ARQUIVO}
+          setValue={setValue}
           control={controlRegister}
         />
 
