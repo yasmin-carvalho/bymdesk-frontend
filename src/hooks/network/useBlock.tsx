@@ -5,8 +5,9 @@ import { RoutesEnum } from "../../constants/routesList";
 import { ToastType } from "../../components/Snackbar/enumToast";
 import { useLoading } from "../../contexts/LoadingContext";
 import { useToast } from "../../contexts/ToastContext";
-import { IBlockDTO, IFormBlockDTO } from "../../dtos/IBlockDTO";
+import { IFormBlockDTO } from "../../dtos/IBlockDTO";
 import BlockService from "../../services/BlockService";
+import { IGetBlocksDTOResponse } from "../../services/BlockService/dtos/IGetBlocksDTOResponse";
 
 export function useBlock() {
   const { addToast } = useToast();
@@ -15,7 +16,7 @@ export function useBlock() {
 
   const blockService = new BlockService();
 
-  const [blocksState, setBlocksState] = useState<IBlockDTO[]>([]);
+  const [blocksState, setBlocksState] = useState<IGetBlocksDTOResponse[]>([]);
 
   const onSubmit = async (
     dataForm: IFormBlockDTO,

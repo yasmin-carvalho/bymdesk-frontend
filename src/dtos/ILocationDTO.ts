@@ -1,5 +1,11 @@
 import * as yup from "yup";
 
+export interface ILocation {
+  id?: number;
+  nome: string;
+  bloco_id: number;
+}
+
 export interface IFormLocationDTO {
   nome: string;
   confirme_localizacao: string;

@@ -1,3 +1,4 @@
 export interface IGetBlocksDTOResponse {
-  bloco: string;
+  id: number;
+  nome: string;
 }

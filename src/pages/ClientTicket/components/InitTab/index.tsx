@@ -12,6 +12,7 @@ import {
   schemaRegisterTicket,
 } from "../../../../dtos/IRegisterTicketDTO";
 import { useBlock } from "../../../../hooks/network/useBlock";
+import { useLocation } from "../../../../hooks/network/useLocation";
 import { useTicket } from "../../../../hooks/network/useTicket";
 import { Form, ButtonBlock, StyledButton, Text } from "./styles";
 
@@ -38,8 +39,11 @@ export function InitTab() {
 
   const { blocksState, getBlocks } = useBlock();
 
+  const { localesState, getLocales } = useLocation();
+
   useEffect(() => {
     getBlocks();
+    getLocales();
   }, []);
 
   return (
@@ -55,14 +59,20 @@ export function InitTab() {
         <Select
           label="Bloco"
           required
-          options={blocksState.map((item) => ({ value: item, label: item }))}
+          options={blocksState.map((item) => ({
+            value: item.id,
+            label: item.nome,
+          }))}
           name={fieldsRegisterTicket.BLOCO}
           control={controlRegister}
         />
         <Select
           label="Local"
           required
-          options={[]}
+          options={localesState.map((item) => ({
+            value: item.id,
+            label: item.nome,
+          }))}
           name={fieldsRegisterTicket.LOCAL}
           control={controlRegister}
         />
