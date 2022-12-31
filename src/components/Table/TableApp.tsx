@@ -9,7 +9,7 @@ import {
   TablePagination,
   TableRow,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   convertNumberToString,
   convertBooleanToString,
@@ -20,7 +20,7 @@ import {
 import { TablePaginationActions } from "../total-pagination-actions/TotalPaginationActions";
 import { HeaderTable } from "./HeaderTable";
 import Row from "./Row";
-import { StyledTableCell, Th, Wrapper } from "./styles";
+import { LoadingWrapper, StyledTableCell, Th, Wrapper } from "./styles";
 import {
   IRenderInputSearch,
   ITypeColumnConfig,
@@ -40,6 +40,7 @@ interface TableAppProps {
   renderInputSearch?: IRenderInputSearch;
   renderInputSearchAndSelect?: IRenderInputSearch[];
   arrayRenderInputSearch?: IRenderInputSearch[];
+  isLoading: boolean;
 }
 
 const TableApp: React.FC<TableAppProps> = ({
@@ -52,9 +53,14 @@ const TableApp: React.FC<TableAppProps> = ({
   renderInputSearch,
   renderInputSearchAndSelect,
   arrayRenderInputSearch,
+  isLoading,
   ...rest
 }) => {
-  const [dataState, setDataState] = useState(data);
+  const [dataState, setDataState] = useState([]);
+
+  useEffect(() => {
+    setDataState(data);
+  }, [data]);
 
   const columnConfigKeys = [
     ...Object.entries(columnConfig).map(([key, value]) => key),
@@ -147,25 +153,34 @@ const TableApp: React.FC<TableAppProps> = ({
           </TableHead>
 
           <TableBody>
-            {Object.values(
-              (rowsPerPage > 0
-                ? dataState.slice(
-                    page * rowsPerPage,
-                    page * rowsPerPage + rowsPerPage
-                  )
-                : dataState
-              ).map((rowData, rowIndex) => (
-                <Row
-                  columnConfig={columnConfig}
-                  columnConfigKeys={columnConfigKeys}
-                  components={components}
-                  renderCollapse={renderCollapse}
-                  rowData={rowData}
-                  rowIndex={rowIndex}
-                  key={rowData.id ?? `${tableName}-${rowIndex}`}
-                />
-              ))
+            {!isLoading ? (
+              Object.values(
+                (rowsPerPage > 0
+                  ? dataState.slice(
+                      page * rowsPerPage,
+                      page * rowsPerPage + rowsPerPage
+                    )
+                  : dataState
+                ).map((rowData, rowIndex) => (
+                  <Row
+                    columnConfig={columnConfig}
+                    columnConfigKeys={columnConfigKeys}
+                    components={components}
+                    renderCollapse={renderCollapse}
+                    rowData={rowData}
+                    rowIndex={rowIndex}
+                    key={rowData.id ?? `${tableName}-${rowIndex}`}
+                  />
+                ))
+              )
+            ) : (
+              <TableRow style={{ height: 53 * emptyAllData }}>
+                <LoadingWrapper colSpan={columnConfigKeys.length}>
+                  Loading...
+                </LoadingWrapper>
+              </TableRow>
             )}
+
             {emptyAllData > 0 && (
               <TableRow style={{ height: 53 * emptyAllData }}>
                 <TableCell colSpan={columnConfigKeys.length} />

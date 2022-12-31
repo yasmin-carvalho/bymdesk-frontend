@@ -26,6 +26,7 @@ export function ResolvedTicketsTab() {
         columnConfig={columnConfig}
         components={components}
         data={data}
+        isLoading={false}
         renderCellHeader={(key) => columnLabel[key]}
         renderCollapse={() => <CollapseConversation />}
         renderInputSearchAndSelect={arrayRenderInputSearch}

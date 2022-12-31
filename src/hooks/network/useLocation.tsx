@@ -1,16 +1,18 @@
+import { useState } from "react";
 import { UseFormReset } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { ToastType } from "../../components/Snackbar/enumToast";
 import { RoutesEnum } from "../../constants/routesList";
 import { useLoading } from "../../contexts/LoadingContext";
 import { useToast } from "../../contexts/ToastContext";
-import { IFormLocationDTO } from "../../dtos/ILocationDTO";
+import { IFormLocationDTO, ILocation } from "../../dtos/ILocationDTO";
 import LocalService from "../../services/LocalService";
 
 export function useLocation() {
   const { addToast } = useToast();
   const { loading, setLoading } = useLoading();
   const navigate = useNavigate();
+  const [localesState, setLocalesState] = useState<ILocation[]>([]);
 
   const localtionService = new LocalService();
 
@@ -22,8 +24,7 @@ export function useLocation() {
 
     try {
       if (dataForm.nome === dataForm.confirme_localizacao) {
-        const response = await localtionService.local(dataForm);
-        console.log(response);
+        await localtionService.local(dataForm);
         addToast("Local cadastrado com sucesso!", ToastType.success);
         navigate(RoutesEnum.ADMIN);
       } else {
@@ -39,9 +40,23 @@ export function useLocation() {
     }
   };
 
+  const getLocales = async () => {
+    setLoading(true);
+    try {
+      const response = await localtionService.getLocales();
+      setLocalesState(response);
+    } catch (error) {
+      addToast("Erro ao buscar dados de localidades", ToastType.error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return {
     loading,
+    localesState,
     setLoading,
     onSubmit,
+    getLocales,
   };
 }
