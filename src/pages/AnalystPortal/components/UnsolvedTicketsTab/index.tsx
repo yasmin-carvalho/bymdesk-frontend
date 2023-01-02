@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { CollapseConversation } from "../../../../components/CollapseConversation";
 import {
   _renderBasicSelectCell,
@@ -6,34 +7,42 @@ import {
 import TableApp from "../../../../components/Table/TableApp";
 import { ITypeComponents } from "../../../../components/Table/types";
 import { TabContainer } from "../../../../components/Tabs/styles";
+import { useTicket } from "../../../../hooks/network/useTicket";
 import {
   arrayRenderInputSearch,
   columnConfig,
   columnLabel,
   columnType,
-  data,
 } from "./constants";
 
 export function UnsolvedTicketsTab() {
+  const { getUnsolvedTickets, allTickets } = useTicket();
+
+  useEffect(() => {
+    getUnsolvedTickets();
+  }, []);
+
   const components: ITypeComponents = {
     [columnType.NAME]: _renderBasicTextCell,
     [columnType.BLOCK]: _renderBasicTextCell,
     [columnType.LOCALE]: _renderBasicTextCell,
-    [columnType.REQUESTER]: _renderBasicTextCell,
+    //[columnType.REQUESTER]: _renderBasicTextCell,
     [columnType.STATUS]: _renderBasicSelectCell,
   };
 
   return (
     <TabContainer>
-      <TableApp
-        tableName="table-my-tickets"
-        columnConfig={columnConfig}
-        components={components}
-        data={data}
-        renderCellHeader={(key) => columnLabel[key]}
-        renderCollapse={() => <CollapseConversation />}
-        renderInputSearchAndSelect={arrayRenderInputSearch}
-      />
+      {allTickets.length && (
+        <TableApp
+          tableName="table-my-tickets"
+          columnConfig={columnConfig}
+          components={components}
+          data={allTickets}
+          renderCellHeader={(key) => columnLabel[key]}
+          renderCollapse={() => <CollapseConversation />}
+          renderInputSearchAndSelect={arrayRenderInputSearch}
+        />
+      )}
     </TabContainer>
   );
 }

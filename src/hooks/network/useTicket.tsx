@@ -43,11 +43,51 @@ export function useTicket() {
     }
   };
 
+  const getResolvedTickets = async () => {
+    setLoading(true);
+    try {
+      const response = await ticketsService.getTickets();
+      setAllTickets(
+        response.filter(
+          (item) =>
+            item.status === EnumStatus.Finalizado ||
+            item.status === EnumStatus.Cancelado
+        )
+      );
+    } catch (error) {
+      addToast("Falha ao buscar dados de tickets", ToastType.error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getTicketsAll = async () => {
+    setLoading(true);
+    try {
+      const response = await ticketsService.getTickets();
+      setAllTickets(
+        response.filter(
+          (item) =>
+            item.status === EnumStatus.Inicializado ||
+            item.status === EnumStatus.Andamento ||
+            item.status === EnumStatus.Finalizado ||
+            item.status === EnumStatus.Cancelado
+        )
+      );
+    } catch (error) {
+      addToast("Falha ao buscar dados de tickets", ToastType.error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return {
     loading,
     setLoading,
     onSubmitRegisterTicket,
     getUnsolvedTickets,
+    getResolvedTickets,
+    getTicketsAll,
     allTickets,
   };
 }
