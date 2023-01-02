@@ -65,15 +65,16 @@ export function useTicket() {
     setLoading(true);
     try {
       const response = await ticketsService.getTickets();
-      setAllTickets(
-        response.filter(
-          (item) =>
-            item.status === EnumStatus.Inicializado ||
-            item.status === EnumStatus.Andamento ||
-            item.status === EnumStatus.Finalizado ||
-            item.status === EnumStatus.Cancelado
-        )
-      );
+      // setAllTickets(
+      //   response.filter(
+      //     (item) =>
+      //       item.status === EnumStatus.Inicializado ||
+      //       item.status === EnumStatus.Andamento ||
+      //       item.status === EnumStatus.Finalizado ||
+      //       item.status === EnumStatus.Cancelado
+      //   )
+      // );
+      setAllTickets(response);
     } catch (error) {
       addToast("Falha ao buscar dados de tickets", ToastType.error);
     } finally {

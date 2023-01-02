@@ -13,7 +13,7 @@ import {
 } from "./constants";
 
 export function ResolvedTicketsTab() {
-  const { getResolvedTickets, allTickets } = useTicket();
+  const { getResolvedTickets, allTickets, loading } = useTicket();
   const components: ITypeComponents = {
     [columnType.NAME]: _renderBasicTextCell,
     [columnType.BLOCK]: _renderBasicTextCell,
@@ -28,17 +28,16 @@ export function ResolvedTicketsTab() {
 
   return (
     <TabContainer>
-      {allTickets.length && (
-        <TableApp
-          tableName="table-my-tickets"
-          columnConfig={columnConfig}
-          components={components}
-          data={allTickets}
-          renderCellHeader={(key) => columnLabel[key]}
-          renderCollapse={() => <CollapseConversation />}
-          renderInputSearchAndSelect={arrayRenderInputSearch}
-        />
-      )}
+      <TableApp
+        tableName="table-my-tickets"
+        columnConfig={columnConfig}
+        components={components}
+        data={allTickets}
+        isLoading={loading}
+        renderCellHeader={(key) => columnLabel[key]}
+        renderCollapse={() => <CollapseConversation />}
+        renderInputSearchAndSelect={arrayRenderInputSearch}
+      />
     </TabContainer>
   );
 }

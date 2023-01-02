@@ -64,6 +64,10 @@ export const StyledInput = styled.input<IStyledInput>`
 
 export const ContentInputFile = styled.div`
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
   label {
     cursor: pointer;
   }
@@ -88,4 +92,10 @@ export const StyledInputMask = styled(InputMask)`
   :focus {
     outline: solid 0.1px ${Colors.textBody};
   }
+`;
+
+export const Img = styled.img`
+  width: 300px;
+  height: 220px;
+  object-fit: cover;
 `;

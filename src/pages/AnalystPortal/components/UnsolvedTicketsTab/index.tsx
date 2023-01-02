@@ -16,7 +16,7 @@ import {
 } from "./constants";
 
 export function UnsolvedTicketsTab() {
-  const { getUnsolvedTickets, allTickets } = useTicket();
+  const { getUnsolvedTickets, allTickets, loading } = useTicket();
 
   useEffect(() => {
     getUnsolvedTickets();
@@ -32,17 +32,16 @@ export function UnsolvedTicketsTab() {
 
   return (
     <TabContainer>
-      {allTickets.length && (
-        <TableApp
-          tableName="table-my-tickets"
-          columnConfig={columnConfig}
-          components={components}
-          data={allTickets}
-          renderCellHeader={(key) => columnLabel[key]}
-          renderCollapse={() => <CollapseConversation />}
-          renderInputSearchAndSelect={arrayRenderInputSearch}
-        />
-      )}
+      <TableApp
+        tableName="table-my-tickets"
+        columnConfig={columnConfig}
+        components={components}
+        data={allTickets}
+        isLoading={loading}
+        renderCellHeader={(key) => columnLabel[key]}
+        renderCollapse={() => <CollapseConversation />}
+        renderInputSearchAndSelect={arrayRenderInputSearch}
+      />
     </TabContainer>
   );
 }

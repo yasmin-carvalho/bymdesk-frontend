@@ -1,4 +1,7 @@
+/* eslint-disable jsx-a11y/alt-text */
+import { useState } from "react";
 import { Control, Controller } from "react-hook-form";
+import { UseFormSetValue } from "react-hook-form/dist/types";
 import {
   Asterisco,
   Container,
@@ -8,6 +11,7 @@ import {
   ContentInputFile,
   StyledSearchIcon,
   StyledInputMask,
+  Img,
 } from "./styles";
 
 interface InputProps {
@@ -24,6 +28,7 @@ interface InputProps {
   handleSearch?: (value: string) => void;
   disabled?: boolean;
   mask?: string;
+  setValue?: UseFormSetValue<any>;
 }
 
 export function Input({
@@ -39,8 +44,24 @@ export function Input({
   handleSearch,
   disabled,
   mask,
+  setValue,
   ...rest
 }: InputProps) {
+  const [imgSrcState, setImgSrcState] = useState<string>();
+
+  const onChangeInputFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files[0];
+    setValue(name, file);
+    setImgSrcState(file.name);
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onloadend = (e) => {
+      setImgSrcState(reader.result as string);
+    };
+  };
+
   const _renderInputControled = (
     value: any,
     onChange: (...event: any[]) => void
@@ -111,10 +132,24 @@ export function Input({
       {isSearch && <StyledSearchIcon />}
 
       {type === "file" ? (
-        <ContentInputFile>
-          <label htmlFor="arquivo">{label}</label>
-          <input type="file" name="arquivo" id="arquivo" />
-        </ContentInputFile>
+        <Controller
+          name={name}
+          control={control}
+          render={({ fieldState: { error } }) => (
+            <ContentInputFile>
+              <div>
+                <label htmlFor={name}>{label}</label>
+                <input
+                  type="file"
+                  name={name}
+                  id={name}
+                  onChange={(e) => onChangeInputFile(e)}
+                />
+              </div>
+              {!!imgSrcState && <Img src={imgSrcState} />}
+            </ContentInputFile>
+          )}
+        />
       ) : control ? (
         <Controller
           name={name}

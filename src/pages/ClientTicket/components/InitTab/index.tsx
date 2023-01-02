@@ -12,6 +12,7 @@ import {
   schemaRegisterTicket,
 } from "../../../../dtos/IRegisterTicketDTO";
 import { useBlock } from "../../../../hooks/network/useBlock";
+import { useLocation } from "../../../../hooks/network/useLocation";
 import { useTicket } from "../../../../hooks/network/useTicket";
 import { Form, ButtonBlock, StyledButton, Text } from "./styles";
 
@@ -20,6 +21,7 @@ export function InitTab() {
   const {
     handleSubmit: handleSubmitRegister,
     control: controlRegister,
+    setValue,
     formState: { isValid: isValidRegister },
   } = useForm<IFormRegisterTicket>({
     resolver: yupResolver(schemaRegisterTicket),
@@ -28,18 +30,19 @@ export function InitTab() {
       [fieldsRegisterTicket.LOCAL]: { value: "", label: "" },
       [fieldsRegisterTicket.TIPO_DE_MANUTENCAO]: { value: "", label: "" },
       [fieldsRegisterTicket.DESCRICAO]: "",
-      [fieldsRegisterTicket.ANEXAR_ARQUIVO]: "",
+      [fieldsRegisterTicket.ANEXAR_ARQUIVO]: null,
     },
   });
-
-  const [file, setFile] = useState(null);
 
   const { onSubmitRegisterTicket } = useTicket();
 
   const { blocksState, getBlocks } = useBlock();
 
+  const { localesState, getLocales } = useLocation();
+
   useEffect(() => {
     getBlocks();
+    getLocales();
   }, []);
 
   return (
@@ -55,14 +58,20 @@ export function InitTab() {
         <Select
           label="Bloco"
           required
-          options={blocksState.map((item) => ({ value: item, label: item }))}
+          options={blocksState.map((item) => ({
+            value: item.id,
+            label: item.nome,
+          }))}
           name={fieldsRegisterTicket.BLOCO}
           control={controlRegister}
         />
         <Select
           label="Local"
           required
-          options={[]}
+          options={localesState.map((item) => ({
+            value: item.id,
+            label: item.nome,
+          }))}
           name={fieldsRegisterTicket.LOCAL}
           control={controlRegister}
         />
@@ -84,6 +93,7 @@ export function InitTab() {
           type="file"
           label="+ Anexar arquivo"
           name={fieldsRegisterTicket.ANEXAR_ARQUIVO}
+          setValue={setValue}
           control={controlRegister}
         />
 
