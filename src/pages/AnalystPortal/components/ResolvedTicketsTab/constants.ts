@@ -6,10 +6,11 @@ import {
 
 // Table Row --------------------------
 export const columnType = {
-  NAME: "name",
-  BLOCK: "block",
-  LOCALE: "locale",
-  REQUESTER: "requester",
+  NAME: "id",
+  BLOCK: "nome_bloco",
+  LOCALE: "nome_local",
+  REQUESTER: "nome_solicitante",
+  ANALYST: "matricula_analista",
   STATUS: "status",
 };
 
@@ -18,7 +19,8 @@ export const columnConfig: ITypeColumnConfig = {
   [columnType.BLOCK]: { order: 2 },
   [columnType.LOCALE]: { order: 3 },
   [columnType.REQUESTER]: { order: 4 },
-  [columnType.STATUS]: { order: 4 },
+  [columnType.ANALYST]: { order: 5 },
+  [columnType.STATUS]: { order: 6 },
 };
 
 export const columnLabel: ITypeColumnLabel = {
@@ -26,6 +28,7 @@ export const columnLabel: ITypeColumnLabel = {
   [columnType.BLOCK]: "Bloco",
   [columnType.LOCALE]: "Local",
   [columnType.REQUESTER]: "Solicitante",
+  [columnType.ANALYST]: "Matrícula Analista",
   [columnType.STATUS]: "Status",
 };
 
@@ -43,147 +46,13 @@ export const arrayRenderInputSearch: IRenderInputSearch[] = [
     type: "string",
   },
   {
+    searchPropertName: columnType.ANALYST,
+    placeholder: "matrícula analista",
+    type: "string",
+  },
+  {
     searchPropertName: columnType.STATUS,
     placeholder: "status",
     type: "string",
-  },
-];
-
-export const data = [
-  {
-    id: 1,
-    name: "#Ticket - 032",
-    block: "#Bloco:C1 - IMC",
-    locale: "#Local:LDC2",
-    requester: "Ana Maria",
-    status: "Inicializado",
-  },
-  {
-    id: 2,
-    name: "#Ticket - 033",
-    block: "#Bloco:C1 - IMC",
-    locale: "#Local:LDC2",
-    requester: "Ana Maria",
-    status: "Inicializado",
-  },
-  {
-    id: 3,
-    name: "#Ticket - 032",
-    block: "#Bloco:C1 - IMC",
-    locale: "#Local:LDC2",
-    requester: "Ana Maria",
-    status: "Inicializado",
-  },
-  {
-    id: 4,
-    name: "#Ticket - 032",
-    block: "#Bloco:C1 - IMC",
-    locale: "#Local:LDC2",
-    requester: "Ana Maria",
-    status: "Inicializado",
-  },
-  {
-    id: 5,
-    name: "#Ticket - 032",
-    block: "#Bloco:C1 - IMC",
-    locale: "#Local:LDC2",
-    requester: "Ana Maria",
-    status: "Inicializado",
-  },
-  {
-    id: 6,
-    name: "#Ticket - 032",
-    block: "#Bloco:C1 - IMC",
-    locale: "#Local:LDC2",
-    requester: "Ana Maria",
-    status: "Inicializado",
-  },
-  {
-    id: 7,
-    name: "#Ticket - 032",
-    block: "#Bloco:C1 - IMC",
-    locale: "#Local:LDC2",
-    requester: "Ana Maria",
-    status: "Inicializado",
-  },
-  {
-    id: 8,
-    name: "#Ticket - 032",
-    block: "#Bloco:C1 - IMC",
-    locale: "#Local:LDC2",
-    requester: "Ana Maria",
-    status: "Inicializado",
-  },
-  {
-    id: 9,
-    name: "#Ticket - 032",
-    block: "#Bloco:C1 - IMC",
-    locale: "#Local:LDC2",
-    requester: "Ana Maria",
-    status: "Inicializado",
-  },
-  {
-    id: 10,
-    name: "#Ticket - 032",
-    block: "#Bloco:C1 - IMC",
-    locale: "#Local:LDC2",
-    requester: "Ana Maria",
-    status: "Inicializado",
-  },
-  {
-    id: 11,
-    name: "#Ticket - 032",
-    block: "#Bloco:C1 - IMC",
-    locale: "#Local:LDC2",
-    requester: "Ana Maria",
-    status: "Inicializado",
-  },
-  {
-    id: 12,
-    name: "#Ticket - 032",
-    block: "#Bloco:C1 - IMC",
-    locale: "#Local:LDC2",
-    requester: "Ana Maria",
-    status: "Inicializado",
-  },
-  {
-    id: 13,
-    name: "#Ticket - 032",
-    block: "#Bloco:C1 - IMC",
-    locale: "#Local:LDC2",
-    requester: "Ana Maria",
-    status: "Inicializado",
-  },
-  {
-    id: 14,
-    name: "#Ticket - 032",
-    block: "#Bloco:C1 - IMC",
-    locale: "#Local:LDC2",
-    requester: "Ana Maria",
-    status: "Inicializado",
-  },
-  {
-    id: 15,
-    name: "#Ticket - 032",
-    block: "#Bloco:C1 - IMC",
-    locale: "#Local:LDC2",
-    requester: "Ana Maria",
-    status: "Inicializado",
-  },
-  {
-    id: 16,
-    name: "#Ticket - 032",
-    block: "#Bloco:C1 - IMC",
-    locale: "#Local:LDC2",
-    requester: "Ana Maria",
-    status: "Inicializado",
-  },
-  {
-    id: 17,
-    name: "#Ticket - 032",
-    block: "#Bloco:C1 - IMC",
-    locale: "#Local:LDC2",
-    requester: "Ana Maria",
-    status: "Inicializado",
   },
 ];
