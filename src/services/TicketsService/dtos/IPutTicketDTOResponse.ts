@@ -1,15 +1,14 @@
-import { EnumStatus } from "../constants/enums";
+import { EnumStatus } from "../../../constants/enums";
 
-export interface ITicketsDTO {
+export interface IPutTicketDTOResponse {
   id: number;
+  status: EnumStatus;
   solicitante_id: number;
-  nome_solicitante: string;
   analista_id: number;
   local_id: number;
   nome_local: string;
   bloco_id: number;
   nome_bloco: string;
-  status: EnumStatus;
   tipo: string;
   data: string;
 }
