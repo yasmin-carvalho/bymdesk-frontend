@@ -1,17 +1,24 @@
+import { useEffect } from "react";
 import { CollapseConversation } from "../../../../components/CollapseConversation";
 import { _renderBasicTextCell } from "../../../../components/RendersCellTable";
 import TableApp from "../../../../components/Table/TableApp";
 import { ITypeComponents } from "../../../../components/Table/types";
 import { TabContainer } from "../../../../components/Tabs/styles";
+import { useTicket } from "../../../../hooks/network/useTicket";
 import {
   columnConfig,
   columnLabel,
   columnType,
-  data,
   arrayRenderInputSearch,
 } from "./constants";
 
 export function MyTicketsTab() {
+  const { getTicketsAll, allTickets, loading } = useTicket();
+
+  useEffect(() => {
+    getTicketsAll();
+  }, []);
+
   const components: ITypeComponents = {
     [columnType.NAME]: _renderBasicTextCell,
     [columnType.BLOCK]: _renderBasicTextCell,
@@ -26,8 +33,8 @@ export function MyTicketsTab() {
         tableName="table-my-tickets"
         columnConfig={columnConfig}
         components={components}
-        data={data}
-        isLoading={false}
+        data={allTickets}
+        isLoading={loading}
         renderCellHeader={(key) => columnLabel[key]}
         renderCollapse={() => <CollapseConversation />}
         renderInputSearchAndSelect={arrayRenderInputSearch}

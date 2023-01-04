@@ -89,7 +89,6 @@ export function CreateLoginAnalystc() {
         <FormRight
           id={formIdRegisterAnalyst}
           onSubmit={handleSubmitRegister((data: IFormRegisterAnalyst) => {
-            console.log("eitaaaaa");
             onSubmitRegisterAnalyst(data, reset);
           })}
         >

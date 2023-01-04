@@ -1,13 +1,13 @@
 import { api } from "../api";
 import { IGetLocalkDTORequest } from "./dtos/IGetLocalDTOResponse";
-import { IPostLocalkDTORequest } from "./dtos/IPostLocalDTORequest";
+import { IPostLocalDTORequest } from "./dtos/IPostLocalDTORequest";
 export default class LocalService {
   private route = "/locais/";
 
   public async local(
-    dataRequest: IPostLocalkDTORequest
-  ): Promise<IPostLocalkDTORequest> {
-    const { data } = await api.post<IPostLocalkDTORequest>(
+    dataRequest: IPostLocalDTORequest
+  ): Promise<IPostLocalDTORequest> {
+    const { data } = await api.post<IPostLocalDTORequest>(
       this.route,
       dataRequest
     );

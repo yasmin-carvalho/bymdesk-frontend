@@ -66,7 +66,7 @@ export function Select({
         <StyledSelect
           onChange={onChangeStateControled}
           onClick={onClick}
-          defaultValue={value}
+          value={value}
         >
           <Optin value="">{placeholder ?? ""}</Optin>
           {options.map((item) => (

@@ -18,14 +18,17 @@ export function useLocation() {
   const localtionService = new LocalService();
 
   const onSubmit = async (
-    dataForm: IFormLocationDTO,
+    { bloco_id, confirme_localizacao, nome }: IFormLocationDTO,
     reset: UseFormReset<IFormLocationDTO>
   ) => {
     setLoading(true);
 
     try {
-      if (dataForm.nome === dataForm.confirme_localizacao) {
-        await localtionService.local(dataForm);
+      if (nome === confirme_localizacao) {
+        await localtionService.local({
+          bloco_id: Number(bloco_id.value),
+          nome,
+        });
         addToast("Local cadastrado com sucesso!", ToastType.success);
         navigate(RoutesEnum.ADMIN);
       } else {

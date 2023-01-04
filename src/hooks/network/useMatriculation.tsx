@@ -23,8 +23,7 @@ export function useMatriculation() {
 
     try {
       if (dataForm.matricula === dataForm.confirme_matricula) {
-        const response = await matriculationService.matriculation(dataForm);
-        console.log(response);
+        await matriculationService.matriculation(dataForm);
         addToast("Matrícula cadastrada com sucesso!", ToastType.success);
         navigate(RoutesEnum.ADMIN);
       } else {

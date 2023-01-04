@@ -33,8 +33,7 @@ export function useLoginAnalyst() {
     setLoading(true);
 
     try {
-      const response = await authServiceAnalyst.login(dataForm);
-      console.log(response);
+      await authServiceAnalyst.login(dataForm);
       navigate(RoutesEnum.PORTAL_DO_ANALISTA);
     } catch (error) {
       addToast(
