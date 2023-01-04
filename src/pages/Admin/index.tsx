@@ -7,6 +7,7 @@ import { Tabs } from "../../components/Tabs";
 import { Matriculation } from "./components/Matriculation";
 import { Block } from "./components/Block";
 import { Location } from "./components/Location";
+import { ProtectLayout } from "../../layout/ProtectLayout";
 
 export function Admin() {
   const [indexTab, setIndexTab] = useState(0);
@@ -29,23 +30,25 @@ export function Admin() {
   };
 
   return (
-    <>
-      <Header typeScreen="PageAdmin" />
-      <Main>
-        <Tabs
-          arrayTabs={[
-            "Tickets Não Resolvidos ❌",
-            "Tickets Resolvidos ✅",
-            "Inscrever Matrícula",
-            "Inscrever Bloco",
-            "Inscrever Local",
-          ]}
-          setIndexTab={setIndexTab}
-          indexTab={indexTab}
-        >
-          {_renderTab()}
-        </Tabs>
-      </Main>
-    </>
+    <ProtectLayout>
+      <>
+        <Header typeScreen="PageAdmin" />
+        <Main>
+          <Tabs
+            arrayTabs={[
+              "Tickets Não Resolvidos ❌",
+              "Tickets Resolvidos ✅",
+              "Inscrever Matrícula",
+              "Inscrever Bloco",
+              "Inscrever Local",
+            ]}
+            setIndexTab={setIndexTab}
+            indexTab={indexTab}
+          >
+            {_renderTab()}
+          </Tabs>
+        </Main>
+      </>
+    </ProtectLayout>
   );
 }

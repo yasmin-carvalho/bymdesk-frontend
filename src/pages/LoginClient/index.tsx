@@ -24,7 +24,8 @@ import imgFone from "../../assets/img-fone-de-ouvido.png";
 import { Footer } from "../../components/Footer";
 import { RoutesEnum } from "../../constants/routesList";
 import { fieldsLogin, IFormLogin, schemaLogin } from "../../dtos/ILoginDTO";
-import { useLogin } from "../../hooks/network/useLogin";
+import { useAuth } from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 export function LoginClient() {
   const {
@@ -40,7 +41,8 @@ export function LoginClient() {
     },
   });
 
-  const { onSubmit } = useLogin();
+  const { authenticate } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -54,7 +56,10 @@ export function LoginClient() {
         </ContainerLeft>
         <Form
           noValidate
-          onSubmit={handleSubmit((data: IFormLogin) => onSubmit(data))}
+          onSubmit={handleSubmit(({ email, senha }: IFormLogin) => {
+            authenticate(email, senha);
+            navigate(RoutesEnum.TICKET_DO_CLIENTE);
+          })}
         >
           <Text>Insira os detalhes abaixo</Text>
           <Input

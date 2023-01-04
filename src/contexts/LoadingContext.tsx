@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useState } from "react";
 import { Loading } from "../components/Loading";
 
 export interface LoadingContextData {
@@ -24,17 +24,5 @@ const LoadingProvider = ({ children }: LoadingProviderProps) => {
     </LoadingContext.Provider>
   );
 };
-
-function useLoading(): LoadingContextData {
-  const context = useContext(LoadingContext);
-
-  if (!context) {
-    throw new Error("useAuth must be used within AuthProvider");
-  }
-
-  return context;
-}
-
-export { useLoading, LoadingProvider };
 
 export default LoadingProvider;

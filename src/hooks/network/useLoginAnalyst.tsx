@@ -3,11 +3,11 @@ import { UseFormReset } from "react-hook-form";
 
 import { ToastType } from "../../components/Snackbar/enumToast";
 import { RoutesEnum } from "../../constants/routesList";
-import { useLoading } from "../../contexts/LoadingContext";
-import { useToast } from "../../contexts/ToastContext";
 import { IFormLogin } from "../../dtos/ILoginDTO";
 import { IFormRegisterAnalyst } from "../../dtos/IRegisterAnalystDTO";
 import AuthServiceAnalyst from "../../services/AuthServiceAnalyst";
+import { useToast } from "../useToast";
+import { useLoading } from "../useLoading";
 
 export function useLoginAnalyst() {
   const { addToast } = useToast();
