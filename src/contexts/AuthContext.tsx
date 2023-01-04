@@ -17,11 +17,15 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
     }
   }, []);
 
-  async function authenticate(email: string, password: string) {
+  async function authenticate(
+    email: string,
+    password: string
+  ): Promise<IUser | null> {
     const response = await onSubmit({ email, senha: password });
 
     setUser(response);
     setUserLocalStorage(response);
+    return response;
   }
 
   function logout() {

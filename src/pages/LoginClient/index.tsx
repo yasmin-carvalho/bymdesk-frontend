@@ -31,7 +31,7 @@ export function LoginClient() {
   const {
     handleSubmit,
     control,
-    formState: { isValid, isDirty },
+    formState: { isValid },
   } = useForm<IFormLogin>({
     resolver: yupResolver(schemaLogin),
     defaultValues: {
@@ -56,9 +56,11 @@ export function LoginClient() {
         </ContainerLeft>
         <Form
           noValidate
-          onSubmit={handleSubmit(({ email, senha }: IFormLogin) => {
-            authenticate(email, senha);
-            navigate(RoutesEnum.TICKET_DO_CLIENTE);
+          onSubmit={handleSubmit(async ({ email, senha }: IFormLogin) => {
+            const response = await authenticate(email, senha);
+            if (response) {
+              navigate(RoutesEnum.TICKET_DO_CLIENTE);
+            }
           })}
         >
           <Text>Insira os detalhes abaixo</Text>
