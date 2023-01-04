@@ -1,7 +1,8 @@
 export interface ILoginDTOResponse {
-  id: number;
+  id?: number;
   nome: string;
   email: string;
   telefone: string;
   role: string;
+  admin: boolean;
 }

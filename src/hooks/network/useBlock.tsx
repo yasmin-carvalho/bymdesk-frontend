@@ -3,11 +3,12 @@ import { UseFormReset } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { RoutesEnum } from "../../constants/routesList";
 import { ToastType } from "../../components/Snackbar/enumToast";
-import { useLoading } from "../../contexts/LoadingContext";
-import { useToast } from "../../contexts/ToastContext";
+
 import { IFormBlockDTO } from "../../dtos/IBlockDTO";
 import BlockService from "../../services/BlockService";
 import { IGetBlocksDTOResponse } from "../../services/BlockService/dtos/IGetBlocksDTOResponse";
+import { useToast } from "../useToast";
+import { useLoading } from "../useLoading";
 
 export function useBlock() {
   const { addToast } = useToast();

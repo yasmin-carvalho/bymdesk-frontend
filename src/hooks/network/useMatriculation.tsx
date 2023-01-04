@@ -1,12 +1,12 @@
-import { AxiosError } from "axios";
 import { UseFormReset } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { ToastType } from "../../components/Snackbar/enumToast";
 import { RoutesEnum } from "../../constants/routesList";
-import { useLoading } from "../../contexts/LoadingContext";
-import { useToast } from "../../contexts/ToastContext";
+
 import { IFormMatriculationDTO } from "../../dtos/IMatriculationDTO";
 import MatriculationService from "../../services/MatriculationService";
+import { useLoading } from "../useLoading";
+import { useToast } from "../useToast";
 
 export function useMatriculation() {
   const { addToast } = useToast();

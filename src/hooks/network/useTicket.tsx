@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { ToastType } from "../../components/Snackbar/enumToast";
 import { EnumStatus } from "../../constants/enums";
-import { useLoading } from "../../contexts/LoadingContext";
-import { useToast } from "../../contexts/ToastContext";
 import { IFormRegisterTicket } from "../../dtos/IRegisterTicketDTO";
 import { ITicketsDTO } from "../../dtos/ITicketsDTO";
 import TicketsService from "../../services/TicketsService";
+import { useLoading } from "../useLoading";
+import { useToast } from "../useToast";
 
 export function useTicket() {
   const { addToast } = useToast();

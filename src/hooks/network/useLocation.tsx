@@ -3,10 +3,11 @@ import { UseFormReset } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { ToastType } from "../../components/Snackbar/enumToast";
 import { RoutesEnum } from "../../constants/routesList";
-import { useLoading } from "../../contexts/LoadingContext";
-import { useToast } from "../../contexts/ToastContext";
+
 import { IFormLocationDTO, ILocation } from "../../dtos/ILocationDTO";
 import LocalService from "../../services/LocalService";
+import { useLoading } from "../useLoading";
+import { useToast } from "../useToast";
 
 export function useLocation() {
   const { addToast } = useToast();
