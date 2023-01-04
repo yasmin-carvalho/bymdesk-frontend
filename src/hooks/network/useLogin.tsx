@@ -25,12 +25,12 @@ export function useLogin() {
   ) => {
     try {
       if (dataForm.senha === dataForm.confirmar_senha) {
-        const response = await createClient.createClient({
+        await createClient.createClient({
           ...dataForm,
           role: "client",
           admin: false,
         });
-        console.log(response);
+
         addToast("Usuário cadastrado com sucesso!", ToastType.success);
         navigate(RoutesEnum.REGISTRO_CLIENTE);
       } else {
@@ -53,8 +53,7 @@ export function useLogin() {
     setLoading(true);
 
     try {
-      const response = await authService.login(dataForm);
-      console.log(response);
+      await authService.login(dataForm);
       navigate(RoutesEnum.TICKET_DO_CLIENTE);
     } catch (error) {
       addToast(

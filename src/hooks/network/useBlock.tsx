@@ -26,8 +26,7 @@ export function useBlock() {
 
     try {
       if (dataForm.nome === dataForm.confirme_bloco) {
-        const response = await blockService.postBlock(dataForm);
-        console.log(response);
+        await blockService.postBlock(dataForm);
         addToast("Bloco cadastrado com sucesso!", ToastType.success);
         navigate(RoutesEnum.ADMIN);
       } else {

@@ -1,3 +1,4 @@
-export interface IPostLocalkDTORequest {
+export interface IPostLocalDTORequest {
+  bloco_id: number;
   nome: string;
 }

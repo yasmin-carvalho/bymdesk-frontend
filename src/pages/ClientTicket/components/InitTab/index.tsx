@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Input } from "../../../../components/Input";
 import { Select } from "../../../../components/Select";
@@ -50,7 +50,6 @@ export function InitTab() {
       <Form
         id={formIdRegisterTicket}
         onSubmit={handleSubmitRegister((data: IFormRegisterTicket) => {
-          console.log("eitaaaaa");
           onSubmitRegisterTicket(data);
         })}
       >

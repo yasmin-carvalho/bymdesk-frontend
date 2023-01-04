@@ -6,20 +6,16 @@ import { useToast } from "../../contexts/ToastContext";
 import { IFormRegisterTicket } from "../../dtos/IRegisterTicketDTO";
 import { ITicketsDTO } from "../../dtos/ITicketsDTO";
 import TicketsService from "../../services/TicketsService";
-import { useNavigate } from "react-router-dom";
-import { RoutesEnum } from "../../constants/routesList";
 
 export function useTicket() {
   const { addToast } = useToast();
   const { loading, setLoading } = useLoading();
-  const navigate = useNavigate();
 
   const ticketsService = new TicketsService();
 
   const [allTickets, setAllTickets] = useState<ITicketsDTO[]>([]);
 
   const onSubmitRegisterTicket = (dataForm: IFormRegisterTicket) => {
-    console.log("caiuuuu", dataForm);
     setLoading(true);
 
     setTimeout(() => {
