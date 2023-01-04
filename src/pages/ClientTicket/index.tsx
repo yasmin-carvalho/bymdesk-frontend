@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Header } from "../../components/Header";
 import { Tabs } from "../../components/Tabs";
+import { ProtectLayout } from "../../layout/ProtectLayout";
 import { CampusMapTab } from "./components/CampusMapTab";
 import { InitTab } from "./components/InitTab";
 import { MyTicketsTab } from "./components/MyTicketsTab";
@@ -23,17 +24,19 @@ export function ClientTicket() {
   };
 
   return (
-    <>
-      <Header typeScreen="PageClient" />
-      <Main>
-        <Tabs
-          arrayTabs={["Início", "Meus Tickets", "Mapa do Campus"]}
-          setIndexTab={setIndexTab}
-          indexTab={indexTab}
-        >
-          {_renderTab()}
-        </Tabs>
-      </Main>
-    </>
+    <ProtectLayout>
+      <>
+        <Header typeScreen="PageClient" />
+        <Main>
+          <Tabs
+            arrayTabs={["Início", "Meus Tickets", "Mapa do Campus"]}
+            setIndexTab={setIndexTab}
+            indexTab={indexTab}
+          >
+            {_renderTab()}
+          </Tabs>
+        </Main>
+      </>
+    </ProtectLayout>
   );
 }
