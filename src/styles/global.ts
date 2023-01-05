@@ -16,6 +16,7 @@ export const Colors = {
   cyan: "cyan",
   black: "black",
   blueBar: "#0000ff",
+  gray: "#C0C0C0",
 };
 
 export const GlobalStyle = createGlobalStyle`

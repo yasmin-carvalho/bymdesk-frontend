@@ -2,7 +2,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { FooterForm } from "../../../../components/FooterForm";
-import { Select } from "../../../../components/Select";
 import { TabContainer } from "../../../../components/Tabs/styles";
 import {
   fieldsLocation,
@@ -11,7 +10,7 @@ import {
 } from "../../../../dtos/ILocationDTO";
 import { useBlock } from "../../../../hooks/network/useBlock";
 import { useLocation } from "../../../../hooks/network/useLocation";
-import { Container, Form, StyledInput, Text } from "./styles";
+import { Container, Form, StyledInput, StyledSelect, Text } from "./styles";
 
 export function Location() {
   const {
@@ -45,7 +44,7 @@ export function Location() {
       >
         <Container>
           <Text>Inscrição de Local</Text>
-          <Select
+          <StyledSelect
             label="Bloco"
             required
             options={blocksState.map((item) => ({

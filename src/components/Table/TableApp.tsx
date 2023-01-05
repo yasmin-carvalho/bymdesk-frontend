@@ -20,7 +20,7 @@ import {
 import { TablePaginationActions } from "../total-pagination-actions/TotalPaginationActions";
 import { HeaderTable } from "./HeaderTable";
 import Row from "./Row";
-import { LoadingWrapper, StyledTableCell, Th, Wrapper } from "./styles";
+import { WrapperCell, StyledTableCell, Th, Wrapper } from "./styles";
 import {
   IRenderInputSearch,
   ITypeColumnConfig,
@@ -175,15 +175,17 @@ const TableApp: React.FC<TableAppProps> = ({
               )
             ) : (
               <TableRow style={{ height: 53 * emptyAllData }}>
-                <LoadingWrapper colSpan={columnConfigKeys.length}>
+                <WrapperCell colSpan={columnConfigKeys.length}>
                   Loading...
-                </LoadingWrapper>
+                </WrapperCell>
               </TableRow>
             )}
 
-            {emptyAllData > 0 && (
+            {dataState.length === 0 && (
               <TableRow style={{ height: 53 * emptyAllData }}>
-                <TableCell colSpan={columnConfigKeys.length} />
+                <WrapperCell colSpan={columnConfigKeys.length}>
+                  Nenhum ticket cadastrado
+                </WrapperCell>
               </TableRow>
             )}
           </TableBody>

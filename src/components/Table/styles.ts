@@ -84,10 +84,7 @@ export const StyledSelect = styled(Select)`
   }
 `;
 
-export const LoadingWrapper = styled(TableCell)`
-  width: 100%;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-content: center;
+export const WrapperCell = styled(TableCell)`
+  text-align: center !important;
+  color: ${Colors.textLabel};
 `;

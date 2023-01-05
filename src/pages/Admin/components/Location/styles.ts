@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { Input } from "../../../../components/Input";
 import { ContainerLabel } from "../../../../components/Input/styles";
+import { ContainerLabel as ContainerLabelSelect } from "../../../../components/Select/styles";
+import { Select } from "../../../../components/Select";
 import { Colors } from "../../../../styles/global";
 
 export const Main = styled.main`
@@ -33,9 +35,16 @@ export const StyledInput = styled(Input)`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+  align-items: left;
   padding: 10px;
   gap: 30px;
   overflow-x: hidden;
+`;
+
+export const StyledSelect = styled(Select)`
+  width: 100%;
+
+  ${ContainerLabelSelect} {
+    width: 400px;
+  }
 `;
