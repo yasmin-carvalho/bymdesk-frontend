@@ -5,6 +5,7 @@ import { Header } from "../../components/Header";
 import { Main } from "./styles";
 import { Tabs } from "../../components/Tabs";
 import { CampusMapTab } from "./components/CampusMapTab";
+import { ProtectLayout } from "../../layout/ProtectLayout";
 
 export function AnalystPortal() {
   const [indexTab, setIndexTab] = useState(0);
@@ -23,21 +24,23 @@ export function AnalystPortal() {
   };
 
   return (
-    <>
-      <Header typeScreen="PageAnalyst" />
-      <Main>
-        <Tabs
-          arrayTabs={[
-            "Tickets Não Resolvidos ❌",
-            "Tickets Resolvidos ✅",
-            "Mapa do Campus",
-          ]}
-          setIndexTab={setIndexTab}
-          indexTab={indexTab}
-        >
-          {_renderTab()}
-        </Tabs>
-      </Main>
-    </>
+    <ProtectLayout>
+      <>
+        <Header typeScreen="PageAnalyst" />
+        <Main>
+          <Tabs
+            arrayTabs={[
+              "Tickets Não Resolvidos ❌",
+              "Tickets Resolvidos ✅",
+              "Mapa do Campus",
+            ]}
+            setIndexTab={setIndexTab}
+            indexTab={indexTab}
+          >
+            {_renderTab()}
+          </Tabs>
+        </Main>
+      </>
+    </ProtectLayout>
   );
 }

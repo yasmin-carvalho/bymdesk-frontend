@@ -16,6 +16,7 @@ import {
   TextDecoration,
 } from "./styles";
 import { RoutesEnum } from "../../constants/routesList";
+import { useAuth } from "../../hooks/useAuth";
 
 interface HeaderProps {
   typeScreen:
@@ -28,6 +29,12 @@ interface HeaderProps {
 
 export function Header({ typeScreen, ...rest }: HeaderProps) {
   const navigate = useNavigate();
+  const { nome, logout } = useAuth();
+
+  const logoutPage = () => {
+    logout();
+    navigate(RoutesEnum.LOGIN);
+  };
 
   const renderRightContainer = () => {
     if (typeScreen === "login") {
@@ -49,30 +56,30 @@ export function Header({ typeScreen, ...rest }: HeaderProps) {
     } else if (typeScreen === "PageClient") {
       return (
         <ContainerPageAnalyst>
-          <Text>Bem vindo(a) Nome do Cliente</Text>
+          <Text>Bem vindo(a) {nome}</Text>
           <ContentPageAnalyst>
             <TextDecoration>Portal do Cliente</TextDecoration>
-            <Button onClick={() => navigate(RoutesEnum.LOGIN)}>SAIR</Button>
+            <Button onClick={logoutPage}>SAIR</Button>
           </ContentPageAnalyst>
         </ContainerPageAnalyst>
       );
     } else if (typeScreen === "PageAnalyst") {
       return (
         <ContainerPageAnalyst>
-          <Text>Bem vindo(a) Nome do analista</Text>
+          <Text>Bem vindo(a) {nome}</Text>
           <ContentPageAnalyst>
             <TextDecoration>Portal do Analista</TextDecoration>
-            <Button onClick={() => navigate(RoutesEnum.LOGIN)}>Sair</Button>
+            <Button onClick={logoutPage}>Sair</Button>
           </ContentPageAnalyst>
         </ContainerPageAnalyst>
       );
     } else if (typeScreen === "PageAdmin") {
       return (
         <ContainerPageAnalyst>
-          <Text>Bem vindo(a) Nome do Admin</Text>
+          <Text>Bem vindo(a) {nome}</Text>
           <ContentPageAnalyst>
             <TextDecoration>Portal do Admin</TextDecoration>
-            <Button onClick={() => navigate(RoutesEnum.LOGIN)}>Sair</Button>
+            <Button onClick={logoutPage}>Sair</Button>
           </ContentPageAnalyst>
         </ContainerPageAnalyst>
       );

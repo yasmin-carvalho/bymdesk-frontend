@@ -1,20 +1,20 @@
 import { UseFormReset } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 
 import { ToastType } from "../../components/Snackbar/enumToast";
 import { EnumTypeUser } from "../../constants/enums";
-import { RoutesEnum } from "../../constants/routesList";
-import { useLoading } from "../../contexts/LoadingContext";
-import { useToast } from "../../contexts/ToastContext";
+
+import { IUser } from "../../contexts/utils/types";
+
 import { IFormLogin } from "../../dtos/ILoginDTO";
 import { IFormRegisterClient } from "../../dtos/IRegisterClient";
 import AuthService from "../../services/AuthService";
 import CreateClientService from "../../services/CreateClienteService";
+import { useLoading } from "../useLoading";
+import { useToast } from "../useToast";
 
 export function useLogin() {
   const { addToast } = useToast();
   const { loading, setLoading } = useLoading();
-  const navigate = useNavigate();
 
   const authService = new AuthService();
 
@@ -33,7 +33,7 @@ export function useLogin() {
         });
 
         addToast("Usuário cadastrado com sucesso!", ToastType.success);
-        navigate(RoutesEnum.REGISTRO_CLIENTE);
+        // navigate(RoutesEnum.REGISTRO_CLIENTE);
       } else {
         throw new Error("Senhas não coincidem");
       }
@@ -50,12 +50,12 @@ export function useLogin() {
     }
   };
 
-  const onSubmit = async (dataForm: IFormLogin) => {
+  const onSubmit = async (dataForm: IFormLogin): Promise<IUser | null> => {
     setLoading(true);
 
+    let response: IUser = null;
     try {
-      await authService.login(dataForm);
-      navigate(RoutesEnum.TICKET_DO_CLIENTE);
+      response = await authService.login(dataForm);
     } catch (error) {
       addToast(
         "Error ao realizar login, verifique suas credenciais",
@@ -64,6 +64,8 @@ export function useLogin() {
     } finally {
       setLoading(false);
     }
+
+    return response;
   };
 
   return {

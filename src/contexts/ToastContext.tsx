@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useState } from "react";
 import { Snackbar } from "../components/Snackbar";
 
 import { ToastType } from "../components/Snackbar/enumToast";
@@ -55,17 +55,5 @@ const ToastProvider = ({ children }: ToastProviderProps) => {
     </ToastContext.Provider>
   );
 };
-
-function useToast(): ToastContextData {
-  const context = useContext(ToastContext);
-
-  if (!context) {
-    throw new Error("useAuth must be used within AuthProvider");
-  }
-
-  return context;
-}
-
-export { useToast, ToastProvider };
 
 export default ToastProvider;
