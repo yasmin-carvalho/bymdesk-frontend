@@ -41,6 +41,7 @@ export function useLocation() {
       );
     } finally {
       setLoading(false);
+      reset();
     }
   };
 

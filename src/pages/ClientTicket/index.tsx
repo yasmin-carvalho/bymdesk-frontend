@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Header } from "../../components/Header";
 import { Tabs } from "../../components/Tabs";
+import { EnumTypeUser } from "../../constants/enums";
 import { ProtectLayout } from "../../layout/ProtectLayout";
 import { CampusMapTab } from "./components/CampusMapTab";
 import { InitTab } from "./components/InitTab";
@@ -24,7 +25,7 @@ export function ClientTicket() {
   };
 
   return (
-    <ProtectLayout>
+    <ProtectLayout accessUser={EnumTypeUser.CLIENTE}>
       <>
         <Header typeScreen="PageClient" />
         <Main>

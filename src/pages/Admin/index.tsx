@@ -8,6 +8,7 @@ import { Matriculation } from "./components/Matriculation";
 import { Block } from "./components/Block";
 import { Location } from "./components/Location";
 import { ProtectLayout } from "../../layout/ProtectLayout";
+import { EnumTypeUser } from "../../constants/enums";
 
 export function Admin() {
   const [indexTab, setIndexTab] = useState(0);
@@ -30,7 +31,7 @@ export function Admin() {
   };
 
   return (
-    <ProtectLayout>
+    <ProtectLayout accessUser={EnumTypeUser.ADMIN}>
       <>
         <Header typeScreen="PageAdmin" />
         <Main>

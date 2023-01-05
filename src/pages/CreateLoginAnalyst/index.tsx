@@ -20,6 +20,9 @@ import {
   schemaRegisterAnalyst,
 } from "../../dtos/IRegisterAnalystDTO";
 import { optionsSetor } from "../../constants/listSelects";
+import { useAuth } from "../../hooks/useAuth";
+import { EnumTypeUser } from "../../constants/enums";
+import { useLogin } from "../../hooks/network/useLogin";
 
 export function CreateLoginAnalystc() {
   const formIdLogin = "form-login";
@@ -55,17 +58,28 @@ export function CreateLoginAnalystc() {
   });
 
   const navigate = useNavigate();
+  const { authenticate } = useAuth();
+  const { loading } = useLogin();
 
-  const { onSubmitRegisterAnalyst, onSubmitLogin } = useLoginAnalyst();
+  const { onSubmitRegisterAnalyst, loading: loadingRegisterAnalyst } =
+    useLoginAnalyst();
+
+  const handleSubmitLogin = async ({ email, senha }: IFormLogin) => {
+    const response = await authenticate(email, senha);
+    if (response.role === EnumTypeUser.ADMIN) {
+      navigate(RoutesEnum.ADMIN);
+    } else if (response.role === EnumTypeUser.ANALISTA) {
+      navigate(RoutesEnum.PORTAL_DO_ANALISTA);
+    } else {
+      navigate(RoutesEnum.TICKET_DO_CLIENTE);
+    }
+  };
 
   return (
     <>
       <Header typeScreen="loginAnalyst" />
       <Main>
-        <Form
-          id={formIdLogin}
-          onSubmit={handleSubmit((data: IFormLogin) => onSubmitLogin(data))}
-        >
+        <Form id={formIdLogin} onSubmit={handleSubmit(handleSubmitLogin)}>
           <Input
             labelColum="Email"
             type="email"
@@ -73,6 +87,7 @@ export function CreateLoginAnalystc() {
             placeholder="Digite seu email"
             name={fieldsLogin.EMAIL}
             control={control}
+            disabled={loading}
           />
           <Input
             labelColum="Senha"
@@ -81,8 +96,13 @@ export function CreateLoginAnalystc() {
             placeholder="Digite sua senha"
             name={fieldsLogin.SENHA}
             control={control}
+            disabled={loading}
           />
-          <Button type="submit" form={formIdLogin} disabled={!isValid}>
+          <Button
+            type="submit"
+            form={formIdLogin}
+            disabled={!isValid || loading}
+          >
             Entrar
           </Button>
         </Form>
@@ -99,6 +119,7 @@ export function CreateLoginAnalystc() {
             options={optionsSetor}
             name={fieldsRegisterAnalyst.SETOR}
             control={controlRegister}
+            disabled={loadingRegisterAnalyst}
           />
           <Input
             label="Matrícula"
@@ -106,12 +127,14 @@ export function CreateLoginAnalystc() {
             mask="9999999999"
             name={fieldsRegisterAnalyst.MATRICULA}
             control={controlRegister}
+            disabled={loadingRegisterAnalyst}
           />
           <Input
             label="Nome completo"
             required
             name={fieldsRegisterAnalyst.NOME}
             control={controlRegister}
+            disabled={loadingRegisterAnalyst}
           />
           <Input
             label="Telefone"
@@ -119,6 +142,7 @@ export function CreateLoginAnalystc() {
             mask="(99) 99999-9999"
             name={fieldsRegisterAnalyst.TELEFONE}
             control={controlRegister}
+            disabled={loadingRegisterAnalyst}
           />
           <Input
             label="Email"
@@ -126,6 +150,7 @@ export function CreateLoginAnalystc() {
             required
             name={fieldsRegisterAnalyst.EMAIL}
             control={controlRegister}
+            disabled={loadingRegisterAnalyst}
           />
           <Input
             label="Senha"
@@ -133,6 +158,7 @@ export function CreateLoginAnalystc() {
             required
             name={fieldsRegisterAnalyst.SENHA}
             control={controlRegister}
+            disabled={loadingRegisterAnalyst}
           />
           <Input
             label="Confirmar senha"
@@ -140,16 +166,21 @@ export function CreateLoginAnalystc() {
             required
             name={fieldsRegisterAnalyst.CONFIRMAR_SENHA}
             control={controlRegister}
+            disabled={loadingRegisterAnalyst}
           />
           <Buttons>
             <Button
               type="submit"
               form={formIdRegisterAnalyst}
-              disabled={!isValidRegister}
+              disabled={!isValidRegister || loadingRegisterAnalyst}
             >
               Registrar
             </Button>
-            <Button onClick={() => navigate(RoutesEnum.LOGIN)} type="button">
+            <Button
+              onClick={() => navigate(RoutesEnum.LOGIN)}
+              type="button"
+              disabled={loadingRegisterAnalyst}
+            >
               Cancelar
             </Button>
           </Buttons>

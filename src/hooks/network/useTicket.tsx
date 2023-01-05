@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { UseFormReset } from "react-hook-form";
 import { ToastType } from "../../components/Snackbar/enumToast";
 import { EnumStatus } from "../../constants/enums";
 import { IFormRegisterTicket } from "../../dtos/IRegisterTicketDTO";
@@ -15,13 +16,17 @@ export function useTicket() {
 
   const [allTickets, setAllTickets] = useState<ITicketsDTO[]>([]);
 
-  const onSubmitRegisterTicket = (dataForm: IFormRegisterTicket) => {
+  const onSubmitRegisterTicket = (
+    dataForm: IFormRegisterTicket,
+    reset: UseFormReset<IFormRegisterTicket>
+  ) => {
     setLoading(true);
 
     setTimeout(() => {
       alert(JSON.stringify(dataForm));
       addToast("Ticket criado com sucesso!", ToastType.success);
       setLoading(false);
+      reset();
     }, 2500);
   };
 

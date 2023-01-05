@@ -1,9 +1,11 @@
+import { EnumTypeUser } from "../../constants/enums";
+
 export interface IUser {
   id?: number;
   nome: string;
   email: string;
   telefone: string;
-  role: string;
+  role: EnumTypeUser;
   admin: boolean;
 }
 
