@@ -1,4 +1,4 @@
-import { EnumStatus } from "./enums";
+import { EnumStatus, EnumTypeTicket } from "./enums";
 
 interface OptionSelect {
   value: string;
@@ -13,8 +13,14 @@ export const optionsStatus: Array<string> = [
 ];
 
 export const optionsSetor: Array<OptionSelect> = [
-  { value: "Manutenção TI", label: "Manutenção TI" },
-  { value: "Manutenção Elétrica", label: "Manutenção Elétrica" },
-  { value: "Predial", label: "Predial" },
-  { value: "Outros", label: "Outros" },
+  { value: EnumTypeTicket.ManutencaoTI, label: EnumTypeTicket.ManutencaoTI },
+  {
+    value: EnumTypeTicket.ManutencaoEletrica,
+    label: EnumTypeTicket.ManutencaoEletrica,
+  },
+  {
+    value: EnumTypeTicket.ManutencaoPredial,
+    label: EnumTypeTicket.ManutencaoPredial,
+  },
+  { value: EnumTypeTicket.Outros, label: EnumTypeTicket.Outros },
 ];

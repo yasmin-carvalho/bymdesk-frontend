@@ -2,9 +2,21 @@ import { api } from "../api";
 import { IGetTicketsDTOResponse } from "./dtos/IGetTicketsDTOResponse";
 import { IPutTicketDTOResponse } from "./dtos/IPutTicketDTOResponse";
 import { IPutTicketDTORequest } from "./dtos/IPutTicketDTORequest";
+import { IPostTicketDTORequest } from "./dtos/IPostTicketDTORequest";
+import { IPostTicketDTOResponse } from "./dtos/IPostTicketDTOResponse";
 
 export default class AdminService {
   private route = "tickets/admin";
+
+  public async postTickets(
+    dataRequest: IPostTicketDTORequest
+  ): Promise<IPostTicketDTOResponse> {
+    const { data } = await api.post<IPostTicketDTOResponse>(
+      this.route,
+      dataRequest
+    );
+    return data;
+  }
 
   public async getTickets(): Promise<IGetTicketsDTOResponse[]> {
     const { data } = await api.get<IGetTicketsDTOResponse[]>(this.route);

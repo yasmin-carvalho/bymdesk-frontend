@@ -6,6 +6,8 @@ import { RoutesEnum } from "../../constants/routesList";
 import { IFormLogin } from "../../dtos/ILoginDTO";
 import { IFormRegisterAnalyst } from "../../dtos/IRegisterAnalystDTO";
 import AuthServiceAnalyst from "../../services/AuthServiceAnalyst";
+import CreateAnalystService from "../../services/CreateAnalystService";
+import { EnumTypeUser } from "../../constants/enums";
 import { useToast } from "../useToast";
 import { useLoading } from "../useLoading";
 
@@ -16,17 +18,36 @@ export function useLoginAnalyst() {
 
   const authServiceAnalyst = new AuthServiceAnalyst();
 
-  const onSubmitRegisterAnalyst = (
+  const createAnalyst = new CreateAnalystService();
+
+  const onSubmitRegisterAnalyst = async (
     dataForm: IFormRegisterAnalyst,
     reset: UseFormReset<IFormRegisterAnalyst>
   ) => {
-    setLoading(true);
+    try {
+      if (dataForm.senha === dataForm.confirmar_senha) {
+        await createAnalyst.createAnalyst({
+          ...dataForm,
+          setor: dataForm.setor.value,
+          role: EnumTypeUser.ANALISTA,
+          admin: false,
+        });
 
-    setTimeout(() => {
-      alert(JSON.stringify(dataForm));
-      addToast("Analista cadastrado com sucesso", ToastType.success);
+        addToast("Analista cadastrado com sucesso!", ToastType.success);
+      } else {
+        throw new Error("Senhas não coincidem");
+      }
+    } catch (error) {
+      addToast(
+        error?.message
+          ? error?.message
+          : "ERRO! Verifique com o administrador do Sistema",
+        ToastType.error
+      );
+    } finally {
       setLoading(false);
-    }, 2500);
+      reset();
+    }
   };
 
   const onSubmitLogin = async (dataForm: IFormLogin) => {

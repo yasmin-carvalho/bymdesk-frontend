@@ -1,6 +1,8 @@
 import { UseFormReset } from "react-hook-form";
 
 import { ToastType } from "../../components/Snackbar/enumToast";
+import { EnumTypeUser } from "../../constants/enums";
+
 import { IUser } from "../../contexts/utils/types";
 
 import { IFormLogin } from "../../dtos/ILoginDTO";
@@ -26,7 +28,7 @@ export function useLogin() {
       if (dataForm.senha === dataForm.confirmar_senha) {
         await createClient.createClient({
           ...dataForm,
-          role: "client",
+          role: EnumTypeUser.CLIENTE,
           admin: false,
         });
 
