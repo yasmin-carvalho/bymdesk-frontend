@@ -6,6 +6,7 @@ import { Main } from "./styles";
 import { Tabs } from "../../components/Tabs";
 import { CampusMapTab } from "./components/CampusMapTab";
 import { ProtectLayout } from "../../layout/ProtectLayout";
+import { EnumTypeUser } from "../../constants/enums";
 
 export function AnalystPortal() {
   const [indexTab, setIndexTab] = useState(0);
@@ -24,7 +25,7 @@ export function AnalystPortal() {
   };
 
   return (
-    <ProtectLayout>
+    <ProtectLayout accessUser={EnumTypeUser.ANALISTA}>
       <>
         <Header typeScreen="PageAnalyst" />
         <Main>
