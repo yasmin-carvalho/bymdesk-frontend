@@ -23,6 +23,7 @@ export function InitTab() {
     control: controlRegister,
     setValue,
     formState: { isValid: isValidRegister },
+    reset,
   } = useForm<IFormRegisterTicket>({
     resolver: yupResolver(schemaRegisterTicket),
     defaultValues: {
@@ -50,7 +51,7 @@ export function InitTab() {
       <Form
         id={formIdRegisterTicket}
         onSubmit={handleSubmitRegister((data: IFormRegisterTicket) => {
-          onSubmitRegisterTicket(data);
+          onSubmitRegisterTicket(data, reset);
         })}
       >
         <Text>Enviar um Ticket</Text>

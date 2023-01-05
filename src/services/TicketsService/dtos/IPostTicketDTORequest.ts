@@ -1,7 +1,11 @@
-import { EnumTypeTicket } from "../../../constants/enums";
+import { EnumStatus, EnumTypeTicket } from "../../../constants/enums";
 
 export interface IPostTicketDTORequest {
   solicitante_id: number;
   tipo: EnumTypeTicket;
-  local: number;
+  bloco_id: number;
+  local_id: number;
+  descricao: string;
+  imagem: string | File;
+  status: EnumStatus.Inicializado;
 }

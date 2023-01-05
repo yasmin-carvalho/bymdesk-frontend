@@ -11,9 +11,23 @@ export default class AdminService {
   public async postTickets(
     dataRequest: IPostTicketDTORequest
   ): Promise<IPostTicketDTOResponse> {
+    const formData = new FormData();
+    formData.append("solicitante_id", dataRequest.solicitante_id.toString());
+    formData.append("tipo", dataRequest.tipo);
+    formData.append("bloco_id", dataRequest.bloco_id.toString());
+    formData.append("local_id", dataRequest.local_id.toString());
+    formData.append("descricao", dataRequest.descricao);
+    formData.append("imagem", dataRequest.imagem);
+    formData.append("status", dataRequest.status);
+
     const { data } = await api.post<IPostTicketDTOResponse>(
-      this.route,
-      dataRequest
+      "solicitante/criarTicket",
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
     );
     return data;
   }
