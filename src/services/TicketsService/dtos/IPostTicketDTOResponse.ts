@@ -4,10 +4,9 @@ export interface IPostTicketDTOResponse {
   id: number;
   solicitante_id: number;
   tipo: string;
+  bloco_id: number;
   local_id: number;
   status: EnumStatus;
-  data: string;
   mensagem: string;
   usuario_id: number;
-  bloco_id: number;
 }

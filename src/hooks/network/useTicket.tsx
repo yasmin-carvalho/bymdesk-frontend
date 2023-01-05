@@ -5,29 +5,45 @@ import { EnumStatus } from "../../constants/enums";
 import { IFormRegisterTicket } from "../../dtos/IRegisterTicketDTO";
 import { ITicketsDTO } from "../../dtos/ITicketsDTO";
 import TicketsService from "../../services/TicketsService";
+import { useAuth } from "../useAuth";
 import { useLoading } from "../useLoading";
 import { useToast } from "../useToast";
 
 export function useTicket() {
   const { addToast } = useToast();
   const { loading, setLoading } = useLoading();
+  const { id } = useAuth();
 
   const ticketsService = new TicketsService();
 
   const [allTickets, setAllTickets] = useState<ITicketsDTO[]>([]);
 
-  const onSubmitRegisterTicket = (
+  const onSubmitRegisterTicket = async (
     dataForm: IFormRegisterTicket,
     reset: UseFormReset<IFormRegisterTicket>
   ) => {
     setLoading(true);
+    console.log(dataForm?.bloco?.value);
+    console.log(dataForm?.local?.value);
 
-    setTimeout(() => {
-      alert(JSON.stringify(dataForm));
-      addToast("Ticket criado com sucesso!", ToastType.success);
+    try {
+      await ticketsService.postTickets({
+        solicitante_id: id,
+        bloco_id: Number(dataForm.bloco.value),
+        imagem: dataForm.anexar_arquivo,
+        local_id: Number(dataForm.local.value),
+        status: EnumStatus.Inicializado,
+        tipo: dataForm.tipo_de_mautencao.value,
+        descricao: dataForm.descricao,
+      });
+      addToast("Ticket cadastrado com sucesso!", ToastType.success);
+    } catch (error) {
+      console.log(error);
+      addToast("ERRO!", ToastType.error);
+    } finally {
       setLoading(false);
       reset();
-    }, 2500);
+    }
   };
 
   const getUnsolvedTickets = async () => {
