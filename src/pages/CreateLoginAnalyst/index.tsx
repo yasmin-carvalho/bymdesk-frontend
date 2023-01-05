@@ -47,6 +47,7 @@ export function CreateLoginAnalystc() {
       [fieldsRegisterAnalyst.SETOR]: { value: "", label: "" },
       [fieldsRegisterAnalyst.MATRICULA]: "",
       [fieldsRegisterAnalyst.NOME]: "",
+      [fieldsRegisterAnalyst.TELEFONE]: "",
       [fieldsRegisterAnalyst.EMAIL]: "",
       [fieldsRegisterAnalyst.SENHA]: "",
       [fieldsRegisterAnalyst.CONFIRMAR_SENHA]: "",
@@ -110,6 +111,13 @@ export function CreateLoginAnalystc() {
             label="Nome completo"
             required
             name={fieldsRegisterAnalyst.NOME}
+            control={controlRegister}
+          />
+          <Input
+            label="Telefone"
+            required
+            mask="(99) 99999-9999"
+            name={fieldsRegisterAnalyst.TELEFONE}
             control={controlRegister}
           />
           <Input

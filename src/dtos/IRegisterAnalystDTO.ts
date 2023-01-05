@@ -1,12 +1,14 @@
 import * as yup from "yup";
+import { EnumTypeTicket } from "../constants/enums";
 
 export interface IFormRegisterAnalyst {
-  setor: { value: string; label: string };
+  setor: { value: EnumTypeTicket; label: string };
   matricula: string;
   nome: string;
   email: string;
   senha: string;
   confirmar_senha: string;
+  telefone: string;
 }
 
 export const fieldsRegisterAnalyst = {
@@ -16,6 +18,7 @@ export const fieldsRegisterAnalyst = {
   EMAIL: "email",
   SENHA: "senha",
   CONFIRMAR_SENHA: "confirmar_senha",
+  TELEFONE: "telefone",
 };
 
 export const schemaRegisterAnalyst = yup.object().shape({
@@ -24,4 +27,5 @@ export const schemaRegisterAnalyst = yup.object().shape({
   [fieldsRegisterAnalyst.EMAIL]: yup.string().email().required("obrigatório"),
   [fieldsRegisterAnalyst.SENHA]: yup.string().required("obrigatório"),
   [fieldsRegisterAnalyst.CONFIRMAR_SENHA]: yup.string().required("obrigatório"),
+  [fieldsRegisterAnalyst.TELEFONE]: yup.string().required("obrigatório"),
 });
