@@ -1,6 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
-import { useForm, UseFormReset } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Input } from "../../../../components/Input";
 import { Select } from "../../../../components/Select";
 import { TabContainer } from "../../../../components/Tabs/styles";
@@ -14,7 +14,7 @@ import {
 import { useBlock } from "../../../../hooks/network/useBlock";
 import { useLocation } from "../../../../hooks/network/useLocation";
 import { useTicket } from "../../../../hooks/network/useTicket";
-import { Form, ButtonBlock, StyledButton, Text } from "./styles";
+import { ButtonBlock, Form, StyledButton, Text } from "./styles";
 
 export function InitTab() {
   const formIdRegisterTicket = "form-register-ticket";
@@ -29,9 +29,9 @@ export function InitTab() {
     defaultValues: {
       [fieldsRegisterTicket.BLOCO]: { value: "", label: "" },
       [fieldsRegisterTicket.LOCAL]: { value: "", label: "" },
-      [fieldsRegisterTicket.TIPO_DE_MANUTENCAO]: { value: "", label: "" },
+      [fieldsRegisterTicket.TIPO]: { value: "", label: "" },
       [fieldsRegisterTicket.DESCRICAO]: "",
-      [fieldsRegisterTicket.ANEXAR_ARQUIVO]: null,
+      [fieldsRegisterTicket.IMAGEM]: null,
     },
   });
 
@@ -81,7 +81,7 @@ export function InitTab() {
           label="Tipo de Manutenção"
           required
           options={optionsSetor}
-          name={fieldsRegisterTicket.TIPO_DE_MANUTENCAO}
+          name={fieldsRegisterTicket.TIPO}
           control={controlRegister}
           disabled={loading}
         />
@@ -96,7 +96,7 @@ export function InitTab() {
         <Input
           type="file"
           label="+ Anexar arquivo"
-          name={fieldsRegisterTicket.ANEXAR_ARQUIVO}
+          name={fieldsRegisterTicket.IMAGEM}
           setValue={setValue}
           control={controlRegister}
           disabled={loading}

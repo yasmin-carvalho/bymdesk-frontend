@@ -23,17 +23,15 @@ export function useTicket() {
     reset: UseFormReset<IFormRegisterTicket>
   ) => {
     setLoading(true);
-    console.log(dataForm?.bloco?.value);
-    console.log(dataForm?.local?.value);
 
     try {
       await ticketsService.postTickets({
         solicitante_id: id,
         bloco_id: Number(dataForm.bloco.value),
-        imagem: dataForm.anexar_arquivo,
-        local_id: Number(dataForm.local.value),
+        imagem: dataForm.imagem,
+        local_id: Number(dataForm.local_id.value),
         status: EnumStatus.Inicializado,
-        tipo: dataForm.tipo_de_mautencao.value,
+        tipo: dataForm.tipo.value,
         descricao: dataForm.descricao,
       });
       addToast("Ticket cadastrado com sucesso!", ToastType.success);
