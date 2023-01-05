@@ -22,6 +22,7 @@ interface SelectProps {
   name?: string;
   onClick?: React.MouseEventHandler<HTMLSelectElement>;
   value?: string | number | readonly string[];
+  disabled?: boolean;
 }
 
 export function Select({
@@ -36,6 +37,7 @@ export function Select({
   control,
   onClick,
   value,
+  disabled,
   ...rest
 }: SelectProps) {
   return (
@@ -59,7 +61,11 @@ export function Select({
           name={name}
           control={control}
           render={({ field, fieldState: { error } }) => (
-            <StyledReactSelect {...field} options={options} />
+            <StyledReactSelect
+              {...field}
+              options={options}
+              isDisabled={disabled}
+            />
           )}
         />
       ) : (
@@ -67,6 +73,7 @@ export function Select({
           onChange={onChangeStateControled}
           onClick={onClick}
           value={value}
+          disabled={disabled}
         >
           <Optin value="">{placeholder ?? ""}</Optin>
           {options.map((item) => (

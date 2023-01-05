@@ -9,7 +9,6 @@ import {
   IFormLocationDTO,
   schemaLocation,
 } from "../../../../dtos/ILocationDTO";
-import { fieldsRegisterTicket } from "../../../../dtos/IRegisterTicketDTO";
 import { useBlock } from "../../../../hooks/network/useBlock";
 import { useLocation } from "../../../../hooks/network/useLocation";
 import { Container, Form, StyledInput, Text } from "./styles";
@@ -31,7 +30,7 @@ export function Location() {
 
   const { blocksState, getBlocks } = useBlock();
 
-  const { onSubmit } = useLocation();
+  const { onSubmit, loading } = useLocation();
 
   useEffect(() => {
     getBlocks();
@@ -55,21 +54,27 @@ export function Location() {
             }))}
             name={fieldsLocation.BLOCO_ID}
             control={controlRegister}
+            disabled={loading}
           />
           <StyledInput
             label="Digite um novo Local"
             required
             name={fieldsLocation.NOME}
             control={controlRegister}
+            disabled={loading}
           />
           <StyledInput
             label="Confirme o Local"
             required
             name={fieldsLocation.CONFIRME_LOCALIZACAO}
             control={controlRegister}
+            disabled={loading}
           />
         </Container>
-        <FooterForm textButtonSubmit="REGISTRAR" disabled={!isValid} />
+        <FooterForm
+          textButtonSubmit="REGISTRAR"
+          disabled={!isValid || loading}
+        />
       </Form>
     </TabContainer>
   );

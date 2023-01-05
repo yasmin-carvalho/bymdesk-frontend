@@ -14,7 +14,7 @@ import { Form, ContentButton, Main } from "./styles";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../../hooks/network/useLogin";
 
-export function CreateLoginClient() {
+export function CreateClient() {
   const formIdRegisterClient = "form-register-analyst";
   const {
     handleSubmit: handleSubmitRegister,

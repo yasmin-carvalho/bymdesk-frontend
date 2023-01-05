@@ -1,6 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, UseFormReset } from "react-hook-form";
 import { Input } from "../../../../components/Input";
 import { Select } from "../../../../components/Select";
 import { TabContainer } from "../../../../components/Tabs/styles";
@@ -35,7 +35,7 @@ export function InitTab() {
     },
   });
 
-  const { onSubmitRegisterTicket } = useTicket();
+  const { onSubmitRegisterTicket, loading } = useTicket();
 
   const { blocksState, getBlocks } = useBlock();
 
@@ -64,6 +64,7 @@ export function InitTab() {
           }))}
           name={fieldsRegisterTicket.BLOCO}
           control={controlRegister}
+          disabled={loading}
         />
         <Select
           label="Local"
@@ -74,6 +75,7 @@ export function InitTab() {
           }))}
           name={fieldsRegisterTicket.LOCAL}
           control={controlRegister}
+          disabled={loading}
         />
         <Select
           label="Tipo de Manutenção"
@@ -81,6 +83,7 @@ export function InitTab() {
           options={optionsSetor}
           name={fieldsRegisterTicket.TIPO_DE_MANUTENCAO}
           control={controlRegister}
+          disabled={loading}
         />
         <TextArea
           label="Descrição"
@@ -88,6 +91,7 @@ export function InitTab() {
           placeholder="Digite a descrição do incidente"
           name={fieldsRegisterTicket.DESCRICAO}
           control={controlRegister}
+          disabled={loading}
         />
         <Input
           type="file"
@@ -95,13 +99,14 @@ export function InitTab() {
           name={fieldsRegisterTicket.ANEXAR_ARQUIVO}
           setValue={setValue}
           control={controlRegister}
+          disabled={loading}
         />
 
         <ButtonBlock>
           <StyledButton
             type="submit"
             form={formIdRegisterTicket}
-            disabled={!isValidRegister}
+            disabled={!isValidRegister || loading}
           >
             Enviar
           </StyledButton>

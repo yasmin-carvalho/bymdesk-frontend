@@ -25,7 +25,7 @@ export function Block() {
     },
   });
 
-  const { onSubmit } = useBlock();
+  const { onSubmit, loading } = useBlock();
 
   return (
     <TabContainer>
@@ -39,15 +39,20 @@ export function Block() {
             required
             name={fieldsBlock.NOME}
             control={control}
+            disabled={loading}
           />
           <StyledInput
             label="Confirme o Bloco"
             required
             name={fieldsBlock.CONFIRME_BLOCO}
             control={control}
+            disabled={loading}
           />
         </Container>
-        <FooterForm textButtonSubmit="REGISTRAR" disabled={!isValid} />
+        <FooterForm
+          textButtonSubmit="REGISTRAR"
+          disabled={!isValid || loading}
+        />
       </Form>
     </TabContainer>
   );
