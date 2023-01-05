@@ -1,4 +1,6 @@
 import { useAuth } from "../hooks/useAuth";
+import { ImgUnauthorized } from "./styles";
+import IMG from "../assets/401-ErrorUnauthorized-rafiki.png";
 
 interface ProtectLayoutProps {
   children: React.ReactElement;
@@ -10,5 +12,5 @@ export function ProtectLayout({ children }: ProtectLayoutProps) {
   if (auth.email) {
     return children;
   }
-  return <span>Você não possui acesso</span>;
+  return <ImgUnauthorized src={IMG} alt="unauthorized" />;
 }
