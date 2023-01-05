@@ -26,6 +26,7 @@ import { RoutesEnum } from "../../constants/routesList";
 import { fieldsLogin, IFormLogin, schemaLogin } from "../../dtos/ILoginDTO";
 import { useAuth } from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { EnumTypeUser } from "../../constants/enums";
 
 export function LoginClient() {
   const {
@@ -58,7 +59,11 @@ export function LoginClient() {
           noValidate
           onSubmit={handleSubmit(async ({ email, senha }: IFormLogin) => {
             const response = await authenticate(email, senha);
-            if (response) {
+            if (response.role === EnumTypeUser.ADMIN) {
+              navigate(RoutesEnum.ADMIN);
+            } else if (response.role === EnumTypeUser.ANALISTA) {
+              navigate(RoutesEnum.PORTAL_DO_ANALISTA);
+            } else {
               navigate(RoutesEnum.TICKET_DO_CLIENTE);
             }
           })}

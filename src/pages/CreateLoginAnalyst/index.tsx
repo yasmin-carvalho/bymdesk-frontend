@@ -20,6 +20,8 @@ import {
   schemaRegisterAnalyst,
 } from "../../dtos/IRegisterAnalystDTO";
 import { optionsSetor } from "../../constants/listSelects";
+import { useAuth } from "../../hooks/useAuth";
+import { EnumTypeUser } from "../../constants/enums";
 
 export function CreateLoginAnalystc() {
   const formIdLogin = "form-login";
@@ -55,8 +57,9 @@ export function CreateLoginAnalystc() {
   });
 
   const navigate = useNavigate();
+  const { authenticate } = useAuth();
 
-  const { onSubmitRegisterAnalyst, onSubmitLogin } = useLoginAnalyst();
+  const { onSubmitRegisterAnalyst } = useLoginAnalyst();
 
   return (
     <>
@@ -64,7 +67,16 @@ export function CreateLoginAnalystc() {
       <Main>
         <Form
           id={formIdLogin}
-          onSubmit={handleSubmit((data: IFormLogin) => onSubmitLogin(data))}
+          onSubmit={handleSubmit(async ({ email, senha }: IFormLogin) => {
+            const response = await authenticate(email, senha);
+            if (response.role === EnumTypeUser.ADMIN) {
+              navigate(RoutesEnum.ADMIN);
+            } else if (response.role === EnumTypeUser.ANALISTA) {
+              navigate(RoutesEnum.PORTAL_DO_ANALISTA);
+            } else {
+              navigate(RoutesEnum.TICKET_DO_CLIENTE);
+            }
+          })}
         >
           <Input
             labelColum="Email"
