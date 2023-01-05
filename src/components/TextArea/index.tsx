@@ -14,6 +14,7 @@ interface TextAreaProps {
   labelColum?: string;
   name?: string;
   control?: Control<any>;
+  disabled?: boolean;
 }
 
 export function TextArea({
@@ -23,6 +24,7 @@ export function TextArea({
   labelColum,
   name,
   control,
+  disabled,
   ...rest
 }: TextAreaProps) {
   return (
@@ -50,11 +52,12 @@ export function TextArea({
               onChange={onChange}
               value={value}
               placeholder={placeholder}
+              disabled={disabled}
             />
           )}
         />
       ) : (
-        <StyledTextArea placeholder={placeholder} />
+        <StyledTextArea placeholder={placeholder} disabled={disabled} />
       )}
     </Container>
   );

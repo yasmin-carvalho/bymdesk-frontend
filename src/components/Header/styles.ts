@@ -71,6 +71,8 @@ export const ContentPageAnalyst = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  gap: 10px;
+  align-items: center;
 `;
 
 export const TextDecoration = styled.span`

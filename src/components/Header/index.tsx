@@ -56,7 +56,7 @@ export function Header({ typeScreen, ...rest }: HeaderProps) {
     } else if (typeScreen === "PageClient") {
       return (
         <ContainerPageAnalyst>
-          <Text>Bem vindo(a) {nome}</Text>
+          <Text>Bem vindo(a) {nome.split(" ")[0]}</Text>
           <ContentPageAnalyst>
             <TextDecoration>Portal do Cliente</TextDecoration>
             <Button onClick={logoutPage}>SAIR</Button>
@@ -66,7 +66,7 @@ export function Header({ typeScreen, ...rest }: HeaderProps) {
     } else if (typeScreen === "PageAnalyst") {
       return (
         <ContainerPageAnalyst>
-          <Text>Bem vindo(a) {nome}</Text>
+          <Text>Bem vindo(a) {nome.split(" ")[0]}</Text>
           <ContentPageAnalyst>
             <TextDecoration>Portal do Analista</TextDecoration>
             <Button onClick={logoutPage}>Sair</Button>
@@ -76,7 +76,7 @@ export function Header({ typeScreen, ...rest }: HeaderProps) {
     } else if (typeScreen === "PageAdmin") {
       return (
         <ContainerPageAnalyst>
-          <Text>Bem vindo(a) {nome}</Text>
+          <Text>Bem vindo(a) {nome.split(" ")[0]}</Text>
           <ContentPageAnalyst>
             <TextDecoration>Portal do Admin</TextDecoration>
             <Button onClick={logoutPage}>Sair</Button>

@@ -33,6 +33,7 @@ export function useMatriculation() {
       addToast("ERRO!", ToastType.error);
     } finally {
       setLoading(false);
+      reset();
     }
   };
 

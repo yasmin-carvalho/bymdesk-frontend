@@ -27,6 +27,7 @@ import { fieldsLogin, IFormLogin, schemaLogin } from "../../dtos/ILoginDTO";
 import { useAuth } from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { EnumTypeUser } from "../../constants/enums";
+import { useLogin } from "../../hooks/network/useLogin";
 
 export function LoginClient() {
   const {
@@ -43,7 +44,19 @@ export function LoginClient() {
   });
 
   const { authenticate } = useAuth();
+  const { loading } = useLogin();
   const navigate = useNavigate();
+
+  const handleSubmitLogin = async ({ email, senha }: IFormLogin) => {
+    const response = await authenticate(email, senha);
+    if (response.role === EnumTypeUser.ADMIN) {
+      navigate(RoutesEnum.ADMIN);
+    } else if (response.role === EnumTypeUser.ANALISTA) {
+      navigate(RoutesEnum.PORTAL_DO_ANALISTA);
+    } else {
+      navigate(RoutesEnum.TICKET_DO_CLIENTE);
+    }
+  };
 
   return (
     <>
@@ -55,38 +68,28 @@ export function LoginClient() {
           <SubTitle>Registro de Incidentes UNIFEI</SubTitle>
           <Image src={imgIncidentes} alt="incidentes" />
         </ContainerLeft>
-        <Form
-          noValidate
-          onSubmit={handleSubmit(async ({ email, senha }: IFormLogin) => {
-            const response = await authenticate(email, senha);
-            if (response.role === EnumTypeUser.ADMIN) {
-              navigate(RoutesEnum.ADMIN);
-            } else if (response.role === EnumTypeUser.ANALISTA) {
-              navigate(RoutesEnum.PORTAL_DO_ANALISTA);
-            } else {
-              navigate(RoutesEnum.TICKET_DO_CLIENTE);
-            }
-          })}
-        >
+        <Form noValidate onSubmit={handleSubmit(handleSubmitLogin)}>
           <Text>Insira os detalhes abaixo</Text>
           <Input
             type="email"
             placeholder="Seu endereço de email"
             name={fieldsLogin.EMAIL}
             control={control}
+            disabled={loading}
           />
           <Input
             type="password"
             placeholder="Senha"
             name={fieldsLogin.SENHA}
             control={control}
+            disabled={loading}
           />
           {/* <Checkbox
             label="lembrar de mim neste computador"
             name={fieldsLogin.REMEMBER_ME}
             control={control}
           /> */}
-          <Button type="submit" disabled={!isValid}>
+          <Button type="submit" disabled={!isValid || loading}>
             Entrar
           </Button>
         </Form>

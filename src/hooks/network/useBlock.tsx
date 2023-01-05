@@ -37,6 +37,7 @@ export function useBlock() {
       addToast("ERRO!", ToastType.error);
     } finally {
       setLoading(false);
+      reset();
     }
   };
 

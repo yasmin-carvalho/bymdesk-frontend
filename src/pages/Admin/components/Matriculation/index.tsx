@@ -24,7 +24,7 @@ export function Matriculation() {
     },
   });
 
-  const { onSubmit } = useMatriculation();
+  const { onSubmit, loading } = useMatriculation();
 
   return (
     <TabContainer>
@@ -41,6 +41,7 @@ export function Matriculation() {
             mask="9999999999"
             name={fieldsMatriculation.MATRICULA}
             control={control}
+            disabled={loading}
           />
           <StyledInput
             label="Confirme a Matrícula"
@@ -48,9 +49,13 @@ export function Matriculation() {
             mask="9999999999"
             name={fieldsMatriculation.CONFIRME_MATRICULA}
             control={control}
+            disabled={loading}
           />
         </Container>
-        <FooterForm textButtonSubmit="REGISTRAR" disabled={!isValid} />
+        <FooterForm
+          textButtonSubmit="REGISTRAR"
+          disabled={!isValid || loading}
+        />
       </Form>
     </TabContainer>
   );
