@@ -17,7 +17,7 @@ import {
 export function MyTicketsTab() {
   const { getTicketsAll, allTickets, loading } = useTicket();
   const { id } = useAuth();
-  const { getMessages, messagesState, refLoadingMessage } = useMessage();
+  const { getMessages, messagesState, loadingMessage } = useMessage();
 
   useEffect(() => {
     getTicketsAll(id);
@@ -39,7 +39,7 @@ export function MyTicketsTab() {
         components={components}
         data={allTickets}
         isLoading={loading}
-        refLoadingCollapse={refLoadingMessage}
+        loadingCollapse={loadingMessage}
         renderCellHeader={(key) => columnLabel[key]}
         renderCollapse={() => <CollapseConversation dataList={messagesState} />}
         renderInputSearchAndSelect={arrayRenderInputSearch}

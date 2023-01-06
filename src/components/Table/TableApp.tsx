@@ -2,7 +2,6 @@ import {
   Paper,
   Table,
   TableBody,
-  TableCell,
   TableContainer,
   TableFooter,
   TableHead,
@@ -11,16 +10,16 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import {
-  convertNumberToString,
   convertBooleanToString,
   convertBooleanToStringYesOrNot,
+  convertNumberToString,
   convertTimestampToDateString,
 } from "../../constants/converts";
 
 import { TablePaginationActions } from "../total-pagination-actions/TotalPaginationActions";
 import { HeaderTable } from "./HeaderTable";
 import Row from "./Row";
-import { WrapperCell, StyledTableCell, Th, Wrapper } from "./styles";
+import { StyledTableCell, Th, Wrapper, WrapperCell } from "./styles";
 import {
   IRenderInputSearch,
   ITypeColumnConfig,
@@ -42,7 +41,7 @@ interface TableAppProps {
   arrayRenderInputSearch?: IRenderInputSearch[];
   isLoading: boolean;
   onClickCollapse?: (id: number) => void;
-  refLoadingCollapse?: React.MutableRefObject<boolean>;
+  loadingCollapse?: boolean;
 }
 
 const TableApp: React.FC<TableAppProps> = ({
@@ -57,7 +56,7 @@ const TableApp: React.FC<TableAppProps> = ({
   arrayRenderInputSearch,
   isLoading,
   onClickCollapse,
-  refLoadingCollapse,
+  loadingCollapse,
   ...rest
 }) => {
   const [dataState, setDataState] = useState([]);
@@ -174,6 +173,7 @@ const TableApp: React.FC<TableAppProps> = ({
                     rowData={rowData}
                     rowIndex={rowIndex}
                     onClickCollapse={onClickCollapse}
+                    loadingCollapse={loadingCollapse}
                     key={rowData.id ?? `${tableName}-${rowIndex}`}
                   />
                 ))

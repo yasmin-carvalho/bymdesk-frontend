@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { ToastType } from "../../components/Snackbar/enumToast";
 
 import MessageService from "../../services/MessageService";
@@ -7,7 +7,7 @@ import { useToast } from "../useToast";
 
 export function useMessage() {
   const { addToast } = useToast();
-  const refLoadingMessage = useRef(false);
+  const [loadingMessage, setLoadingMessage] = useState(false);
 
   const messageService = new MessageService();
 
@@ -16,7 +16,7 @@ export function useMessage() {
   );
 
   const getMessages = async (idTicket: number) => {
-    refLoadingMessage.current = true;
+    setLoadingMessage(true);
 
     try {
       const response = await messageService.getMessages(idTicket);
@@ -24,12 +24,12 @@ export function useMessage() {
     } catch (error) {
       addToast("Erro ao buscar dados de messagens", ToastType.error);
     } finally {
-      refLoadingMessage.current = false;
+      setLoadingMessage(false);
     }
   };
 
   return {
-    refLoadingMessage,
+    loadingMessage,
     messagesState,
     getMessages,
   };

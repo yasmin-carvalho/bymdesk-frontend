@@ -14,7 +14,7 @@ interface RowProps {
   rowIndex: number;
   renderCollapse?: () => {};
   onClickCollapse?: (id: number) => void;
-  refLoadingCollapse?: React.MutableRefObject<boolean>;
+  loadingCollapse?: boolean;
 }
 
 const Row: React.FC<RowProps> = ({
@@ -25,13 +25,13 @@ const Row: React.FC<RowProps> = ({
   rowIndex,
   renderCollapse,
   onClickCollapse,
-  refLoadingCollapse,
+  loadingCollapse,
 }) => {
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      {refLoadingCollapse?.current === true ? (
+      {loadingCollapse === true ? (
         <span>Loading Collapse...</span>
       ) : (
         <>
