@@ -48,16 +48,18 @@ export function ResolvedTicketsTab() {
 
   return (
     <TabContainer>
-      <TableApp
-        tableName="table-my-tickets"
-        columnConfig={columnConfig}
-        components={components}
-        data={allTickets}
-        isLoading={loading}
-        renderCellHeader={(key) => columnLabel[key]}
-        renderCollapse={() => <CollapseConversation />}
-        renderInputSearchAndSelect={arrayRenderInputSearch}
-      />
+      {!loading && (
+        <TableApp
+          tableName="table-my-tickets"
+          columnConfig={columnConfig}
+          components={components}
+          data={allTickets}
+          isLoading={loading}
+          renderCellHeader={(key) => columnLabel[key]}
+          renderCollapse={() => <CollapseConversation />}
+          renderInputSearchAndSelect={arrayRenderInputSearch}
+        />
+      )}
     </TabContainer>
   );
 }

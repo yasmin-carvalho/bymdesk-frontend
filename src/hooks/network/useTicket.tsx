@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { UseFormReset } from "react-hook-form";
 import { ToastType } from "../../components/Snackbar/enumToast";
-import { EnumStatus, EnumTypeTicket } from "../../constants/enums";
+import {
+  EnumStatus,
+  EnumTypeTicket,
+  EnumTypeUser,
+} from "../../constants/enums";
 import { IFormRegisterTicket } from "../../dtos/IRegisterTicketDTO";
 import { ITicketsDTO } from "../../dtos/ITicketsDTO";
 import TicketsService from "../../services/TicketsService";
@@ -12,7 +16,7 @@ import { useToast } from "../useToast";
 export function useTicket() {
   const { addToast } = useToast();
   const { loading, setLoading } = useLoading();
-  const { id } = useAuth();
+  const { id, setor, role } = useAuth();
 
   const ticketsService = new TicketsService();
 
@@ -123,26 +127,30 @@ export function useTicket() {
   };
 
   const putTicket = async (
-    { analista_id, status, id }: ITicketsDTO,
+    { status, id: ticket_id }: ITicketsDTO,
     isGetTicket: "resolved" | "unsolved" | "all"
   ) => {
     setLoading(true);
     try {
-      await ticketsService.putTickets({ analista_id, status, ticket_id: id });
+      await ticketsService.putTickets({ analista_id: id, status, ticket_id });
       addToast("Ticket atualizado com sucesso!", ToastType.success);
 
       if (isGetTicket === "all") {
         await getTicketsAll();
       } else if (isGetTicket === "resolved") {
-        await getResolvedTickets();
+        await getResolvedTickets(
+          role === EnumTypeUser.ANALISTA ? setor : undefined
+        );
       } else {
-        await getUnsolvedTickets();
+        await getUnsolvedTickets(
+          role === EnumTypeUser.ANALISTA ? setor : undefined
+        );
       }
     } catch (error) {
       addToast(`Erro ao atualizar ticket!`, ToastType.error);
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   return {
