@@ -13,37 +13,38 @@ import {
   Image,
 } from "./styles";
 import { IGetMessageDTOResponse } from "../../services/MessageService/dtos/IGetMessageDTOResponse";
+import { ITicketsDTO } from "../../dtos/ITicketsDTO";
 
 interface CollapseConversationProps {
   dataList?: IGetMessageDTOResponse[];
+  dataTicket?: ITicketsDTO;
 }
 
-export function CollapseConversation({ dataList }: CollapseConversationProps) {
-  console.log(dataList);
+export function CollapseConversation({
+  dataList,
+  dataTicket,
+}: CollapseConversationProps) {
+  console.log("dataList", dataList);
+  console.log("dataTicket", dataTicket);
 
   return (
     <>
       <Container>
-        <WrapperRow alignContent="left">
-          <ContentMessage alignContent="left">
-            <TextName>Nome do Cliente</TextName>
-            <WrapperMessage alignContent="left">
-              <Message>
-                Olá tudo bem? ffffffffffffffffffffffffffffffffffffffff
-                dlfkjdlfkj sdflksdjflkdsf sdlkfjsdlkjfsd
-                fsldkjflsdkjflksdjflksdnfs f sldifjlsdkf sdçfjlskdjflksdjflksdjf
-                sdlkfjsldkjflksdjflksdjflksdf lskdjflksdjfçqwkfsd fçlsdlkf
-                sldkflsdm flsd flskdf ksd fjsdnkfj sdkjf lsdj fkjsd fkjsd fjla
-                sdkfjs dkfj sdkf skjdfksjdf kj
-              </Message>
-              <LabelData alignText="right">20/01/2022</LabelData>
-              <Image src={incidentes} alt="img-logoIncidentes" />
-              <LabelData alignText="left">20/01/2022</LabelData>
-            </WrapperMessage>
-          </ContentMessage>
-        </WrapperRow>
+        {dataList?.map((item) => (
+          <WrapperRow alignContent="left" key={item.id}>
+            <ContentMessage alignContent="left">
+              <TextName>Nome do Cliente</TextName>
+              <WrapperMessage alignContent="left">
+                <Message>{item?.mensagem}</Message>
+                <LabelData alignText="right">20/01/2022</LabelData>
+                <Image src={item?.imagem} alt="img-logoIncidentes" />
+                <LabelData alignText="left">20/01/2022</LabelData>
+              </WrapperMessage>
+            </ContentMessage>
+          </WrapperRow>
+        ))}
 
-        <WrapperRow alignContent="right">
+        {/* <WrapperRow alignContent="right">
           <ContentMessage alignContent="left">
             <TextName>Nome do Analista</TextName>
             <WrapperMessage alignContent="left">
@@ -58,7 +59,7 @@ export function CollapseConversation({ dataList }: CollapseConversationProps) {
               <LabelData alignText="right">20/01/2022</LabelData>
             </WrapperMessage>
           </ContentMessage>
-        </WrapperRow>
+        </WrapperRow> */}
       </Container>
       <ContentTextInput>
         <InputComponent placeholder="Envie sua mensagem" />

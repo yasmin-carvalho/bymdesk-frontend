@@ -40,7 +40,7 @@ interface TableAppProps {
   renderInputSearchAndSelect?: IRenderInputSearch[];
   arrayRenderInputSearch?: IRenderInputSearch[];
   isLoading: boolean;
-  onClickCollapse?: (id: number) => void;
+  onClickCollapse?: (id: number, rowData: any) => void;
   loadingCollapse?: boolean;
 }
 

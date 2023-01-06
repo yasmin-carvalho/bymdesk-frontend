@@ -13,7 +13,7 @@ interface RowProps {
   rowData: any;
   rowIndex: number;
   renderCollapse?: () => {};
-  onClickCollapse?: (id: number) => void;
+  onClickCollapse?: (id: number, rowData: any) => void;
   loadingCollapse?: boolean;
 }
 
@@ -31,40 +31,40 @@ const Row: React.FC<RowProps> = ({
 
   return (
     <>
-      {loadingCollapse === true ? (
-        <span>Loading Collapse...</span>
-      ) : (
-        <>
-          <StyledTableRow
-            onClick={() => {
-              setOpen(!open);
-              if (!open) {
-                onClickCollapse(rowData["id"] ?? 0);
-              }
-            }}
-          >
-            {React.Children.toArray(
-              columnConfigKeys.map((key) => (
-                <StyledTableCell
-                  align={columnConfig[key]?.align}
-                  width={columnConfig[key]?.width}
-                >
-                  {components[key] &&
-                    components[key](rowData[key], rowData, rowIndex)}
-                </StyledTableCell>
-              ))
-            )}
-          </StyledTableRow>
+      <StyledTableRow
+        onClick={() => {
+          setOpen(!open);
+          if (!open) {
+            onClickCollapse(rowData["id"] ?? 0, rowData);
+          }
+        }}
+      >
+        {React.Children.toArray(
+          columnConfigKeys.map((key) => (
+            <StyledTableCell
+              align={columnConfig[key]?.align}
+              width={columnConfig[key]?.width}
+            >
+              {components[key] &&
+                components[key](rowData[key], rowData, rowIndex)}
+            </StyledTableCell>
+          ))
+        )}
+      </StyledTableRow>
 
-          <TableRow>
-            <TableCellCollapse colSpan={columnConfigKeys.length}>
-              <Collapse in={open} timeout="auto" unmountOnExit>
+      <TableRow>
+        <TableCellCollapse colSpan={columnConfigKeys.length}>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <>
+              {loadingCollapse ? (
+                <div>Loading ...</div>
+              ) : (
                 <>{renderCollapse()}</>
-              </Collapse>
-            </TableCellCollapse>
-          </TableRow>
-        </>
-      )}
+              )}
+            </>
+          </Collapse>
+        </TableCellCollapse>
+      </TableRow>
     </>
   );
 };
