@@ -9,6 +9,7 @@ import { EnumStatus } from "../../../../constants/enums";
 import { optionsStatus } from "../../../../constants/listSelects";
 import { ITicketsDTO } from "../../../../dtos/ITicketsDTO";
 import { useTicket } from "../../../../hooks/network/useTicket";
+import { useAuth } from "../../../../hooks/useAuth";
 import {
   arrayRenderInputSearch,
   columnConfig,
@@ -18,9 +19,10 @@ import {
 
 export function UnsolvedTicketsTab() {
   const { getUnsolvedTickets, putTicket, allTickets, loading } = useTicket();
+  const { setor } = useAuth();
 
   useEffect(() => {
-    getUnsolvedTickets();
+    getUnsolvedTickets(setor);
   }, []);
 
   const _renderBasicSelectCell = (value: EnumStatus, data: ITicketsDTO) => (

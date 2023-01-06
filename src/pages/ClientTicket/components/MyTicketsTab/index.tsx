@@ -5,6 +5,7 @@ import TableApp from "../../../../components/Table/TableApp";
 import { ITypeComponents } from "../../../../components/Table/types";
 import { TabContainer } from "../../../../components/Tabs/styles";
 import { useTicket } from "../../../../hooks/network/useTicket";
+import { useAuth } from "../../../../hooks/useAuth";
 import {
   columnConfig,
   columnLabel,
@@ -14,9 +15,10 @@ import {
 
 export function MyTicketsTab() {
   const { getTicketsAll, allTickets, loading } = useTicket();
+  const { id } = useAuth();
 
   useEffect(() => {
-    getTicketsAll();
+    getTicketsAll(id);
   }, []);
 
   const components: ITypeComponents = {
