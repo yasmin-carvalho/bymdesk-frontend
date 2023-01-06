@@ -45,11 +45,15 @@ export function useLocation() {
     }
   };
 
-  const getLocales = async () => {
+  const getLocales = async (bloco_id?: number) => {
     setLoading(true);
     try {
       const response = await localtionService.getLocales();
-      setLocalesState(response);
+      if (bloco_id) {
+        setLocalesState(response.filter((item) => item.bloco_id === bloco_id));
+      } else {
+        setLocalesState(response);
+      }
     } catch (error) {
       addToast("Erro ao buscar dados de localidades", ToastType.error);
     } finally {

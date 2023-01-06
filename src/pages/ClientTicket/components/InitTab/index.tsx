@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { Input } from "../../../../components/Input";
 import { Select } from "../../../../components/Select";
@@ -24,6 +24,7 @@ export function InitTab() {
     setValue,
     formState: { isValid: isValidRegister },
     reset,
+    getValues,
   } = useForm<IFormRegisterTicket>({
     resolver: yupResolver(schemaRegisterTicket),
     defaultValues: {
@@ -36,14 +37,18 @@ export function InitTab() {
   });
 
   const { onSubmitRegisterTicket, loading } = useTicket();
-
   const { blocksState, getBlocks } = useBlock();
-
   const { localesState, getLocales } = useLocation();
+
+  const refDisabledFieldLocal = useRef(true);
+
+  const handleMenuClose = () => {
+    refDisabledFieldLocal.current = false;
+    getLocales(Number(getValues("bloco.value")));
+  };
 
   useEffect(() => {
     getBlocks();
-    getLocales();
   }, []);
 
   return (
@@ -65,6 +70,7 @@ export function InitTab() {
           name={fieldsRegisterTicket.BLOCO}
           control={controlRegister}
           disabled={loading}
+          onMenuClose={handleMenuClose}
         />
         <Select
           label="Local"
@@ -75,7 +81,7 @@ export function InitTab() {
           }))}
           name={fieldsRegisterTicket.LOCAL}
           control={controlRegister}
-          disabled={loading}
+          disabled={loading || refDisabledFieldLocal.current}
         />
         <Select
           label="Tipo de Manutenção"

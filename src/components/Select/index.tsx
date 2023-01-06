@@ -1,3 +1,4 @@
+import { on } from "events";
 import { Control, Controller } from "react-hook-form";
 
 import {
@@ -23,6 +24,7 @@ interface SelectProps {
   onClick?: React.MouseEventHandler<HTMLSelectElement>;
   value?: string | number | readonly string[];
   disabled?: boolean;
+  onMenuClose?: () => void;
 }
 
 export function Select({
@@ -38,6 +40,7 @@ export function Select({
   onClick,
   value,
   disabled,
+  onMenuClose,
   ...rest
 }: SelectProps) {
   return (
@@ -65,6 +68,7 @@ export function Select({
               {...field}
               options={options}
               isDisabled={disabled}
+              onMenuClose={onMenuClose}
             />
           )}
         />
