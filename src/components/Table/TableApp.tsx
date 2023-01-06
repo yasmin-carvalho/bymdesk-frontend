@@ -186,7 +186,7 @@ const TableApp: React.FC<TableAppProps> = ({
               </TableRow>
             )}
 
-            {dataState.length === 0 && (
+            {dataState.length === 0 && !isLoading && (
               <TableRow style={{ height: 53 * emptyAllData }}>
                 <WrapperCell colSpan={columnConfigKeys.length}>
                   Nenhum ticket cadastrado
