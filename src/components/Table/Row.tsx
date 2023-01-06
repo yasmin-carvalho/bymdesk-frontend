@@ -3,13 +3,7 @@
 import { Collapse, TableRow } from "@mui/material";
 import React, { useState } from "react";
 
-import {
-  StyledTableRow,
-  StyledTableCell,
-  TableCellCollapse,
-  Container,
-  Content,
-} from "./styles";
+import { StyledTableRow, StyledTableCell, TableCellCollapse } from "./styles";
 import { ITypeColumnConfig, ITypeComponents } from "./types";
 
 interface RowProps {
@@ -19,6 +13,8 @@ interface RowProps {
   rowData: any;
   rowIndex: number;
   renderCollapse?: () => {};
+  onClickCollapse?: (id: number) => void;
+  refLoadingCollapse?: React.MutableRefObject<boolean>;
 }
 
 const Row: React.FC<RowProps> = ({
@@ -28,32 +24,47 @@ const Row: React.FC<RowProps> = ({
   rowData,
   rowIndex,
   renderCollapse,
+  onClickCollapse,
+  refLoadingCollapse,
 }) => {
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      <StyledTableRow onClick={() => setOpen(!open)}>
-        {React.Children.toArray(
-          columnConfigKeys.map((key) => (
-            <StyledTableCell
-              align={columnConfig[key]?.align}
-              width={columnConfig[key]?.width}
-            >
-              {components[key] &&
-                components[key](rowData[key], rowData, rowIndex)}
-            </StyledTableCell>
-          ))
-        )}
-      </StyledTableRow>
+      {refLoadingCollapse?.current === true ? (
+        <span>Loading Collapse...</span>
+      ) : (
+        <>
+          <StyledTableRow
+            onClick={() => {
+              setOpen(!open);
+              if (!open) {
+                onClickCollapse(rowData["id"] ?? 0);
+              }
+            }}
+          >
+            {React.Children.toArray(
+              columnConfigKeys.map((key) => (
+                <StyledTableCell
+                  align={columnConfig[key]?.align}
+                  width={columnConfig[key]?.width}
+                >
+                  {components[key] &&
+                    components[key](rowData[key], rowData, rowIndex)}
+                </StyledTableCell>
+              ))
+            )}
+          </StyledTableRow>
 
-      <TableRow>
-        <TableCellCollapse colSpan={columnConfigKeys.length}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <>{renderCollapse()}</>
-          </Collapse>
-        </TableCellCollapse>
-      </TableRow>
+          <TableRow>
+            <TableCellCollapse colSpan={columnConfigKeys.length}>
+              <Collapse in={open} timeout="auto" unmountOnExit>
+                <>{renderCollapse()}</>
+              </Collapse>
+            </TableCellCollapse>
+          </TableRow>
+        </>
+      )}
     </>
   );
 };

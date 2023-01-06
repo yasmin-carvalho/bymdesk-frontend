@@ -12,8 +12,15 @@ import {
   InputComponent,
   Image,
 } from "./styles";
+import { IGetMessageDTOResponse } from "../../services/MessageService/dtos/IGetMessageDTOResponse";
 
-export function CollapseConversation() {
+interface CollapseConversationProps {
+  dataList?: IGetMessageDTOResponse[];
+}
+
+export function CollapseConversation({ dataList }: CollapseConversationProps) {
+  console.log(dataList);
+
   return (
     <>
       <Container>

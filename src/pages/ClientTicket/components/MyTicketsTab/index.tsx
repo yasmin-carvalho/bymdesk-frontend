@@ -4,6 +4,7 @@ import { _renderBasicTextCell } from "../../../../components/RendersCellTable";
 import TableApp from "../../../../components/Table/TableApp";
 import { ITypeComponents } from "../../../../components/Table/types";
 import { TabContainer } from "../../../../components/Tabs/styles";
+import { useMessage } from "../../../../hooks/network/useMessage";
 import { useTicket } from "../../../../hooks/network/useTicket";
 import { useAuth } from "../../../../hooks/useAuth";
 import {
@@ -16,6 +17,7 @@ import {
 export function MyTicketsTab() {
   const { getTicketsAll, allTickets, loading } = useTicket();
   const { id } = useAuth();
+  const { getMessages, messagesState, refLoadingMessage } = useMessage();
 
   useEffect(() => {
     getTicketsAll(id);
@@ -37,9 +39,11 @@ export function MyTicketsTab() {
         components={components}
         data={allTickets}
         isLoading={loading}
+        refLoadingCollapse={refLoadingMessage}
         renderCellHeader={(key) => columnLabel[key]}
-        renderCollapse={() => <CollapseConversation />}
+        renderCollapse={() => <CollapseConversation dataList={messagesState} />}
         renderInputSearchAndSelect={arrayRenderInputSearch}
+        onClickCollapse={(id: number) => getMessages(id)}
       />
     </TabContainer>
   );

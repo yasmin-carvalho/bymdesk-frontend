@@ -41,6 +41,8 @@ interface TableAppProps {
   renderInputSearchAndSelect?: IRenderInputSearch[];
   arrayRenderInputSearch?: IRenderInputSearch[];
   isLoading: boolean;
+  onClickCollapse?: (id: number) => void;
+  refLoadingCollapse?: React.MutableRefObject<boolean>;
 }
 
 const TableApp: React.FC<TableAppProps> = ({
@@ -54,6 +56,8 @@ const TableApp: React.FC<TableAppProps> = ({
   renderInputSearchAndSelect,
   arrayRenderInputSearch,
   isLoading,
+  onClickCollapse,
+  refLoadingCollapse,
   ...rest
 }) => {
   const [dataState, setDataState] = useState([]);
@@ -169,6 +173,7 @@ const TableApp: React.FC<TableAppProps> = ({
                     renderCollapse={renderCollapse}
                     rowData={rowData}
                     rowIndex={rowIndex}
+                    onClickCollapse={onClickCollapse}
                     key={rowData.id ?? `${tableName}-${rowIndex}`}
                   />
                 ))
