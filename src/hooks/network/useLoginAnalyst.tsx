@@ -24,6 +24,8 @@ export function useLoginAnalyst() {
     dataForm: IFormRegisterAnalyst,
     reset: UseFormReset<IFormRegisterAnalyst>
   ) => {
+    setLoading(true);
+
     try {
       if (dataForm.senha === dataForm.confirmar_senha) {
         await createAnalyst.createAnalyst({

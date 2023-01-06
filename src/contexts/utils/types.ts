@@ -1,4 +1,4 @@
-import { EnumTypeUser } from "../../constants/enums";
+import { EnumTypeTicket, EnumTypeUser } from "../../constants/enums";
 
 export interface IUser {
   id?: number;
@@ -7,6 +7,7 @@ export interface IUser {
   telefone: string;
   role: EnumTypeUser;
   admin: boolean;
+  setor?: EnumTypeTicket;
 }
 
 export interface IContext extends IUser {

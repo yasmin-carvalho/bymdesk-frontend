@@ -44,6 +44,7 @@ export function CreateLoginAnalystc() {
     handleSubmit: handleSubmitRegister,
     control: controlRegister,
     formState: { isValid: isValidRegister },
+    reset: resetRegister,
   } = useForm<IFormRegisterAnalyst>({
     resolver: yupResolver(schemaRegisterAnalyst),
     defaultValues: {
@@ -110,7 +111,7 @@ export function CreateLoginAnalystc() {
         <FormRight
           id={formIdRegisterAnalyst}
           onSubmit={handleSubmitRegister((data: IFormRegisterAnalyst) => {
-            onSubmitRegisterAnalyst(data, reset);
+            onSubmitRegisterAnalyst(data, resetRegister);
           })}
         >
           <Select

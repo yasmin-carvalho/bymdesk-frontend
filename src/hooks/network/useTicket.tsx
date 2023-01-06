@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { UseFormReset } from "react-hook-form";
 import { ToastType } from "../../components/Snackbar/enumToast";
-import { EnumStatus } from "../../constants/enums";
+import { EnumStatus, EnumTypeTicket } from "../../constants/enums";
 import { IFormRegisterTicket } from "../../dtos/IRegisterTicketDTO";
 import { ITicketsDTO } from "../../dtos/ITicketsDTO";
 import TicketsService from "../../services/TicketsService";
@@ -23,17 +23,15 @@ export function useTicket() {
     reset: UseFormReset<IFormRegisterTicket>
   ) => {
     setLoading(true);
-    console.log(dataForm?.bloco?.value);
-    console.log(dataForm?.local?.value);
 
     try {
       await ticketsService.postTickets({
         solicitante_id: id,
         bloco_id: Number(dataForm.bloco.value),
-        imagem: dataForm.anexar_arquivo,
-        local_id: Number(dataForm.local.value),
+        imagem: dataForm.imagem,
+        local_id: Number(dataForm.local_id.value),
         status: EnumStatus.Inicializado,
-        tipo: dataForm.tipo_de_mautencao.value,
+        tipo: dataForm.tipo.value,
         descricao: dataForm.descricao,
       });
       addToast("Ticket cadastrado com sucesso!", ToastType.success);
@@ -46,17 +44,29 @@ export function useTicket() {
     }
   };
 
-  const getUnsolvedTickets = async () => {
+  const getUnsolvedTickets = async (setor?: EnumTypeTicket) => {
     setLoading(true);
     try {
       const response = await ticketsService.getTickets();
-      setAllTickets(
-        response.filter(
-          (item) =>
-            item.status === EnumStatus.Inicializado ||
-            item.status === EnumStatus.Andamento
-        )
-      );
+      if (setor) {
+        setAllTickets(
+          response
+            .filter(
+              (item) =>
+                item.status === EnumStatus.Inicializado ||
+                item.status === EnumStatus.Andamento
+            )
+            .filter((item) => item.tipo === setor)
+        );
+      } else {
+        setAllTickets(
+          response.filter(
+            (item) =>
+              item.status === EnumStatus.Inicializado ||
+              item.status === EnumStatus.Andamento
+          )
+        );
+      }
     } catch (error) {
       addToast("Falha ao buscar dados de tickets", ToastType.error);
     } finally {
@@ -64,17 +74,29 @@ export function useTicket() {
     }
   };
 
-  const getResolvedTickets = async () => {
+  const getResolvedTickets = async (setor?: EnumTypeTicket) => {
     setLoading(true);
     try {
       const response = await ticketsService.getTickets();
-      setAllTickets(
-        response.filter(
-          (item) =>
-            item.status === EnumStatus.Finalizado ||
-            item.status === EnumStatus.Cancelado
-        )
-      );
+      if (setor) {
+        setAllTickets(
+          response
+            .filter(
+              (item) =>
+                item.status === EnumStatus.Finalizado ||
+                item.status === EnumStatus.Cancelado
+            )
+            .filter((item) => item.tipo === setor)
+        );
+      } else {
+        setAllTickets(
+          response.filter(
+            (item) =>
+              item.status === EnumStatus.Finalizado ||
+              item.status === EnumStatus.Cancelado
+          )
+        );
+      }
     } catch (error) {
       addToast("Falha ao buscar dados de tickets", ToastType.error);
     } finally {
@@ -82,11 +104,17 @@ export function useTicket() {
     }
   };
 
-  const getTicketsAll = async () => {
+  const getTicketsAll = async (solicitante_id?: number) => {
     setLoading(true);
     try {
       const response = await ticketsService.getTickets();
-      setAllTickets(response);
+      if (solicitante_id) {
+        setAllTickets(
+          response.filter((item) => item.solicitante_id === solicitante_id)
+        );
+      } else {
+        setAllTickets(response);
+      }
     } catch (error) {
       addToast("Falha ao buscar dados de tickets", ToastType.error);
     } finally {

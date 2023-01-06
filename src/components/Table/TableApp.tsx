@@ -2,7 +2,6 @@ import {
   Paper,
   Table,
   TableBody,
-  TableCell,
   TableContainer,
   TableFooter,
   TableHead,
@@ -11,16 +10,16 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import {
-  convertNumberToString,
   convertBooleanToString,
   convertBooleanToStringYesOrNot,
+  convertNumberToString,
   convertTimestampToDateString,
 } from "../../constants/converts";
 
 import { TablePaginationActions } from "../total-pagination-actions/TotalPaginationActions";
 import { HeaderTable } from "./HeaderTable";
 import Row from "./Row";
-import { LoadingWrapper, StyledTableCell, Th, Wrapper } from "./styles";
+import { StyledTableCell, Th, Wrapper, WrapperCell } from "./styles";
 import {
   IRenderInputSearch,
   ITypeColumnConfig,
@@ -41,6 +40,8 @@ interface TableAppProps {
   renderInputSearchAndSelect?: IRenderInputSearch[];
   arrayRenderInputSearch?: IRenderInputSearch[];
   isLoading: boolean;
+  onClickCollapse?: (id: number, rowData: any) => void;
+  loadingCollapse?: boolean;
 }
 
 const TableApp: React.FC<TableAppProps> = ({
@@ -54,6 +55,8 @@ const TableApp: React.FC<TableAppProps> = ({
   renderInputSearchAndSelect,
   arrayRenderInputSearch,
   isLoading,
+  onClickCollapse,
+  loadingCollapse,
   ...rest
 }) => {
   const [dataState, setDataState] = useState([]);
@@ -169,21 +172,25 @@ const TableApp: React.FC<TableAppProps> = ({
                     renderCollapse={renderCollapse}
                     rowData={rowData}
                     rowIndex={rowIndex}
+                    onClickCollapse={onClickCollapse}
+                    loadingCollapse={loadingCollapse}
                     key={rowData.id ?? `${tableName}-${rowIndex}`}
                   />
                 ))
               )
             ) : (
               <TableRow style={{ height: 53 * emptyAllData }}>
-                <LoadingWrapper colSpan={columnConfigKeys.length}>
+                <WrapperCell colSpan={columnConfigKeys.length}>
                   Loading...
-                </LoadingWrapper>
+                </WrapperCell>
               </TableRow>
             )}
 
-            {emptyAllData > 0 && (
+            {dataState.length === 0 && (
               <TableRow style={{ height: 53 * emptyAllData }}>
-                <TableCell colSpan={columnConfigKeys.length} />
+                <WrapperCell colSpan={columnConfigKeys.length}>
+                  Nenhum ticket cadastrado
+                </WrapperCell>
               </TableRow>
             )}
           </TableBody>

@@ -24,6 +24,8 @@ export function useLogin() {
     dataForm: IFormRegisterClient,
     reset: UseFormReset<IFormRegisterClient>
   ) => {
+    setLoading(true);
+
     try {
       if (dataForm.senha === dataForm.confirmar_senha) {
         await createClient.createClient({

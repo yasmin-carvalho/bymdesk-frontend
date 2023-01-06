@@ -1,10 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { CollapseConversation } from "../../../../components/CollapseConversation";
 import { _renderBasicTextCell } from "../../../../components/RendersCellTable";
 import TableApp from "../../../../components/Table/TableApp";
 import { ITypeComponents } from "../../../../components/Table/types";
 import { TabContainer } from "../../../../components/Tabs/styles";
+import { ITicketsDTO } from "../../../../dtos/ITicketsDTO";
+import { useMessage } from "../../../../hooks/network/useMessage";
 import { useTicket } from "../../../../hooks/network/useTicket";
+import { useAuth } from "../../../../hooks/useAuth";
 import {
   columnConfig,
   columnLabel,
@@ -14,9 +17,13 @@ import {
 
 export function MyTicketsTab() {
   const { getTicketsAll, allTickets, loading } = useTicket();
+  const { id } = useAuth();
+  const { getMessages, messagesState, loadingMessage } = useMessage();
+
+  const [rowDataState, setRowDataState] = useState<ITicketsDTO>();
 
   useEffect(() => {
-    getTicketsAll();
+    getTicketsAll(id);
   }, []);
 
   const components: ITypeComponents = {
@@ -35,9 +42,14 @@ export function MyTicketsTab() {
         components={components}
         data={allTickets}
         isLoading={loading}
+        loadingCollapse={loadingMessage}
         renderCellHeader={(key) => columnLabel[key]}
-        renderCollapse={() => <CollapseConversation />}
+        renderCollapse={() => <CollapseConversation dataList={messagesState} />}
         renderInputSearchAndSelect={arrayRenderInputSearch}
+        onClickCollapse={(id: number, rowData: ITicketsDTO) => {
+          setRowDataState(rowData);
+          getMessages(id);
+        }}
       />
     </TabContainer>
   );

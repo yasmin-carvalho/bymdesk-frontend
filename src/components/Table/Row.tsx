@@ -3,13 +3,7 @@
 import { Collapse, TableRow } from "@mui/material";
 import React, { useState } from "react";
 
-import {
-  StyledTableRow,
-  StyledTableCell,
-  TableCellCollapse,
-  Container,
-  Content,
-} from "./styles";
+import { StyledTableRow, StyledTableCell, TableCellCollapse } from "./styles";
 import { ITypeColumnConfig, ITypeComponents } from "./types";
 
 interface RowProps {
@@ -19,6 +13,8 @@ interface RowProps {
   rowData: any;
   rowIndex: number;
   renderCollapse?: () => {};
+  onClickCollapse?: (id: number, rowData: any) => void;
+  loadingCollapse?: boolean;
 }
 
 const Row: React.FC<RowProps> = ({
@@ -28,12 +24,21 @@ const Row: React.FC<RowProps> = ({
   rowData,
   rowIndex,
   renderCollapse,
+  onClickCollapse,
+  loadingCollapse,
 }) => {
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      <StyledTableRow onClick={() => setOpen(!open)}>
+      <StyledTableRow
+        onClick={() => {
+          setOpen(!open);
+          if (!open) {
+            onClickCollapse(rowData["id"] ?? 0, rowData);
+          }
+        }}
+      >
         {React.Children.toArray(
           columnConfigKeys.map((key) => (
             <StyledTableCell
@@ -50,7 +55,13 @@ const Row: React.FC<RowProps> = ({
       <TableRow>
         <TableCellCollapse colSpan={columnConfigKeys.length}>
           <Collapse in={open} timeout="auto" unmountOnExit>
-            <>{renderCollapse()}</>
+            <>
+              {loadingCollapse ? (
+                <div>Loading ...</div>
+              ) : (
+                <>{renderCollapse()}</>
+              )}
+            </>
           </Collapse>
         </TableCellCollapse>
       </TableRow>
