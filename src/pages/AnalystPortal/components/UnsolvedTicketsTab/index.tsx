@@ -8,6 +8,7 @@ import { TabContainer } from "../../../../components/Tabs/styles";
 import { EnumStatus } from "../../../../constants/enums";
 import { optionsStatus } from "../../../../constants/listSelects";
 import { ITicketsDTO } from "../../../../dtos/ITicketsDTO";
+import { useMessage } from "../../../../hooks/network/useMessage";
 import { useTicket } from "../../../../hooks/network/useTicket";
 import { useAuth } from "../../../../hooks/useAuth";
 import {
@@ -19,6 +20,7 @@ import {
 
 export function UnsolvedTicketsTab() {
   const { getUnsolvedTickets, putTicket, allTickets, loading } = useTicket();
+  const { getMessages, messagesState, loadingMessage } = useMessage();
   const { setor } = useAuth();
 
   useEffect(() => {
@@ -57,9 +59,13 @@ export function UnsolvedTicketsTab() {
         components={components}
         data={allTickets}
         isLoading={loading}
+        loadingCollapse={loadingMessage}
         renderCellHeader={(key) => columnLabel[key]}
-        renderCollapse={() => <CollapseConversation />}
+        renderCollapse={(rowData: ITicketsDTO) => (
+          <CollapseConversation dataList={messagesState} dataTicket={rowData} />
+        )}
         renderInputSearchAndSelect={arrayRenderInputSearch}
+        onClickCollapse={(id: number) => getMessages(id)}
       />
     </TabContainer>
   );

@@ -8,6 +8,7 @@ import { TabContainer } from "../../../../components/Tabs/styles";
 import { EnumStatus } from "../../../../constants/enums";
 import { optionsStatus } from "../../../../constants/listSelects";
 import { ITicketsDTO } from "../../../../dtos/ITicketsDTO";
+import { useMessage } from "../../../../hooks/network/useMessage";
 import { useTicket } from "../../../../hooks/network/useTicket";
 import {
   arrayRenderInputSearch,
@@ -18,6 +19,7 @@ import {
 
 export function UnsolvedTicketsTab() {
   const { getUnsolvedTickets, putTicket, allTickets, loading } = useTicket();
+  const { getMessages, messagesState, loadingMessage } = useMessage();
 
   useEffect(() => {
     getUnsolvedTickets();
@@ -52,13 +54,16 @@ export function UnsolvedTicketsTab() {
       <TableApp
         tableName="table-my-tickets-unsolved"
         isLoading={loading}
+        loadingCollapse={loadingMessage}
         columnConfig={columnConfig}
         components={components}
         data={allTickets}
         renderCellHeader={(key) => columnLabel[key]}
-        renderCollapse={() => <CollapseConversation />}
+        renderCollapse={(rowData: ITicketsDTO) => (
+          <CollapseConversation dataList={messagesState} dataTicket={rowData} />
+        )}
         renderInputSearchAndSelect={arrayRenderInputSearch}
-        key="table-my-tickets-unsolved"
+        onClickCollapse={(id: number) => getMessages(id)}
       />
     </TabContainer>
   );

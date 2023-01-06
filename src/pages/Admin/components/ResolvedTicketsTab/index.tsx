@@ -8,6 +8,7 @@ import { TabContainer } from "../../../../components/Tabs/styles";
 import { EnumStatus } from "../../../../constants/enums";
 import { optionsStatus } from "../../../../constants/listSelects";
 import { ITicketsDTO } from "../../../../dtos/ITicketsDTO";
+import { useMessage } from "../../../../hooks/network/useMessage";
 import { useTicket } from "../../../../hooks/network/useTicket";
 import {
   arrayRenderInputSearch,
@@ -18,6 +19,7 @@ import {
 
 export function ResolvedTicketsTab() {
   const { getResolvedTickets, putTicket, allTickets, loading } = useTicket();
+  const { getMessages, messagesState, loadingMessage } = useMessage();
 
   useEffect(() => {
     getResolvedTickets();
@@ -48,18 +50,20 @@ export function ResolvedTicketsTab() {
 
   return (
     <TabContainer>
-      {!loading && (
-        <TableApp
-          tableName="table-my-tickets"
-          columnConfig={columnConfig}
-          components={components}
-          data={allTickets}
-          isLoading={loading}
-          renderCellHeader={(key) => columnLabel[key]}
-          renderCollapse={() => <CollapseConversation />}
-          renderInputSearchAndSelect={arrayRenderInputSearch}
-        />
-      )}
+      <TableApp
+        tableName="table-my-tickets"
+        columnConfig={columnConfig}
+        components={components}
+        data={allTickets}
+        isLoading={loading}
+        loadingCollapse={loadingMessage}
+        renderCellHeader={(key) => columnLabel[key]}
+        renderCollapse={(rowData: ITicketsDTO) => (
+          <CollapseConversation dataList={messagesState} dataTicket={rowData} />
+        )}
+        renderInputSearchAndSelect={arrayRenderInputSearch}
+        onClickCollapse={(id: number) => getMessages(id)}
+      />
     </TabContainer>
   );
 }

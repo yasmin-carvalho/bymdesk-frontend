@@ -35,12 +35,12 @@ interface TableAppProps {
   // eslint-disable-next-line @typescript-eslint/ban-types
   renderCellHeader: (key: string) => {};
   // eslint-disable-next-line @typescript-eslint/ban-types
-  renderCollapse?: () => {};
+  renderCollapse?: (rowData: any) => {};
   renderInputSearch?: IRenderInputSearch;
   renderInputSearchAndSelect?: IRenderInputSearch[];
   arrayRenderInputSearch?: IRenderInputSearch[];
   isLoading: boolean;
-  onClickCollapse?: (id: number, rowData: any) => void;
+  onClickCollapse?: (id: number) => void;
   loadingCollapse?: boolean;
 }
 

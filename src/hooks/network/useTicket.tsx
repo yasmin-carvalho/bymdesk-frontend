@@ -40,7 +40,6 @@ export function useTicket() {
       });
       addToast("Ticket cadastrado com sucesso!", ToastType.success);
     } catch (error) {
-      console.log(error);
       addToast("ERRO!", ToastType.error);
     } finally {
       setLoading(false);

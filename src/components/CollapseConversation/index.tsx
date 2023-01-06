@@ -24,21 +24,18 @@ export function CollapseConversation({
   dataList,
   dataTicket,
 }: CollapseConversationProps) {
-  console.log("dataList", dataList);
-  console.log("dataTicket", dataTicket);
-
   return (
     <>
       <Container>
         {dataList?.map((item) => (
           <WrapperRow alignContent="left" key={item.id}>
             <ContentMessage alignContent="left">
-              <TextName>Nome do Cliente</TextName>
+              <TextName>{dataTicket?.nome_solicitante}</TextName>
               <WrapperMessage alignContent="left">
                 <Message>{item?.mensagem}</Message>
-                <LabelData alignText="right">20/01/2022</LabelData>
+                <LabelData alignText="right">{dataTicket?.data}</LabelData>
                 <Image src={item?.imagem} alt="img-logoIncidentes" />
-                <LabelData alignText="left">20/01/2022</LabelData>
+                <LabelData alignText="left">{dataTicket?.data}</LabelData>
               </WrapperMessage>
             </ContentMessage>
           </WrapperRow>

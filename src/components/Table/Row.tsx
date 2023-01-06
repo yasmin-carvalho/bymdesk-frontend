@@ -12,7 +12,7 @@ interface RowProps {
   components: ITypeComponents;
   rowData: any;
   rowIndex: number;
-  renderCollapse?: () => {};
+  renderCollapse?: (rowData: any) => {};
   onClickCollapse?: (id: number, rowData: any) => void;
   loadingCollapse?: boolean;
 }
@@ -59,7 +59,7 @@ const Row: React.FC<RowProps> = ({
               {loadingCollapse ? (
                 <div>Loading ...</div>
               ) : (
-                <>{renderCollapse()}</>
+                <>{renderCollapse(rowData)}</>
               )}
             </>
           </Collapse>
